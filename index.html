@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Randall Aquatics</title>
+<title>Randall Aquatics | Price, Utah</title>
+<meta name="description" content="Randall Aquatics in Price, Utah. Buy, sell, and trade tropical fish. Call (435) 650-8646.">
 <style>
 :root { --ink:#07070b; --cyan:#3df0ff; --mag:#ff2bd6; --bone:#f4f7ff; --mute:#9aa3c7; }
 * { box-sizing:border-box; }
@@ -31,19 +32,17 @@ h1 span { background:linear-gradient(90deg,#ff2bd6,#3df0ff); -webkit-background-
 .hot { background:var(--cyan); color:#061016; }
 .ghost { border:1px solid var(--mag) !important; color:var(--mag) !important; background:transparent; }
 .stamp { display:inline-block; margin-top:14px; border:2px solid var(--mag); color:var(--mag); letter-spacing:.1em; font-size:12px; padding:6px 8px; }
-.strip{display:flex;gap:22px;overflow:hidden;margin:28px 0 8px;color:#3df0ff;letter-spacing:.18em;font-weight:800;font-size:14px}.hot{margin-top:28px}.moves{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}.grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:16px; }
+.grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:16px; }
 .card { background:#10131f; border:1px solid rgba(61,240,255,.28); border-radius:16px; overflow:hidden; }
 .card img { width:100%; height:180px; object-fit:cover; display:block; background:#000; }
 .meta { padding:12px 14px 16px; }
 .date { color:var(--cyan); font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
 .price { color:var(--mag); font-size:26px; font-weight:800; }
-.sold .price { text-decoration:line-through; }
+.was { color:var(--mute); text-decoration:line-through; font-size:16px; margin-right:8px; }
 .note { color:var(--mute); max-width:44rem; }
 .two { display:grid; grid-template-columns:1.1fr .9fr; gap:22px; }
 .faq details { background:#10131f; border:1px solid rgba(61,240,255,.22); border-radius:12px; padding:12px 14px; margin:10px 0; }
 .faq summary { cursor:pointer; font-weight:700; }
-form { display:grid; gap:10px; max-width:480px; }
-input, textarea { background:#10131f; color:#fff; border:1px solid rgba(61,240,255,.3); border-radius:10px; padding:10px; font:inherit; }
 footer { padding:16px 5vw 36px; color:var(--mute); border-top:1px solid rgba(61,240,255,.2); }
 .badge-wrap { display:grid; place-items:center; width:min(420px,86vw); aspect-ratio:1; margin-inline:auto; border-radius:50%; padding:8px;
   background: conic-gradient(from 90deg, #ff2bd6, #3df0ff, #7a5cff, #ff2bd6);
@@ -78,41 +77,33 @@ footer { padding:16px 5vw 36px; color:var(--mute); border-top:1px solid rgba(61,
   </nav>
 </header>
 <main id="app"></main>
-<footer>315 N 100 W, Price, UT 84501 &middot; <a href="tel:+14356508646">(435) 650-8646</a> &middot; <a href="https://www.facebook.com/groups/1390189834734450/" target="_blank" rel="noopener">Facebook group</a> &middot; <a href="https://www.tiktok.com/@randallaquaticsllc" target="_blank" rel="noopener">TikTok</a></footer>
+<footer>315 N 100 W, Price, UT 84501 &middot; <a href="tel:+14356508646">(435) 650-8646</a> &middot; <a href="mailto:info@randallaquatics.com">info@randallaquatics.com</a> &middot; <a href="https://www.facebook.com/groups/1390189834734450/" target="_blank" rel="noopener">Facebook group</a> &middot; <a href="https://www.tiktok.com/@randallaquaticsllc" target="_blank" rel="noopener">TikTok</a></footer>
 <script>
 const pages = {
-home: `<section class="hero"><div><p class="kicker">Price, Utah</p><h1>FISH.<br><span>THEN MORE FISH.</span></h1><p class="lede">Brandon Randall sells, buys, and takes the fish you are tired of cleaning. Check the board. Message first. Then drive.</p><div class="btns"><a class="hot" href="#inventory">See the board</a><a class="ghost" href="tel:+14356508646">Call the shop</a><a class="ghost" href="https://www.facebook.com/groups/1390189834734450/" target="_blank" rel="noopener">Facebook group</a><a class="ghost" href="https://www.tiktok.com/@randallaquaticsllc" target="_blank" rel="noopener">TikTok</a></div><div class="stamp">Call or message before you visit</div></div><div class="badge-wrap"><img src="https://litter.catbox.moe/jnn5ir.jpg" alt="Neon betta badge"></div></section>
-<section class="marquee" aria-label="What he posted"><p>Platinum parrot cichlids &middot; Electric yellows &middot; Bettas &middot; Goldfish &middot; Shubunkins &middot; Tetras &middot; Call before you drive &middot; Platinum parrot cichlids &middot; Electric yellows &middot; Bettas &middot; Goldfish &middot; Shubunkins &middot; Tetras &middot; Call before you drive &middot; </p></section>
-<section class="home-block"><p class="kicker">On the board</p><h2>WHAT MOVES</h2><p class="note">Live stock changes. Message the group or call before you load a bucket.</p><div class="grid">
-<article class="card"><img src="https://litter.catbox.moe/x7egoh.jpg" alt="Platinum parrot cichlid"><div class="meta"><div class="date">In stock</div><h3>Platinum parrot cichlids</h3><div class="price">$10</div><p>Pale cream parrot. Check the board for the count.</p></div></article>
-<article class="card"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Cichlidae_Labidochromis_caeruleus_2.jpg?width=480" alt="Electric yellow cichlid"><div class="meta"><div class="date">In stock</div><h3>Electric yellow cichlids</h3><div class="price">$5</div><p>Babies and larger. Price depends on size.</p></div></article>
-<article class="card"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Betta_splendens_male_crowntail.png?width=480" alt="Betta"><div class="meta"><div class="date">In stock</div><h3>Bettas</h3><div class="price">$18–65</div><p>Koi, halfmoon, crowntail, classic. Ask which are in.</p></div></article>
-</div></section>
-<section class="home-block"><div class="two"><div><h2>SICK OF THE TANK?</h2><p>He buys. He sells. He takes the fish you are done looking at. That is the whole business.</p><div class="steps"><div><strong>1. Message</strong><span>Group or (435) 650-8646. Say what you want or what you want gone.</span></div><div><strong>2. He answers</strong><span>What is in the room, or what he will take.</span></div><div><strong>3. Drive</strong><span>315 N 100 W, Price. Call first.</span></div></div><p><a class="hot btn" href="#contact">Contact</a> <a class="ghost btn" href="https://www.facebook.com/groups/1390189834734450/" target="_blank" rel="noopener">Facebook group</a> <a class="ghost btn" href="https://www.tiktok.com/@randallaquaticsllc" target="_blank" rel="noopener">TikTok</a></p></div><img src="https://litter.catbox.moe/x7egoh.jpg" alt="Platinum parrot from the shop" style="width:100%;border-radius:16px"></div></section>`,
-inventory: `<p class="kicker">Live board</p><h1>IN STOCK</h1><p class="note">Current board. Call or message before you drive. Stock changes.</p><div class="grid">
-<article class="card"><img src="https://litter.catbox.moe/x7egoh.jpg" alt="Platinum parrot cichlid"><div class="meta"><div class="date">20+</div><h3>Platinum parrot cichlids</h3><div class="price">$10</div></div></article>
-<article class="card"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Cichlidae_Labidochromis_caeruleus_2.jpg?width=480" alt="Electric yellow"><div class="meta"><div class="date">10+</div><h3>Electric yellow cichlids</h3><div class="price">$5</div></div></article>
-<article class="card"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Betta_splendens_male_crowntail.png?width=480" alt="Betta"><div class="meta"><div class="date">In stock</div><h3>Bettas</h3><div class="price">$18–65</div></div></article>
-<article class="card"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Shubunkin.JPG?width=480" alt="Shubunkin"><div class="meta"><div class="date">19</div><h3>Small shubunkin</h3><div class="price">$10</div></div></article>
-<article class="card"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Goldfish3.jpg?width=480" alt="Goldfish"><div class="meta"><div class="date">48</div><h3>Small goldfish</h3><div class="price">$2</div></div></article>
-<article class="card"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Neonsalmler_Paracheirodon_innesi.jpg?width=480" alt="Neon tetra"><div class="meta"><div class="date">In stock</div><h3>Tetras</h3><div class="price">$4–8</div></div></article>
-</div><p class="note"><a href="https://www.facebook.com/groups/1390189834734450/">Full board is in the Facebook group.</a> Call (435) 650-8646 to confirm.</p>`,
-merch: `<p class="kicker">Shop gear</p><h1>GEAR</h1><p class="note">Tees, stickers, and hats with the badge. Ask in the group or call for what is available.</p><div class="grid">
-<article class="card"><img src="https://litter.catbox.moe/jnn5ir.jpg" alt="Badge on a tee"><div class="meta"><div class="date">Ask</div><h3>Neon betta tee</h3><p>Black shirt. Badge on the chest.</p></div></article>
-<article class="card"><img src="https://litter.catbox.moe/jnn5ir.jpg" alt="Sticker"><div class="meta"><div class="date">Ask</div><h3>Die-cut sticker</h3><p>Round badge for a tank or a truck.</p></div></article>
-<article class="card"><img src="https://litter.catbox.moe/jnn5ir.jpg" alt="Hat"><div class="meta"><div class="date">Ask</div><h3>Price UT hat</h3><p>Dad hat with the badge.</p></div></article>
+home: `<section class="hero"><div><p class="kicker">Price, Utah</p><h1>FISH.<br><span>THEN MORE FISH.</span></h1><p class="lede">Buy, sell, and trade tropical fish with Brandon Randall. Call or message first so the fish is still here when you arrive.</p><div class="btns"><a class="hot" href="#inventory">See inventory</a><a class="ghost" href="tel:+14356508646">Call the shop</a><a class="ghost" href="https://www.facebook.com/groups/1390189834734450/" target="_blank" rel="noopener">Facebook group</a><a class="ghost" href="https://www.tiktok.com/@randallaquaticsllc" target="_blank" rel="noopener">TikTok</a></div><div class="stamp">Call or message before you visit</div></div><div class="badge-wrap"><img src="https://litter.catbox.moe/jnn5ir.jpg" alt="Neon betta badge"></div></section>
+<section class="marquee" aria-label="Hot deals"><p>Hot deals &middot; Platinum parrots $5 &middot; Electric yellows half off &middot; Call before you drive &middot; Hot deals &middot; Platinum parrots $5 &middot; Electric yellows half off &middot; Call before you drive &middot; </p></section>
+<section class="home-block"><p class="kicker">This week</p><h2>HOT DEALS</h2><p class="note">Half off the board price. Call to confirm before you drive.</p><div class="grid">
+<article class="card"><img src="https://litter.catbox.moe/x7egoh.jpg" alt="Platinum parrot cichlid"><div class="meta"><div class="date">20+ &middot; half off</div><h3>Platinum parrot cichlids</h3><div class="price"><span class="was">$10</span>$5</div><p>Pale cream parrot. Deal price while they last.</p></div></article>
+<article class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Electric_Yellow_Lab_Cichlid.jpg/500px-Electric_Yellow_Lab_Cichlid.jpg" alt="Electric yellow cichlid"><div class="meta"><div class="date">10+ &middot; half off</div><h3>Electric yellow cichlids</h3><div class="price"><span class="was">$5</span>$2.50</div><p>Was $5. Deal price $2.50.</p></div></article>
+<article class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Electric_Yellow_Lab_Cichlid.jpg/500px-Electric_Yellow_Lab_Cichlid.jpg" alt="Electric yellow cichlid larger"><div class="meta"><div class="date">5 &middot; half off</div><h3>Electric yellow cichlids</h3><div class="price"><span class="was">$10</span>$5</div><p>Was $10. Deal price $5.</p></div></article>
+</div><p><a class="hot btn" href="#inventory">Full inventory</a></p></section>
+<section class="home-block"><div class="two"><div><h2>SICK OF THE TANK?</h2><p>We buy, sell, and take fish you are done keeping. Tell us what you want or what you want gone.</p><div class="steps"><div><strong>1. Call or message</strong><span>Group or (435) 650-8646. Say what you need.</span></div><div><strong>2. Confirm</strong><span>We will tell you what is available or what we can take.</span></div><div><strong>3. Pick up</strong><span>315 N 100 W, Price. Call first.</span></div></div><p><a class="hot btn" href="#contact">Contact</a> <a class="ghost btn" href="https://www.facebook.com/groups/1390189834734450/" target="_blank" rel="noopener">Facebook group</a></p></div><img src="https://litter.catbox.moe/x7egoh.jpg" alt="Platinum parrot" style="width:100%;border-radius:16px;object-fit:cover;max-height:320px"></div></section>`,
+inventory: `<p class="kicker">Live stock</p><h1>INVENTORY</h1><p class="note">Every item has a species thumbnail. Call (435) 650-8646 to confirm before you drive. Zero means out.</p><p><a class="hot btn" href="stock.html">Open full inventory</a></p><iframe src="stock.html" style="width:100%;height:78vh;border:0;border-radius:16px;background:#07070b" title="Inventory with thumbnails"></iframe>`,
+merch: `<p class="kicker">Gear</p><h1>SHOP GEAR</h1><p class="note">Tees, stickers, and hats with the Randall Aquatics badge. Call or message the group to order.</p><div class="grid">
+<article class="card"><img src="https://litter.catbox.moe/jnn5ir.jpg" alt="Badge on a tee"><div class="meta"><h3>Neon betta tee</h3><p>Black shirt with the badge.</p></div></article>
+<article class="card"><img src="https://litter.catbox.moe/jnn5ir.jpg" alt="Sticker"><div class="meta"><h3>Die-cut sticker</h3><p>Round badge for a tank or a truck.</p></div></article>
+<article class="card"><img src="https://litter.catbox.moe/jnn5ir.jpg" alt="Hat"><div class="meta"><h3>Price hat</h3><p>Hat with the badge.</p></div></article>
 </div>`,
-about: `<div class="two"><div><p class="kicker">The room</p><h1>BRANDON RANDALL.<br><span>PRICE, UTAH.</span></h1><p>Randall Aquatics is a buy, sell, and trade room at 315 N 100 W. Licensed and open. Brandon runs it. Amanda is in the shop with him.</p><p>Stock lives on the board and in the Facebook group. Call or message before you drive.</p><p><a href="https://www.tiktok.com/@randallaquaticsllc" target="_blank" rel="noopener">TikTok @randallaquaticsllc</a></p></div><img src="https://litter.catbox.moe/x7egoh.jpg" alt="Platinum parrot from the shop" style="width:100%;border-radius:16px"></div>`,
-faq: `<p class="kicker">Before you drive</p><h1>FAQ</h1><div class="faq">
-<details open><summary>Is the board today stock?</summary><p>Yes. Stock still changes. Call or message before you drive.</p></details>
-<details><summary>How do I buy a fish?</summary><p>Call (435) 650-8646 or message the group. Then pick up in Price.</p></details>
-<details><summary>Do you buy or trade?</summary><p>Yes. He will sell you fish or take them if you are done cleaning the tank.</p></details>
-<details><summary>Where is it?</summary><p>315 N 100 W, Price, UT 84501. Call or message first.</p></details>
-<details><summary>What are the hours?</summary><p>Call. Hours are not posted online.</p></details>
-<details><summary>Where is the group?</summary><p><a href="https://www.facebook.com/groups/1390189834734450/" target="_blank" rel="noopener">RANDALL AQUATICS on Facebook</a></p></details>
-<details><summary>TikTok?</summary><p><a href="https://www.tiktok.com/@randallaquaticsllc" target="_blank" rel="noopener">@randallaquaticsllc</a></p></details>
+about: `<div class="two"><div><p class="kicker">About</p><h1>RANDALL AQUATICS<br><span>PRICE, UTAH</span></h1><p>Randall Aquatics is a buy, sell, and trade shop at 315 N 100 W in Price. Owned by Brandon Randall. Licensed and open.</p><p>Follow the Facebook group and TikTok for new arrivals. Call or message before you visit.</p><p><a href="https://www.tiktok.com/@randallaquaticsllc" target="_blank" rel="noopener">TikTok @randallaquaticsllc</a></p></div><img src="https://litter.catbox.moe/jnn5ir.jpg" alt="Randall Aquatics badge" style="width:100%;border-radius:50%;max-width:360px;margin:auto"></div>`,
+faq: `<p class="kicker">Questions</p><h1>FAQ</h1><div class="faq">
+<details open><summary>Is the inventory current?</summary><p>Yes. Stock changes. Call or message before you drive.</p></details>
+<details><summary>How do I buy a fish?</summary><p>Call (435) 650-8646 or message the Facebook group. Confirm availability, then pick up at the shop in Price.</p></details>
+<details><summary>Do you buy or trade?</summary><p>Yes. We buy, sell, and trade. Call or message with what you have.</p></details>
+<details><summary>Where are you located?</summary><p>315 N 100 W, Price, UT 84501. Call before you visit.</p></details>
+<details><summary>What are your hours?</summary><p>Call for current hours.</p></details>
+<details><summary>How do I stay updated?</summary><p>Join the <a href="https://www.facebook.com/groups/1390189834734450/" target="_blank" rel="noopener">Facebook group</a> or follow <a href="https://www.tiktok.com/@randallaquaticsllc" target="_blank" rel="noopener">@randallaquaticsllc</a> on TikTok.</p></details>
 </div>`,
-contact: `<p class="kicker">Message first</p><h1>CONTACT</h1><div class="two"><div><p>315 N 100 W<br>Price, UT 84501<br><a href="tel:+14356508646">(435) 650-8646</a><br><a href="mailto:info@randallaquatics.com">info@randallaquatics.com</a></p><div class="btns"><a class="hot" href="https://maps.google.com/?q=315+N+100+W+Price+UT+84501" target="_blank" rel="noopener">Open the map</a><a class="ghost" href="https://www.facebook.com/groups/1390189834734450/" target="_blank" rel="noopener">Facebook group</a><a class="ghost" href="https://www.tiktok.com/@randallaquaticsllc" target="_blank" rel="noopener">TikTok</a></div></div><img src="https://litter.catbox.moe/jnn5ir.jpg" alt="Badge" style="width:min(360px,100%);border-radius:50%"></div>`
+contact: `<p class="kicker">Get in touch</p><h1>CONTACT</h1><div class="two"><div><p>315 N 100 W<br>Price, UT 84501<br><a href="tel:+14356508646">(435) 650-8646</a><br><a href="mailto:info@randallaquatics.com">info@randallaquatics.com</a></p><div class="btns"><a class="hot" href="https://maps.google.com/?q=315+N+100+W+Price+UT+84501" target="_blank" rel="noopener">Open the map</a><a class="ghost" href="https://www.facebook.com/groups/1390189834734450/" target="_blank" rel="noopener">Facebook group</a><a class="ghost" href="https://www.tiktok.com/@randallaquaticsllc" target="_blank" rel="noopener">TikTok</a></div></div><img src="https://litter.catbox.moe/jnn5ir.jpg" alt="Badge" style="width:min(360px,100%);border-radius:50%"></div>`
 };
 function show(id){
   if(!pages[id]) id='home';
