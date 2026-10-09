@@ -1,131 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Randall Aquatics | Tropical Fish Shop in Price, Utah</title>
-  <meta name="description" content="Randall Aquatics is Castle Country's aquarium shop in Price, Utah. Freshwater and saltwater fish, supplies, buy, sell, and trade.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%2306141B' stroke='%230E7C7B' stroke-width='3'/%3E%3Cpath d='M18 36c8-10 22-10 30 2-8 6-18 6-30-2z' fill='%232A9D8F'/%3E%3Cpath d='M16 28c10 0 20-6 28-2' fill='none' stroke='%237FDBDA' stroke-width='2'/%3E%3C/svg%3E">
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"PetStore","name":"Randall Aquatics","telephone":"+14356508646","address":{"@type":"PostalAddress","streetAddress":"315 N 100 W","addressLocality":"Price","addressRegion":"UT","postalCode":"84501"},"areaServed":["Price","Helper","Wellington","Carbon County","Castle Country"]}
-  </script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Randall Aquatics</title>
+<style>
+:root { --ink:#07070b; --cyan:#3df0ff; --mag:#ff2bd6; --bone:#f4f7ff; --mute:#9aa3c7; }
+* { box-sizing:border-box; }
+html,body { margin:0; min-height:100%; color:var(--bone); font-family:"Segoe UI",sans-serif; }
+body { background:
+  radial-gradient(ellipse 90% 70% at 12% 0%, rgba(255,43,214,.30) 0%, rgba(255,43,214,0) 62%),
+  radial-gradient(ellipse 80% 65% at 100% 16%, rgba(61,240,255,.22) 0%, rgba(61,240,255,0) 60%),
+  radial-gradient(ellipse 70% 50% at 50% 100%, rgba(122,92,255,.12) 0%, rgba(122,92,255,0) 65%),
+  #07070b;
+  background-attachment: fixed; }
+a { color:var(--cyan); }
+header { display:flex; justify-content:space-between; align-items:center; gap:12px; padding:12px 4vw; background:rgba(7,7,11,.45); backdrop-filter:blur(8px); border-bottom:1px solid rgba(61,240,255,.2); position:sticky; top:0; z-index:5; }
+.brand { display:flex; gap:10px; align-items:center; color:#fff; text-decoration:none; letter-spacing:.12em; font-size:13px; }
+.brand img { width:42px; height:42px; border-radius:50%; }
+nav { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+nav a { color:var(--cyan); text-decoration:none; font-size:14px; font-weight:700; border:1px solid var(--cyan); border-radius:999px; padding:6px 12px; }
+nav a.on { background:var(--cyan); color:#061016; }
+main { padding:28px 5vw 60px; min-height:70vh; background:transparent; }
+.hero { display:grid; grid-template-columns:1.1fr .9fr; gap:24px; align-items:center; background:transparent; overflow:visible; }
+h1 { font-size:clamp(42px,7vw,78px); line-height:.88; margin:8px 0; }
+h1 span { background:linear-gradient(90deg,#ff2bd6,#3df0ff); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.kicker { color:var(--mag); font-weight:700; }
+.lede { color:#c9d2ea; max-width:40rem; }
+.btns a, button.btn { display:inline-block; margin:8px 8px 0 0; padding:10px 14px; border-radius:999px; text-decoration:none; font-weight:700; border:0; cursor:pointer; font-size:15px; }
+.hot { background:var(--cyan); color:#061016; }
+.ghost { border:1px solid var(--mag) !important; color:var(--mag) !important; background:transparent; }
+.stamp { display:inline-block; margin-top:14px; border:2px solid var(--mag); color:var(--mag); letter-spacing:.1em; font-size:12px; padding:6px 8px; }
+.strip{display:flex;gap:22px;overflow:hidden;margin:28px 0 8px;color:#3df0ff;letter-spacing:.18em;font-weight:800;font-size:14px}.hot{margin-top:28px}.moves{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}.grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:16px; }
+.card { background:#10131f; border:1px solid rgba(61,240,255,.28); border-radius:16px; overflow:hidden; }
+.card img { width:100%; height:180px; object-fit:cover; display:block; background:#000; }
+.meta { padding:12px 14px 16px; }
+.date { color:var(--cyan); font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
+.price { color:var(--mag); font-size:26px; font-weight:800; }
+.sold .price { text-decoration:line-through; }
+.note { color:var(--mute); max-width:44rem; }
+.two { display:grid; grid-template-columns:1.1fr .9fr; gap:22px; }
+.faq details { background:#10131f; border:1px solid rgba(61,240,255,.22); border-radius:12px; padding:12px 14px; margin:10px 0; }
+.faq summary { cursor:pointer; font-weight:700; }
+form { display:grid; gap:10px; max-width:480px; }
+input, textarea { background:#10131f; color:#fff; border:1px solid rgba(61,240,255,.3); border-radius:10px; padding:10px; font:inherit; }
+footer { padding:16px 5vw 36px; color:var(--mute); border-top:1px solid rgba(61,240,255,.2); }
+.badge-wrap { display:grid; place-items:center; width:min(420px,86vw); aspect-ratio:1; margin-inline:auto; border-radius:50%; padding:8px;
+  background: conic-gradient(from 90deg, #ff2bd6, #3df0ff, #7a5cff, #ff2bd6);
+  box-shadow: 0 0 60px rgba(255,43,214,.35), 0 0 90px rgba(61,240,255,.2);
+  animation: rock 4.5s ease-in-out infinite; }
+.badge-wrap img { width:100%; height:100%; object-fit:cover; border-radius:50%; }
+@keyframes rock { 0%,100% { transform: rotate(-6deg); } 50% { transform: rotate(6deg); } }
+@media (max-width:800px) { .hero,.grid,.two { grid-template-columns:1fr; } }
+.marquee { overflow:hidden; border-top:1px solid rgba(61,240,255,.25); border-bottom:1px solid rgba(61,240,255,.25); background:rgba(12,12,20,.6); margin:28px -5vw 0; }
+.marquee p { margin:0; white-space:nowrap; letter-spacing:.12em; text-transform:uppercase; font-size:14px; padding:10px 0; color:var(--cyan); animation: ticker 22s linear infinite; }
+@keyframes ticker { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+.home-block { margin-top:42px; }
+.home-block h2 { font-size:clamp(28px,5vw,48px); margin:6px 0 8px; }
+.steps { display:grid; gap:10px; margin:14px 0; }
+.steps div { background:#10131f; border:1px solid rgba(61,240,255,.22); border-radius:12px; padding:10px 12px; }
+.steps strong { display:block; color:var(--cyan); }
+.steps span { color:#c9d2ea; }
+</style>
 </head>
-<body class="page-home">
-  <div class="mock-banner">Website <strong>mockup</strong> for Randall Aquatics — not the official live shop site.</div>
-  <header class="site-header">
-    <div class="wrap">
-      <a class="logo" href="index.html" aria-label="Randall Aquatics home">
-        <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#06141B" stroke="#0E7C7B" stroke-width="3"/><path d="M16 37c9-12 24-12 33 3-9 6-20 6-33-3z" fill="#2A9D8F"/><path d="M18 27c9-1 18-6 27-2" fill="none" stroke="#7FDBDA" stroke-width="2"/><circle cx="24" cy="34" r="1.6" fill="#06141B"/></svg>
-        <span class="logo-text"><b>RANDALL</b><span>AQUATICS</span></span>
-      </a>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Open menu">☰</button>
-      <nav class="site-nav" aria-label="Primary">
-        <a href="index.html" aria-current="page">Home</a>
-        <a href="fish.html">Fish</a>
-        <a href="supplies.html">Supplies</a>
-        <a href="services.html">Services</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Visit</a>
-      </nav>
-    </div>
-  </header>
-  <main>
-    <section class="hero">
-      <div class="hero-bg" aria-hidden="true"></div>
-      <div class="wrap">
-        <p class="eyebrow">Price, Utah · Castle Country</p>
-        <h1 class="display">Fish, fish, and more fish.</h1>
-        <p class="lead">Freshwater and saltwater livestock, food, décor, and supplies — plus buy, sell, and trade. Castle Country’s aquarium shop, run by someone who actually keeps fish.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="fish.html">See what’s swimming</a>
-          <a class="btn btn-ghost" href="tel:+14356508646">Call before you visit</a>
-        </div>
-      </div>
-    </section>
-    <section class="section">
-      <div class="wrap">
-        <div class="card-grid">
-          <article class="card livestock">
-            <h3>Livestock</h3>
-            <p>Cichlids, community fish, livebearers, and whatever came in this week.</p>
-            <p style="margin-top:0.8rem"><a href="fish.html">Browse fish →</a></p>
-          </article>
-          <article class="card">
-            <h3>Supplies</h3>
-            <p>Food, filters, décor, and the stuff that keeps a tank from turning into a science experiment.</p>
-            <p style="margin-top:0.8rem"><a href="supplies.html">See supplies →</a></p>
-          </article>
-          <article class="card">
-            <h3>Buy · Sell · Trade</h3>
-            <p>Starting a tank or shutting one down? Message Brandon.</p>
-            <p style="margin-top:0.8rem"><a href="services.html">How it works →</a></p>
-          </article>
-        </div>
-      </div>
-    </section>
-    <section class="section" style="padding-top:0">
-      <div class="wrap">
-        <div class="section-head">
-          <h2>Recent examples</h2>
-          <p>Inventory changes fast. These are real recent listings — not a warehouse catalog.</p>
-        </div>
-        <div class="stock-strip">
-          <article class="stock-card"><img src="https://images.unsplash.com/photo-1534043464124-3be32fe000c9?auto=format&fit=crop&w=800&q=80" alt="Colorful ram cichlid"><div class="meta"><h3>Bolivian Ram</h3><p class="price">$18</p></div></article>
-          <article class="stock-card"><img src="https://images.unsplash.com/photo-1535591273668-578e31182c4f?auto=format&fit=crop&w=800&q=80" alt="Blue fish in aquarium"><div class="meta"><h3>Blue Balloon Ram</h3><p class="price">$20</p></div></article>
-          <article class="stock-card"><img src="https://images.unsplash.com/photo-1524704654690-b56c05c78a00?auto=format&fit=crop&w=800&q=80" alt="Cichlid in planted tank"><div class="meta"><h3>Frontosa juveniles</h3><p class="price">$29.99</p></div></article>
-          <article class="stock-card"><img src="https://images.unsplash.com/photo-1496196614460-48988cd862d0?auto=format&fit=crop&w=800&q=80" alt="Community aquarium plants"><div class="meta"><h3>Kribensis</h3><p class="price">$10</p></div></article>
-          <article class="stock-card"><img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80" alt="Oscar-like cichlid"><div class="meta"><h3>Baby Oscars</h3><p class="price">$8.99</p></div></article>
-          <article class="stock-card"><img src="https://images.unsplash.com/photo-1520990261886-3c57c1d4e3f4?auto=format&fit=crop&w=800&q=80" alt="Livebearer fish"><div class="meta"><h3>Red Wag Swordtails</h3><p class="price">$3.99</p></div></article>
-        </div>
-        <p class="note">This week’s list lives on Facebook. Don’t drive across town for a fish that already found a home.</p>
-      </div>
-    </section>
-    <section class="section" style="padding-top:0">
-      <div class="wrap split">
-        <div>
-          <p class="eyebrow">Visit</p>
-          <h2 class="display" style="font-size:clamp(2rem,5vw,3.2rem);max-width:16ch">A working fish room in Price.</h2>
-          <p class="lead">315 N 100 W, Price, UT 84501. Hours change. Message or call before you drop in — don’t treat this like a strip-mall pet store.</p>
-          <p class="hours-note">Hours posted on Facebook — message before you drop in.</p>
-          <div class="btn-row" style="margin-top:1.2rem">
-            <a class="btn btn-primary" href="contact.html">Get directions</a>
-            <a class="btn btn-ghost" href="tel:+14356508646">(435) 650-8646</a>
-          </div>
-        </div>
-        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1200&q=80" alt="Utah canyon country near Price">
-      </div>
-    </section>
-  </main>
-  <footer class="site-footer">
-    <div class="wrap footer-grid">
-      <div>
-        <h2>Randall Aquatics</h2>
-        <p>315 N 100 W<br>Price, UT 84501<br><a href="tel:+14356508646">(435) 650-8646</a></p>
-        <p>Serving Price, Helper, Wellington, and the rest of Castle Country.</p>
-      </div>
-      <div>
-        <h3>Shop</h3>
-        <ul>
-          <li><a href="fish.html">Fish &amp; livestock</a></li>
-          <li><a href="supplies.html">Supplies</a></li>
-          <li><a href="services.html">Buy / sell / trade</a></li>
-        </ul>
-      </div>
-      <div>
-        <h3>Find us</h3>
-        <ul>
-          <li><a href="https://www.facebook.com/groups/1390189834734450/" rel="noopener">Facebook group</a></li>
-          <li><a href="https://www.tiktok.com/@randallaquaticsllc" rel="noopener">TikTok @randallaquaticsllc</a></li>
-          <li><a href="contact.html">Visit / contact</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="wrap tiny">Website mockup for Randall Aquatics — not the official live site. Price · Helper · Wellington · Carbon County · Castle Country.</div>
-  </footer>
-  <script src="js/main.js"></script>
+<body>
+<header>
+  <a class="brand" href="#home"><img src="https://litter.catbox.moe/jnn5ir.jpg" alt="Randall Aquatics badge">RANDALL AQUATICS</a>
+  <nav>
+    <a href="#home" data-p="home">Home</a>
+    <a href="#inventory" data-p="inventory">Inventory</a>
+    <a href="#merch" data-p="merch">Merch</a>
+    <a href="#about" data-p="about">About</a>
+    <a href="#faq" data-p="faq">FAQ</a>
+    <a href="#contact" data-p="contact">Contact</a>
+    <a href="https://www.facebook.com/groups/1390189834734450/" target="_blank" rel="noopener">Facebook group</a>
+  </nav>
+</header>
+<main id="app"></main>
+<footer>315 N 100 W, Price, UT 84501 &middot; <a href="tel:+14356508646">(435) 650-8646</a> &middot; <a href="https://www.facebook.com/groups/1390189834734450/" target="_blank" rel="noopener">Facebook group</a> &middot; <a href="https://www.tiktok.com/@randallaquaticsllc" target="_blank" rel="noopener">TikTok</a> &middot; Mockup. Not the live randallaquatics.com page.</footer>
+<script>
+const pages = {
+home: `<section class="hero"><div><p class="kicker">Price, Utah &middot; not a pet aisle</p><h1>FISH.<br><span>THEN MORE FISH.</span></h1><p class="lede">Brandon Randall sells, buys, and takes the fish you are tired of cleaning. The board is the Facebook group. Message first. Then drive. Showing up cold is how you waste a trip.</p><div class="btns"><a class="hot" href="#inventory">See the board</a><a class="ghost" href="tel:+14356508646">Call the shop</a><a class="ghost" href="https://www.facebook.com/groups/1390189834734450/" target="_blank" rel="noopener">Facebook group</a></div><div class="stamp">Call or message before you visit</div></div><div class="badge-wrap"><img src="https://litter.catbox.moe/jnn5ir.jpg" alt="Neon betta badge"></div></section>
+<section class="marquee" aria-label="What he posted"><p>Platinum parrot cichlids $25 &middot; Baby bettas $20 &middot; Black marble angelfish $10 &middot; Blue and red betta $40 sold &middot; Guppies, platys, black neon tetras, ask &middot; Call before you drive &middot; Platinum parrot cichlids $25 &middot; Baby bettas $20 &middot; Black marble angelfish $10 &middot; Blue and red betta $40 sold &middot; Guppies, platys, black neon tetras, ask &middot; Call before you drive &middot; </p></section>
+<section class="home-block"><p class="kicker">Hot on the board</p><h2>WHAT ACTUALLY MOVED</h2><p class="note">These are the posts people hit. Not a promise they are still in the tank. Ask the group before you load a bucket.</p><div class="grid">
+<article class="card"><img src="https://litter.catbox.moe/x7egoh.jpg" alt="Platinum parrot cichlid"><div class="meta"><div class="date">Feb 16, 2026</div><h3>Platinum parrot cichlids</h3><div class="price">$25</div><p>His tank photo. Pale cream parrot. The one that looks expensive and is not.</p><p><a href="https://www.facebook.com/groups/1390189834734450/posts/2466511137102309/" target="_blank" rel="noopener">Open the post</a></p></div></article>
+<article class="card"><img src="https://litter.catbox.moe/ocl3qg.jpg" alt="Baby betta"><div class="meta"><div class="date">Feb 10, 2026</div><h3>Baby bettas</h3><div class="price">$20</div><p>He said only 2 left. The post had no photo. Do not invent one in your head.</p><p><a href="https://www.facebook.com/groups/1390189834734450/posts/2460056987747724/" target="_blank" rel="noopener">Open the post</a></p></div></article>
+<article class="card"><img src="https://litter.catbox.moe/jgx5ip.jpg" alt="Black marble angelfish"><div class="meta"><div class="date">Jan 18, 2026</div><h3>Black marble angelfish</h3><div class="price">$10</div><p>About 3 inches. Five left at ten bucks. That was January. Ask.</p><p><a href="https://www.facebook.com/groups/1390189834734450/posts/2439222833164473/" target="_blank" rel="noopener">Open the post</a></p></div></article>
+</div></section>
+<section class="home-block"><p class="kicker">Already gone</p><div class="two"><article class="card sold"><img src="https://litter.catbox.moe/g5kvar.jpg" alt="Sold betta"><div class="meta"><div class="date">Apr 22, 2026 &middot; sold</div><h3>Blue and red betta</h3><div class="price">$40</div><p>Bigger one $40. Blue baby $25. He marked it sold. This is what too slow looks like.</p><p><a href="https://www.facebook.com/groups/1390189834734450/posts/2522903678129721/" target="_blank" rel="noopener">Open the post</a></p></div></article><div><h2>SICK OF THE TANK?</h2><p>He buys. He sells. He takes the fish you are done looking at. That is the whole business. No speech. No loyalty card.</p><div class="steps"><div><strong>1. Message</strong><span>Group or (435) 650-8646. Say what you want or what you want gone.</span></div><div><strong>2. He answers</strong><span>What is in the room, or what he will take. Not a guess.</span></div><div><strong>3. Drive</strong><span>315 N 100 W, Price. Do not show up first and hope.</span></div></div><p><a class="hot btn" href="#contact">Contact</a> <a class="ghost btn" href="https://www.facebook.com/groups/1390189834734450/" target="_blank" rel="noopener">Facebook group</a></p></div></div></section>`,
+inventory: `<p class="kicker">The board, not a promise</p><h1>WHAT HE ACTUALLY POSTED</h1><p class="note">This is not today stock. It is what Brandon put in the group. If you treat a February price like it is still in the tank, that is on you. Call or message.</p><div class="grid">
+<article class="card"><img src="https://litter.catbox.moe/x7egoh.jpg" alt="Platinum parrot cichlid"><div class="meta"><div class="date">Feb 16, 2026</div><h3>Platinum parrot cichlids</h3><div class="price">$25</div><p>His tank photo. Pale cream parrot.</p><p><a href="https://www.facebook.com/groups/1390189834734450/posts/2466511137102309/" target="_blank" rel="noopener">Open the post</a></p></div></article>
+<article class="card"><img src="https://litter.catbox.moe/ocl3qg.jpg" alt="Baby betta"><div class="meta"><div class="date">Feb 10, 2026</div><h3>Baby bettas</h3><div class="price">$20</div><p>Only 2 left. He said it. The post had no photo.</p><p><a href="https://www.facebook.com/groups/1390189834734450/posts/2460056987747724/" target="_blank" rel="noopener">Open the post</a></p></div></article>
+<article class="card sold"><img src="https://litter.catbox.moe/g5kvar.jpg" alt="Blue and red betta"><div class="meta"><div class="date">Apr 22, 2026 &middot; sold</div><h3>Blue and red betta</h3><div class="price">$40</div><p>Bigger blue-and-red $40. Blue baby $25. He marked it sold.</p><p><a href="https://www.facebook.com/groups/1390189834734450/posts/2522903678129721/" target="_blank" rel="noopener">Open the post</a></p></div></article>
+<article class="card"><img src="https://litter.catbox.moe/jgx5ip.jpg" alt="Black marble angelfish"><div class="meta"><div class="date">Jan 18, 2026</div><h3>Black marble angelfish</h3><div class="price">$10</div><p>About 3 inches. Five left at $10. That was January.</p><p><a href="https://www.facebook.com/groups/1390189834734450/posts/2439222833164473/" target="_blank" rel="noopener">Open the post</a></p></div></article>
+<article class="card"><img src="https://litter.catbox.moe/rbzv30.jpg" alt="Black neon tetras"><div class="meta"><div class="date">Jan 19, 2024</div><h3>Black neon tetras</h3><div class="price">Ask</div><p>Named in the comments. Price went out in Messenger.</p><p><a href="https://www.facebook.com/groups/1390189834734450/posts/1863405824079513/" target="_blank" rel="noopener">Open the post</a></p></div></article>
+<article class="card"><img src="https://litter.catbox.moe/13j89d.jpg" alt="Platies"><div class="meta"><div class="date">Jan 19, 2024</div><h3>Platies</h3><div class="price">Ask</div><p>Named with the tetras. Not swordtails.</p></div></article>
+<article class="card"><img src="https://litter.catbox.moe/z8gm4b.jpg" alt="Guppies"><div class="meta"><div class="date">Jan 19, 2024</div><h3>Guppies</h3><div class="price">Ask</div><p>Someone asked. He said he had some.</p></div></article>
+</div>`,
+merch: `<p class="kicker">Concept. Not a shop.</p><h1>GEAR.<br><span>NOT FOR SALE YET.</span></h1><p class="note">No merch is in the group. These are mock designs on the neon betta badge. If you want one, ask. Do not add it to a cart that does not exist.</p><div class="grid">
+<article class="card"><img src="https://litter.catbox.moe/jnn5ir.jpg" alt="Badge on a tee concept"><div class="meta"><div class="date">Concept</div><h3>Neon betta tee</h3><p>Black shirt. Badge on the chest. Not in the shop.</p></div></article>
+<article class="card"><img src="https://litter.catbox.moe/jnn5ir.jpg" alt="Sticker concept"><div class="meta"><div class="date">Concept</div><h3>Die-cut sticker</h3><p>Round badge for a tank or a truck. Ask in the group.</p></div></article>
+<article class="card"><img src="https://litter.catbox.moe/jnn5ir.jpg" alt="Hat concept"><div class="meta"><div class="date">Concept</div><h3>Price UT hat</h3><p>Dad hat with the badge. Still a mockup.</p></div></article>
+</div>`,
+about: `<div class="two"><div><p class="kicker">The room</p><h1>BRANDON RANDALL.<br><span>PRICE, UTAH.</span></h1><p>Randall Aquatics is a buy, sell, and trade room at 315 N 100 W. Not a chain. Brandon posted July 11, 2026 that they were licensed and open. He thanked Tina Urbanik for the flyer and his wife Amanda Randall.</p><p>October 6 he thanked Axis Productions for a video. The stock list still lives in the group.</p></div><img src="https://litter.catbox.moe/x7egoh.jpg" alt="Platinum parrot from the shop" style="width:100%;border-radius:16px"></div>`,
+faq: `<p class="kicker">Read this before you drive</p><h1>FAQ</h1><div class="faq">
+<details open><summary>Is the board today stock?</summary><p>No. Those are dated posts. Message for what is in the tanks today.</p></details>
+<details><summary>How do I buy a fish?</summary><p>Call (435) 650-8646 or message the group. Then pick up in Price.</p></details>
+<details><summary>Do you buy or trade?</summary><p>Yes. He will sell you fish or take them if you are done cleaning the tank.</p></details>
+<details><summary>Where is it?</summary><p>315 N 100 W, Price, UT 84501. Call or message first.</p></details>
+<details><summary>What are the hours?</summary><p>None posted. Call.</p></details>
+<details><summary>Where is the group?</summary><p><a href="https://www.facebook.com/groups/1390189834734450/" target="_blank" rel="noopener">RANDALL AQUATICS on Facebook</a></p></details>
+</div>`,
+contact: `<p class="kicker">Message first</p><h1>CONTACT</h1><div class="two"><div><p>315 N 100 W<br>Price, UT 84501<br><a href="tel:+14356508646">(435) 650-8646</a><br><a href="mailto:info@randallaquatics.com">info@randallaquatics.com</a></p><div class="btns"><a class="hot" href="https://maps.google.com/?q=315+N+100+W+Price+UT+84501" target="_blank" rel="noopener">Open the map</a><a class="ghost" href="https://www.facebook.com/groups/1390189834734450/" target="_blank" rel="noopener">Facebook group</a><a class="ghost" href="https://www.tiktok.com/@randallaquaticsllc" target="_blank" rel="noopener">TikTok</a></div></div><img src="https://litter.catbox.moe/jnn5ir.jpg" alt="Badge" style="width:min(360px,100%);border-radius:50%"></div>`
+};
+function show(id){
+  if(!pages[id]) id='home';
+  document.getElementById('app').innerHTML = pages[id];
+  document.querySelectorAll('nav a[data-p]').forEach(a => a.classList.toggle('on', a.dataset.p===id));
+}
+window.addEventListener('hashchange', () => show(location.hash.slice(1)||'home'));
+show(location.hash.slice(1)||'home');
+</script>
 </body>
 </html>
