@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Update Stock — Randall Aquatics</title>
+<style>
+body { margin:0; background:#07070b; color:#f4f7ff; font-family:Segoe UI,sans-serif; padding:20px; }
+h1 { font-size:28px; margin:0 0 8px; }
+p { color:#9aa3c7; }
+label { display:block; margin:14px 0 4px; font-weight:700; color:#3df0ff; }
+input, textarea, select { width:100%; max-width:420px; padding:12px; border-radius:10px; border:1px solid #3df0ff; background:#10131f; color:#fff; font:inherit; }
+button { margin-top:18px; padding:14px 20px; border:0; border-radius:999px; background:#3df0ff; color:#061016; font-weight:800; font-size:16px; }
+.note { font-size:14px; margin-top:18px; }
+</style>
+</head>
+<body>
+<h1>Update stock</h1>
+<p>Fill the lines. Tap send. It opens your email with the subject already set. Hit send again and the site updates.</p>
+<form id="f">
+  <label>Stock lines (one per line)</label>
+  <textarea id="lines" rows="12" placeholder="20+-Red cherry shrimp $3.00 each
+5-Blue velvet shrimp $8.00 each
+0-Large goldfish $10.00 each"></textarea>
+  <button type="submit">Open email to submit</button>
+</form>
+<p class="note">Subject will be <strong>RANDALL STOCK</strong>. Send the email and the board updates. Set quantity to 0 when an item is out.</p>
+<script>
+document.getElementById('f').addEventListener('submit', e => {
+  e.preventDefault();
+  const body = document.getElementById('lines').value.trim();
+  if (!body) return alert('Add at least one line');
+  const subject = 'RANDALL STOCK';
+  const mailto = `mailto:info@randallaquatics.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  window.location.href = mailto;
+});
+</script>
+</body>
+</html>
