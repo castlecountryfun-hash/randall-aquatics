@@ -16,7 +16,7 @@ button { margin-top:18px; padding:14px 20px; border:0; border-radius:999px; back
 </head>
 <body>
 <h1>Update stock</h1>
-<p>This is the full board. Add a new line to add a species. Leave a species off the list (or set qty to 0) to remove it. Tap the button and reply.</p>
+<p>Send the full board. New lines are added. Lines you leave out are removed. Set qty to 0 to mark something out.</p>
 <form id="f">
   <label>FISH</label>
   <textarea id="fish" rows="8" placeholder="20+-Red cherry shrimp $3.00 each
@@ -30,7 +30,7 @@ button { margin-top:18px; padding:14px 20px; border:0; border-radius:999px; back
 6-Anubias $6.00 each"></textarea>
   <button type="submit">Open email to submit</button>
 </form>
-<p class="note"><strong>Add:</strong> new line. <strong>Remove:</strong> leave it off the list or set qty to 0. Subject will be <strong>RANDALL STOCK</strong>. Reply to the Sunday email or send this.</p>
+<p class="note">Subject will be <strong>RANDALL STOCK</strong>. Send the full list each week. New species = add a line. Gone = leave it off or set qty to 0. The board becomes exactly what you send.</p>
 <script>
 document.getElementById('f').addEventListener('submit', e => {
   e.preventDefault();
@@ -43,7 +43,7 @@ document.getElementById('f').addEventListener('submit', e => {
   if (supplies) body += 'SUPPLIES\n' + supplies + '\n\n';
   if (plants) body += 'PLANTS\n' + plants + '\n\n';
   const subject = 'RANDALL STOCK';
-  const mailto = 'mailto:info@randallaquatics.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body.trim());
+  const mailto = `mailto:info@randallaquatics.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body.trim())}`;
   window.location.href = mailto;
 });
 </script>
