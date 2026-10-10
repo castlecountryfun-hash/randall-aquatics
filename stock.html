@@ -15,23 +15,23 @@ const items = [
 ["30+","Ramshorn snails",2,"https://commons.wikimedia.org/wiki/Special:FilePath/Planorbarius_corneus.jpg?width=400"],
 ["9","Glowlight tetras",5,"https://commons.wikimedia.org/wiki/Special:FilePath/Hemigrammus_erythrozonus.jpg?width=400"],
 ["6","Black neon tetras",5,"https://commons.wikimedia.org/wiki/Special:FilePath/Black_neon_tetra.jpg?width=400"],
-["10","Zebra danios",5,"https://commons.wikimedia.org/wiki/Special:FilePath/Danio_rerio.jpg?width=400"],
-["5","Long fin zebra danios",10,"https://commons.wikimedia.org/wiki/Special:FilePath/Danio_rerio.jpg?width=400"],
+["10","Zebra danios",5],
+["5","Long fin zebra danios",10],
 ["3","Celestial pearl danios",14,"https://commons.wikimedia.org/wiki/Special:FilePath/Danio_margaritatus.jpg?width=400"],
-["2","Gold ring danios",10,"https://commons.wikimedia.org/wiki/Special:FilePath/Danio_rerio.jpg?width=400"],
+["2","Gold ring danios",10],
 ["5","Redtail shark",10,"https://commons.wikimedia.org/wiki/Special:FilePath/Red-tailed_black_shark.jpg?width=400"],
 ["3","Chinese algae eater",10,"https://commons.wikimedia.org/wiki/Special:FilePath/Gyrinocheilus_aymonieri.jpg?width=400"],
 ["3","Baby Bristol nose pleco, black",5,"https://commons.wikimedia.org/wiki/Special:FilePath/Ancistrus_sp.jpg?width=400"],
 ["6","Platies",5,"https://commons.wikimedia.org/wiki/Special:FilePath/Xiphophorus_maculatus.jpg?width=400"],
 ["3","Clown loaches",18,"https://commons.wikimedia.org/wiki/Special:FilePath/Clown_loach.jpg?width=400"],
-["2","Honey dwarf gouramis",15,"https://commons.wikimedia.org/wiki/Special:FilePath/Trichogaster_chuna.jpg?width=400"],
+["2","Honey dwarf gouramis",15],
 ["10+","Electric yellow cichlids",5,"https://commons.wikimedia.org/wiki/Special:FilePath/Cichlidae_Labidochromis_caeruleus_2.jpg?width=400"],
 ["5","Electric yellow cichlids",10,"https://commons.wikimedia.org/wiki/Special:FilePath/Cichlidae_Labidochromis_caeruleus_2.jpg?width=400"],
 ["20+","Baby electric yellow cichlids",2,"https://commons.wikimedia.org/wiki/Special:FilePath/Cichlidae_Labidochromis_caeruleus_2.jpg?width=400"],
 ["4","Electric blue rams",26,"https://commons.wikimedia.org/wiki/Special:FilePath/Mikrogeophagus_ramirezi.jpg?width=400"],
 ["1","Jack Dempsey breeding pair",50,"https://commons.wikimedia.org/wiki/Special:FilePath/Jack_Dempsey_(Rocio_octofasciata)_-_Carwash_Cenote_QR.jpg?width=400"],
 ["10","Jack Dempseys",10,"https://commons.wikimedia.org/wiki/Special:FilePath/Rocio_octofasciata_jeune_8.jpg?width=400"],
-["20+","Platinum parrot cichlids",10,"https://litter.catbox.moe/x7egoh.jpg"],
+["20+","Platinum parrot cichlids",10],
 ["48","Small goldfish",2,"https://commons.wikimedia.org/wiki/Special:FilePath/Goldfish3.jpg?width=400"],
 ["2","Medium goldfish",5,"https://commons.wikimedia.org/wiki/Special:FilePath/Goldfish3.jpg?width=400"],
 ["0","Large goldfish",10,"https://commons.wikimedia.org/wiki/Special:FilePath/Goldfish3.jpg?width=400"],
@@ -40,7 +40,7 @@ const items = [
 ["2","Classic male betta",18,"https://commons.wikimedia.org/wiki/Special:FilePath/Betta_splendens_male_crowntail.png?width=400"],
 ["2","Crowntail male betta",24,"https://commons.wikimedia.org/wiki/Special:FilePath/Betta_splendens_male_crowntail.png?width=400"]
 ];
-document.getElementById('board').innerHTML = items.map(([q,n,p,img]) => `<article class="card${q==='0'?' out':''}"><img src="${img}" alt="${n}"><div class="meta"><div class="q">${q}</div><h3>${n}</h3><div class="p">$${p}</div></div></article>`).join('');
+document.getElementById('board').innerHTML = items.map(([q,n,p,img]) => `<article class="card${q==='0'?' out':''}">${img?`<img src="${img}" alt="${n}">`:''}<div class="meta"><div class="q">${q}</div><h3>${n}</h3><div class="p">$${p}</div></div></article>`).join('');
 const supplies = [
 ["5","1LB PEA GRAVEL-NATURAL",2],
 ["4","2LB PEA GRAVEL-NATURAL",4],
