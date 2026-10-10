@@ -7,7 +7,7 @@
 <h2>SUPPLIES</h2>
 <p class="note">Nothing listed yet.</p>
 <h2>PLANTS</h2>
-<p class="note">Nothing listed yet.</p>
+<div class="grid" id="plants"></div>
 <script>
 const items = [
 ["20+","Red cherry shrimp",3,"https://commons.wikimedia.org/wiki/Special:FilePath/Cherry_shrimp.jpg?width=400"],
@@ -41,5 +41,14 @@ const items = [
 ["2","Crowntail male betta",24,"https://commons.wikimedia.org/wiki/Special:FilePath/Betta_splendens_male_crowntail.png?width=400"]
 ];
 document.getElementById('board').innerHTML = items.map(([q,n,p,img]) => `<article class="card${q==='0'?' out':''}"><img src="${img}" alt="${n}"><div class="meta"><div class="q">${q}</div><h3>${n}</h3><div class="p">$${p}</div></div></article>`).join('');
+const plants = [
+["10","Water Lettuce",5],
+["1","Spiralis- Potted Plant",14],
+["1","Crinum Calamistratum",18],
+["1","Crypt Parva",14],
+["4","Grasses",7],
+["1","Java Moss/ 3D Print Holder",25]
+];
+document.getElementById('plants').innerHTML = plants.map(([q,n,p]) => `<article class="card${q==='0'?' out':''}"><div class="meta"><div class="q">${q}</div><h3>${n}</h3><div class="p">$${p}</div></div></article>`).join('');
 </script>
 </body></html>

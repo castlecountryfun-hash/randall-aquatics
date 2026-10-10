@@ -33,6 +33,12 @@
     {"board": "Fish", "qty": "3", "name": "Large shubunkin goldfish", "price": 15.00, "group": "goldfish", "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Shubunkin.JPG?width=480"},
     {"board": "Fish", "qty": "4", "name": "Halfmoon male betta", "price": 30.00, "group": "bettas", "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Betta_splendens_male_crowntail.png?width=480"},
     {"board": "Fish", "qty": "2", "name": "Classic male betta", "price": 18.00, "group": "bettas", "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Betta_splendens_male_crowntail.png?width=480"},
-    {"board": "Fish", "qty": "2", "name": "Crowntail male betta", "price": 24.00, "group": "bettas", "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Betta_splendens_male_crowntail.png?width=480"}
+    {"board": "Fish", "qty": "2", "name": "Crowntail male betta", "price": 24.00, "group": "bettas", "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Betta_splendens_male_crowntail.png?width=480"},
+    {"board": "Plants", "qty": "10", "name": "Water Lettuce", "price": 5.00, "group": "Plants"},
+    {"board": "Plants", "qty": "1", "name": "Spiralis- Potted Plant", "price": 14.00, "group": "Plants"},
+    {"board": "Plants", "qty": "1", "name": "Crinum Calamistratum", "price": 18.00, "group": "Plants"},
+    {"board": "Plants", "qty": "1", "name": "Crypt Parva", "price": 14.00, "group": "Plants"},
+    {"board": "Plants", "qty": "4", "name": "Grasses", "price": 7.00, "group": "Plants"},
+    {"board": "Plants", "qty": "1", "name": "Java Moss/ 3D Print Holder", "price": 25.00, "group": "Plants"}
   ]
 }

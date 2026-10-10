@@ -45,7 +45,7 @@ footer { padding:16px 5vw 36px; color:var(--mute); border-top:1px solid rgba(61,
   <h2>SUPPLIES</h2>
   <p class="note">Nothing listed yet.</p>
   <h2>PLANTS</h2>
-  <p class="note">Nothing listed yet.</p>
+  <div class="grid" id="plants"></div>
 </main>
 <footer>315 N 100 W, Price, UT 84501 · (435) 650-8646 · <a href="https://www.facebook.com/groups/1390189834734450/">Facebook group</a></footer>
 <script>
@@ -82,6 +82,15 @@ const items = [
 ];
 const board = document.getElementById('board');
 board.innerHTML = items.map(([q,n,p,img]) => `<article class="card${q==='0'?' out':''}"><img src="${img}" alt="${n}"><div class="meta"><div class="qty">${q}</div><h3>${n}</h3><div class="price">$${p}</div></div></article>`).join('');
+const plants = [
+["10","Water Lettuce",5],
+["1","Spiralis- Potted Plant",14],
+["1","Crinum Calamistratum",18],
+["1","Crypt Parva",14],
+["4","Grasses",7],
+["1","Java Moss/ 3D Print Holder",25]
+];
+document.getElementById('plants').innerHTML = plants.map(([q,n,p]) => `<article class="card${q==='0'?' out':''}"><div class="meta"><div class="qty">${q}</div><h3>${n}</h3><div class="price">$${p}</div></div></article>`).join('');
 </script>
 </body>
 </html>

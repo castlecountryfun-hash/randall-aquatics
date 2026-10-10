@@ -86,4 +86,11 @@ Nothing listed yet.
 
 ## Plants
 
-Nothing listed yet.
+| Qty | Item | Price |
+| --- | --- | --- |
+| 10 | Water Lettuce | $5.00 |
+| 1 | Spiralis- Potted Plant | $14.00 |
+| 1 | Crinum Calamistratum | $18.00 |
+| 1 | Crypt Parva | $14.00 |
+| 4 | Grasses | $7.00 |
+| 1 | Java Moss/ 3D Print Holder | $25.00 |
