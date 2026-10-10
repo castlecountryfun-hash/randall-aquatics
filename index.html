@@ -122,8 +122,14 @@ footer { padding:16px 5vw 36px; color:var(--mute); border-top:1px solid rgba(61,
 .shelf { max-width:44rem; margin-top:16px; }
 .shelf .meta { padding:18px 18px 20px; }
 .shelf .lead { font-size:clamp(18px,2.6vw,22px); font-weight:700; color:#fff; margin:6px 0 10px; line-height:1.3; }
-.shelf .tags { display:flex; flex-wrap:wrap; gap:8px; margin:6px 0 4px; }
-.shelf .tags span { border:1px solid rgba(255,43,214,.6); color:var(--mag); border-radius:999px; padding:4px 12px; font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; }
+.shelfnav { display:flex; flex-wrap:wrap; gap:8px; margin:14px 0 4px; }
+.shelfnav button { font:inherit; font-size:14px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--mag); background:transparent; border:2px solid var(--mag); border-radius:999px; padding:8px 16px; min-height:44px; cursor:pointer; }
+.shelfnav button[aria-pressed="true"] { background:var(--mag); color:#fff; }
+.shelfnav button:disabled { border-style:dashed; border-color:#3a3f57; color:#5d6480; cursor:not-allowed; opacity:.8; }
+.shelfnav button:focus-visible { outline:2px solid var(--cyan); outline-offset:3px; }
+.shelfnav button .n { font-size:11px; opacity:.85; margin-left:4px; }
+.shelfgrid { margin-top:14px; }
+.shelfgrid .stockcard[hidden] { display:none; }
 </style>
 </head>
 <body>
@@ -142,6 +148,167 @@ footer { padding:16px 5vw 36px; color:var(--mute); border-top:1px solid rgba(61,
 </header>
 <main id="app"></main>
 <footer>315 N 100 W, Price, UT 84501 · <a href="tel:+14356508646">(435) 650-8646</a> · <a href="https://www.facebook.com/groups/1390189834734450/" target="_blank" rel="noopener">Facebook group</a> · <a href="https://www.tiktok.com/@randallaquaticsllc" target="_blank" rel="noopener">TikTok</a></footer>
+<!--
+  INVENTORY DATA. The Fish, Supplies and Plants boards render from ./inventory.json, which the
+  randall-inventory-sync timer copies from castlecountryfun-hash/randall-aquatics@main every 5 minutes.
+  The Randall Stock bot edits inventory.json on main. One object per row in "items":
+    {"board":"Supplies", "group":"Gravel", "qty":"10", "name":"Black gravel 5 lb bag", "price":8, "image":"assets/stock/black-gravel.jpg"}
+  board : "Fish" | "Supplies" | "Plants"
+  group : Fish -> shrimp, snails, frogs, tetras, danios, corys, catfish, plecos, livebearers,
+                  sharks, barbs, loaches, gouramis, cichlids, goldfish, bettas (mapped to the fish cards below)
+          Supplies -> "Gravel" | "Decor" | "Food" | "Equipment"      Plants -> "Plants"
+  qty   : string. Whole number, "N+" (e.g. "20+"), or "0" = Out (row greys out with an Out tag).
+  price : number, price each in dollars (8 shows $8, 2.5 shows $2.50).
+  image : optional. Relative path (e.g. "assets/stock/x.jpg", synced from main:assets/stock/) or full https URL.
+          A photo in assets/stock/ wins; otherwise a fish whose name matches a row already on the site keeps
+          that site species photo; otherwise this image; otherwise no thumbnail.
+  If inventory.json can't be loaded, the Fish board below stays as written in the page and
+  Supplies/Plants use the two inline arrays (kept empty on purpose).
+-->
+<script id="shelf-data">
+const SUPPLIES = [
+];
+const PLANTS = [
+];
+</script>
+<script>
+const SHELF_GROUPS = ['Gravel','Decor','Food','Equipment'];
+const SHELF_FB = 'https://www.facebook.com/groups/1390189834734450/';
+const FISH_CARD = {shrimp:'Shrimp/snails/frogs', snails:'Shrimp/snails/frogs', frogs:'Shrimp/snails/frogs',
+  tetras:'Tetras/danios', danios:'Tetras/danios', corys:'Corys/catfish/plecos', catfish:'Corys/catfish/plecos', plecos:'Corys/catfish/plecos',
+  livebearers:'Livebearers', sharks:'Sharks/barbs/loaches', barbs:'Sharks/barbs/loaches', loaches:'Sharks/barbs/loaches', gouramis:'Sharks/barbs/loaches',
+  cichlids:'Cichlids', goldfish:'Goldfish', bettas:'Bettas'};
+let INV = null, INV_TRIED = false, FISH_TPL = null;
+const SITE_PHOTOS = {"cherry red shrimp":{"src":"assets/sp-cherry.jpg","alt":"Red cherry shrimp (species photo)"},"blue shrimp velvet":{"src":"assets/sp-bluevelvet.jpg","alt":"Blue velvet shrimp (species photo)"},"ramshorn snail":{"src":"assets/sp-ramshorn.jpg","alt":"Ramshorn snail (species photo)"},"jade mystery snail":{"src":"assets/sp-jademystery.jpg","alt":"Jade mystery snail (species photo)"},"assassin snail":{"src":"assets/sp-assassin.jpg","alt":"Assassin snail (species photo)"},"albino dwarf frog":{"src":"assets/sp-albinofrog.jpg","alt":"Albino dwarf frog (species photo)"},"african dwarf frog":{"src":"assets/sp-africanfrog.jpg","alt":"African dwarf frog (species photo)"},"glowlight tetra":{"src":"assets/sp-glowlight.jpg","alt":"Glowlight tetra (species photo)"},"black neon tetra":{"src":"assets/sp-blackneon.jpg","alt":"Black neon tetra (species photo)"},"nose rummy tetra":{"src":"assets/sp-rummynose.jpg","alt":"Rummy nose tetra (species photo)"},"neon tetra":{"src":"assets/sp-neon.jpg","alt":"Neon tetra (species photo)"},"danio zebra":{"src":"assets/sp-zebradanio.jpg","alt":"Zebra danio (species photo)"},"celestial danio pearl":{"src":"assets/sp-celestial.jpg","alt":"Celestial pearl danio (species photo)"},"danio fin long zebra":{"src":"assets/sp-zebradanio.jpg","alt":"Zebra danio (species photo)"},"cat cory julii":{"src":"assets/sp-cory.jpg","alt":"Cory catfish (species photo)"},"cat cory panda":{"src":"assets/sp-cory.jpg","alt":"Cory catfish (species photo)"},"catfish down upside":{"src":"assets/sp-upsidedown.jpg","alt":"Upside-down catfish (species photo)"},"albino baby bristlenose pleco":{"src":"assets/sp-bristlenose.jpg","alt":"Bristlenose pleco (species photo)"},"baby black bristlenose pleco":{"src":"assets/sp-bristlenose.jpg","alt":"Bristlenose pleco (species photo)"},"koi swordtail":{"src":"assets/sp-swordtail.jpg","alt":"Swordtail (species photo)"},"and red swordtail white":{"src":"assets/sp-swordtail.jpg","alt":"Swordtail (species photo)"},"red swordtail":{"src":"assets/sp-swordtail.jpg","alt":"Swordtail (species photo)"},"balloon mollie":{"src":"assets/sp-balloonmolly.jpg","alt":"Balloon molly (species photo)"},"platie":{"src":"assets/sp-platy.jpg","alt":"Platy (species photo)"},"endler female":{"src":"assets/sp-endler.jpg","alt":"Endler (species photo)"},"cobra green guppie male":{"src":"assets/sp-cobraguppy.jpg","alt":"Green cobra guppy (species photo)"},"roseline shark":{"src":"assets/sp-roseline.jpg","alt":"Roseline shark (species photo)"},"redtail shark":{"src":"assets/sp-redtail.jpg","alt":"Redtail shark (species photo)"},"rainbow shark":{"src":"assets/sp-rainbow.jpg","alt":"Rainbow shark (species photo)"},"bala shark":{"src":"assets/sp-bala.jpg","alt":"Bala shark (species photo)"},"banded highfin shark":{"src":"assets/sp-highfin.jpg","alt":"Highfin banded shark (species photo)"},"dwarf gourami honey":{"src":"assets/sp-honeygourami.jpg","alt":"Honey dwarf gourami (species photo)"},"albino barb tiger":{"src":"assets/sp-tigerbarb.jpg","alt":"Tiger barb (species photo)"},"barb tiger":{"src":"assets/sp-tigerbarb.jpg","alt":"Tiger barb (species photo)"},"clown loache":{"src":"assets/sp-clownloach.jpg","alt":"Clown loach (species photo)"},"algae chinese eater":{"src":"assets/sp-algaeeater.jpg","alt":"Chinese algae eater (species photo)"},"cichlid electric yellow":{"src":"assets/sp-yellow.jpg","alt":"Electric yellow cichlid (species photo)"},"baby cichlid electric yellow":{"src":"assets/sp-yellow.jpg","alt":"Electric yellow cichlid (species photo)"},"blue electric ram":{"src":"assets/sp-ram.jpg","alt":"Electric blue ram (species photo)"},"breeding dempsey jack pair":{"src":"assets/sp-jackdempsey.jpg","alt":"Jack Dempsey (species photo)"},"blue dempsey electric jack":{"src":"assets/sp-jackdempsey.jpg","alt":"Jack Dempsey (species photo)"},"dempsey jack":{"src":"assets/sp-jackdempsey.jpg","alt":"Jack Dempsey (species photo)"},"cichlid parrot platinum":{"src":"assets/sp-parrot.jpg","alt":"Platinum parrot cichlid (species photo)"},"goldfish small":{"src":"assets/sp-goldfish.jpg","alt":"Goldfish (species photo)"},"goldfish medium":{"src":"assets/sp-goldfish.jpg","alt":"Goldfish (species photo)"},"goldfish large":{"src":"assets/sp-goldfish.jpg","alt":"Goldfish (species photo)"},"goldfish shubunkin small":{"src":"assets/sp-shubunkin.jpg","alt":"Shubunkin goldfish (species photo)"},"goldfish medium shubunkin":{"src":"assets/sp-shubunkin.jpg","alt":"Shubunkin goldfish (species photo)"},"goldfish large shubunkin":{"src":"assets/sp-shubunkin.jpg","alt":"Shubunkin goldfish (species photo)"},"betta female koi":{"src":"assets/sp-koibetta.jpg","alt":"Koi betta (species photo)"},"betta koi male":{"src":"assets/sp-koibetta.jpg","alt":"Koi betta (species photo)"},"betta halfmoon male":{"src":"assets/sp-halfmoon.jpg","alt":"Halfmoon betta (species photo)"},"betta classic male":{"src":"assets/sp-koibetta.jpg","alt":"Koi betta (species photo)"},"betta crowntail male":{"src":"assets/sp-crowntail.jpg","alt":"Crowntail betta (species photo)"}};  // site species photo per fish name (normalized)
+// HOT DEALS: any Fish item in inventory.json with a "deal" price (and qty not "0") shows on the home Hot Deals board,
+// old price struck through. Without inventory.json the deals written in the page stay.
+let DEAL_TPL = null;
+function dealTemplate(){
+  if (DEAL_TPL) return DEAL_TPL;
+  const t = {order:[], cards:{}};
+  document.querySelectorAll('#app .deal').forEach(c => { const n = c.querySelector('h3').textContent.trim(); t.order.push(fishKey(n));
+    const im = c.querySelector('img'), d = c.querySelector('.date'), ps = c.querySelectorAll('.meta > p:not(.spcap)');
+    t.cards[fishKey(n)] = {img: im ? im.outerHTML : '', cat: d ? d.textContent.split('·')[0].trim() : '', blurb: ps.length ? ps[0].outerHTML : ''}; });
+  return DEAL_TPL = t;
+}
+function renderDeals(){
+  const grid = document.querySelector('#app .deal') && document.querySelector('#app .deal').parentElement;
+  if (!grid || !INV || !Array.isArray(INV.items)) return;
+  const t = dealTemplate();
+  const deals = INV.items.filter(r => r.board === 'Fish' && r.deal != null && r.deal !== '' && isFinite(Number(r.deal)) && String(r.qty).trim() !== '0');
+  if (!deals.length) return;
+  const rank = r => { const i = t.order.indexOf(fishKey(r.name)); return i < 0 ? 999 : i; };
+  deals.sort((a, b) => rank(a) - rank(b));
+  grid.innerHTML = deals.map(r => {
+    const k = fishKey(r.name), c = t.cards[k] || {}, g = String(r.group || '').toLowerCase();
+    const cat = c.cat || FISH_CARD[g] || 'Fish';
+    const sp = SITE_PHOTOS[k], s = safeImg(r.image);
+    const img = c.img || (s && s.startsWith('assets/stock/') ? `<img src="${shelfEsc(s)}" alt="${shelfEsc(r.name)}" loading="lazy" decoding="async">`
+      : sp ? `<img src="${shelfEsc(sp.src)}" alt="${shelfEsc(sp.alt)}" loading="lazy" decoding="async" width="600" height="400">`
+      : s ? `<img src="${shelfEsc(s)}" alt="${shelfEsc(r.name)} (species photo)" loading="lazy" decoding="async" onerror="this.remove()">` : '');
+    const q = String(r.qty).trim(), qtxt = (q === '1' && /pair/i.test(r.name)) ? '1 pair in stock' : q + ' in stock';
+    const blurb = c.blurb || `<p>${shelfEsc(q)} in the room. Deal price while they last.</p>`;
+    return `<article class="card spcard deal">${img}<div class="meta"><div class="date">${shelfEsc(cat)} · ${shelfEsc(qtxt)}</div><h3>${shelfEsc(r.name)}</h3><div class="price"><s class="was">${shelfPrice(r.price)}</s> ${shelfPrice(r.deal)} <small>each</small></div>${blurb}<p class="spcap">Species photo, not the exact fish</p></div></article>`;
+  }).join('\n');
+  grid.dataset.source = 'inventory.json';
+}
+function shelfEsc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function shelfPrice(p){ const n = Number(p); return (p !== '' && p != null && isFinite(n)) ? '$' + (Number.isInteger(n) ? n : n.toFixed(2)) : shelfEsc(p); }
+function safeImg(u){ u = String(u || '').trim(); if (!u) return '';
+  if (/^https:\/\//i.test(u)) return u;
+  if (/^[A-Za-z0-9._\/-]+$/.test(u) && !u.includes('..') && !u.startsWith('/')) return u;
+  return ''; }
+function fishKey(n){ return String(n).toLowerCase().replace(/bristol nose/g,'bristlenose').replace(/[^a-z0-9+]+/g,' ').trim().split(/\s+/)
+  .map(w => w.length > 3 && w.endsWith('s') && !w.endsWith('ss') ? w.slice(0,-1) : w).sort().join(' '); }
+function thumb(src, alt, w, h){ return src ? `<img class="rthumb" src="${shelfEsc(src)}" alt="${shelfEsc(alt)}" loading="lazy" decoding="async" width="${w||68}" height="${h||68}" onerror="this.remove()">` : ''; }
+function rowHtml(r, img){
+  const out = String(r.qty).trim() === '0';
+  return `<tr${out ? ' class="out"' : ''}><td class="q">${shelfEsc(r.qty)}</td><td class="n"><div class="nw">${img}<span class="nm">${shelfEsc(r.name)}</span>${out ? ' <span class="outtag">Out</span>' : ''}</div></td><td class="p">${shelfPrice(r.price)}</td></tr>`;
+}
+function plainImg(r){ const s = safeImg(r.image || r.photo); return s ? thumb(s, r.name) : ''; }
+function shelfCard(title, items, gid, col){
+  return `<article class="card stockcard shelfcard" id="${gid}" data-group="${shelfEsc(title)}"><div class="meta"><div class="date">${shelfEsc(title)}</div><table class="stock-t"><thead><tr><th>Qty</th><th>${col}</th><th>Each</th></tr></thead><tbody>${items.map(r => rowHtml(r, plainImg(r))).join('')}</tbody></table></div></article>`;
+}
+const SHELF_BTNS = `<div class="btns"><a class="hot" href="tel:+14356508646">Call the shop</a><a class="ghost" href="${SHELF_FB}" target="_blank" rel="noopener">Message the group</a></div>`;
+function shelfEmpty(date, lead){ return `<article class="card shelf shelf-empty"><div class="meta"><div class="date">${date}</div><p class="lead">${lead}</p>${SHELF_BTNS}</div></article>`; }
+// Read the written Fish board once: card photo strips + the species photo used for each row name.
+function fishTemplate(){
+  if (FISH_TPL) return FISH_TPL;
+  const t = {order:[], cards:{}, photos:{}};
+  document.querySelectorAll('#board-fish .stockcard').forEach(c => {
+    const title = c.querySelector('.date').textContent.trim(); t.order.push(title);
+    const strip = c.querySelector('.spstrip'), cap = c.querySelector('.spcap'), th = c.querySelector('thead');
+    t.cards[title] = {strip: strip ? strip.outerHTML : '', cap: cap ? cap.outerHTML : '', head: th ? th.outerHTML : ''};
+    c.querySelectorAll('tbody tr').forEach(tr => { const im = tr.querySelector('img.rthumb'), nm = tr.querySelector('.nm');
+      if (im && nm) t.photos[fishKey(nm.textContent)] = {src: im.getAttribute('src'), alt: im.getAttribute('alt'), w: im.getAttribute('width'), h: im.getAttribute('height')}; });
+  });
+  return FISH_TPL = t;
+}
+function fishImg(r){
+  const s = safeImg(r.image);
+  if (s && s.startsWith('assets/stock/')) return thumb(s, r.name + ' (Randall Aquatics photo)');
+  const p = FISH_TPL.photos[fishKey(r.name)]; if (p) return thumb(p.src, p.alt, p.w, p.h);
+  return s ? thumb(s, r.name + ' (species photo)') : '';
+}
+function renderFish(items){
+  const grid = document.querySelector('#board-fish .grid.stock'); if (!grid) return;
+  const t = fishTemplate(), by = {}, extra = [];
+  items.forEach(r => { const g = String(r.group || '').toLowerCase().trim(); const title = FISH_CARD[g] || (g ? g.charAt(0).toUpperCase() + g.slice(1) : 'More fish');
+    if (!t.cards[title] && !extra.includes(title)) extra.push(title); (by[title] = by[title] || []).push(r); });
+  const defHead = '<thead><tr><th>Qty</th><th>Fish</th><th>Each</th></tr></thead>';
+  const cap = '<p class="spcap">Species photo, not the exact fish</p>';
+  grid.innerHTML = [...t.order, ...extra].filter(k => by[k] && by[k].length).map(k => { const c = t.cards[k] || {strip:'', cap:'', head:defHead};
+    return `<article class="card stockcard">${c.strip}<div class="meta">${c.cap || (c.strip ? cap : '')}<div class="date">${shelfEsc(k)}</div><table class="stock-t">${c.head || defHead}<tbody>${by[k].map(r => rowHtml(r, fishImg(r))).join('')}</tbody></table></div></article>`; }).join('');
+  grid.dataset.source = 'inventory.json';
+}
+function renderShelves(){
+  const app = document.getElementById('app');
+  const fromJson = INV && Array.isArray(INV.items);
+  if (fromJson && document.querySelector('#board-fish .grid.stock')) { fishTemplate(); renderFish(INV.items.filter(r => r.board === 'Fish')); }
+  const sup = fromJson ? INV.items.filter(r => r.board === 'Supplies') : SUPPLIES;
+  const pla = fromJson ? INV.items.filter(r => r.board === 'Plants') : PLANTS;
+  const sm = document.querySelector('.shelfmount[data-shelf="supplies"]');
+  if (sm) {
+    const by = {}; SHELF_GROUPS.forEach(g => by[g] = sup.filter(r => String(r.group).toLowerCase() === g.toLowerCase()));
+    const any = SHELF_GROUPS.some(g => by[g].length);
+    let h = '<div class="shelfnav" role="group" aria-label="Supplies filter">';
+    h += `<button type="button" data-sfilter="all" aria-pressed="true"${any ? '' : ' disabled'}>All</button>`;
+    SHELF_GROUPS.forEach(g => { const n = by[g].length;
+      h += `<button type="button" data-sfilter="${g}" aria-pressed="false"${n ? '' : ' disabled title="Nothing listed right now"'}>${g}<span class="n">${n ? '(' + n + ')' : ''}</span></button>`; });
+    h += '</div>';
+    if (any) h += '<div class="grid stock shelfgrid">' + SHELF_GROUPS.filter(g => by[g].length).map(g => shelfCard(g, by[g], 'sup-' + g.toLowerCase(), 'Item')).join('') + '</div><p class="note">Qty is how many. Price is each. “Out” means gone for now. Ask what else is on the shelf.</p>' + SHELF_BTNS;
+    else h += shelfEmpty('Supplies', 'Gravel, decor, food and equipment. Ask what’s on the shelf. Call or message before you drive.');
+    sm.innerHTML = h;
+  }
+  const pm = document.querySelector('.shelfmount[data-shelf="plants"]');
+  if (pm) pm.innerHTML = pla.length
+    ? '<div class="grid stock shelfgrid">' + shelfCard('Live plants', pla, 'plants-live', 'Plant') + '</div><p class="note">Qty is how many. Price is each. “Out” means gone for now.</p>' + SHELF_BTNS
+    : shelfEmpty('Plants', 'Live plants. Ask what’s in this week. Call or message before you drive.');
+  if (!INV_TRIED) loadInventory();
+}
+function loadInventory(){
+  INV_TRIED = true;
+  fetch('inventory.json', {cache:'no-cache'}).then(r => r.ok ? r.json() : Promise.reject(r.status)).then(d => {
+    if (!d || !Array.isArray(d.items)) return;
+    INV = d;
+    if (document.querySelector('#app .deal')) renderDeals();
+    if (document.querySelector('.shelfmount')) {
+      const tab = document.querySelector('.boardtabs [aria-selected="true"]');
+      renderShelves();
+      if (tab) tab.click();
+    }
+  }).catch(() => {});
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('.shelfnav [data-sfilter]'); if (!b || b.disabled) return;
+  const f = b.dataset.sfilter, nav = b.closest('.shelfnav');
+  nav.querySelectorAll('[data-sfilter]').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+  document.querySelectorAll('#board-supplies .shelfcard').forEach(c => c.hidden = !(f === 'all' || c.dataset.group === f));
+  const t = f === 'all' ? null : document.getElementById('sup-' + f.toLowerCase());
+  if (t) t.scrollIntoView({behavior:'smooth', block:'nearest'});
+});
+loadInventory();
+</script>
 <script>
 const pages = {
 home: `<section class="hero"><div><p class="kicker">Price, Utah · not a pet aisle</p><h1>FISH.<br><span>THEN MORE FISH.</span></h1><p class="lede">Brandon Randall buys, sells, and takes the fish you are tired of cleaning. New stock hits the Facebook group first. Message, then drive. Saves you a wasted trip.</p><div class="btns"><a class="hot" href="#inventory">See the board</a><a class="ghost" href="tel:+14356508646">Call the shop</a><a class="ghost" href="https://www.facebook.com/groups/1390189834734450/" target="_blank" rel="noopener">Facebook group</a></div><div class="stamp">Call or message before you visit</div></div><div class="badge-wrap"><img src="assets/jnn5ir.jpg" alt="Neon betta badge"></div></section>
@@ -163,7 +330,7 @@ inventory: `<p class="kicker">Price, Utah · stock moves</p><div class="boardtab
 <article class="card stockcard"><div class="spstrip n4"><figure><img src="assets/sp-parrot.jpg" alt="Platinum parrot cichlid (species photo)" loading="lazy" decoding="async" width="600" height="400"><figcaption>Platinum parrot cichlid</figcaption></figure><figure><img src="assets/sp-yellow.jpg" alt="Electric yellow cichlid (species photo)" loading="lazy" decoding="async" width="600" height="400"><figcaption>Electric yellow cichlid</figcaption></figure><figure><img src="assets/sp-ram.jpg" alt="Electric blue ram (species photo)" loading="lazy" decoding="async" width="600" height="400"><figcaption>Electric blue ram</figcaption></figure><figure><img src="assets/sp-jackdempsey.jpg" alt="Jack Dempsey (species photo)" loading="lazy" decoding="async" width="600" height="400"><figcaption>Jack Dempsey</figcaption></figure></div><div class="meta"><p class="spcap">Species photo, not the exact fish</p><div class="date">Cichlids</div><table class="stock-t"><thead><tr><th>Qty</th><th>Fish</th><th>Each</th></tr></thead><tbody><tr><td class="q">10+</td><td class="n"><div class="nw"><img class="rthumb" src="assets/sp-yellow.jpg" alt="Electric yellow cichlid (species photo)" loading="lazy" decoding="async" width="600" height="400"><span class="nm">Electric yellow cichlids</span></div></td><td class="p">$5</td></tr><tr><td class="q">20+</td><td class="n"><div class="nw"><img class="rthumb" src="assets/sp-yellow.jpg" alt="Electric yellow cichlid (species photo)" loading="lazy" decoding="async" width="600" height="400"><span class="nm">Baby electric yellow cichlids</span></div></td><td class="p">$2</td></tr><tr><td class="q">4</td><td class="n"><div class="nw"><img class="rthumb" src="assets/sp-ram.jpg" alt="Electric blue ram (species photo)" loading="lazy" decoding="async" width="600" height="400"><span class="nm">Electric blue rams</span></div></td><td class="p">$26</td></tr><tr><td class="q">1</td><td class="n"><div class="nw"><img class="rthumb" src="assets/sp-jackdempsey.jpg" alt="Jack Dempsey (species photo)" loading="lazy" decoding="async" width="600" height="400"><span class="nm">Jack Dempsey breeding pair</span></div></td><td class="p">$50</td></tr><tr><td class="q">4</td><td class="n"><div class="nw"><img class="rthumb" src="assets/sp-jackdempsey.jpg" alt="Jack Dempsey (species photo)" loading="lazy" decoding="async" width="600" height="400"><span class="nm">Electric blue Jack Dempsey</span></div></td><td class="p">$30</td></tr><tr><td class="q">10</td><td class="n"><div class="nw"><img class="rthumb" src="assets/sp-jackdempsey.jpg" alt="Jack Dempsey (species photo)" loading="lazy" decoding="async" width="600" height="400"><span class="nm">Jack Dempseys</span></div></td><td class="p">$10</td></tr><tr><td class="q">20+</td><td class="n"><div class="nw"><img class="rthumb" src="assets/sp-parrot.jpg" alt="Platinum parrot cichlid (species photo)" loading="lazy" decoding="async" width="600" height="400"><span class="nm">Platinum parrot cichlids</span></div></td><td class="p">$10</td></tr></tbody></table></div></article>
 <article class="card stockcard"><div class="spstrip n2"><figure><img src="assets/sp-goldfish.jpg" alt="Goldfish (species photo)" loading="lazy" decoding="async" width="600" height="400"><figcaption>Goldfish</figcaption></figure><figure><img src="assets/sp-shubunkin.jpg" alt="Shubunkin goldfish (species photo)" loading="lazy" decoding="async" width="600" height="400"><figcaption>Shubunkin goldfish</figcaption></figure></div><div class="meta"><p class="spcap">Species photo, not the exact fish</p><div class="date">Goldfish</div><table class="stock-t"><thead><tr><th>Qty</th><th>Fish</th><th>Each</th></tr></thead><tbody><tr><td class="q">48</td><td class="n"><div class="nw"><img class="rthumb" src="assets/sp-goldfish.jpg" alt="Goldfish (species photo)" loading="lazy" decoding="async" width="600" height="400"><span class="nm">Goldfish, small</span></div></td><td class="p">$2</td></tr><tr><td class="q">2</td><td class="n"><div class="nw"><img class="rthumb" src="assets/sp-goldfish.jpg" alt="Goldfish (species photo)" loading="lazy" decoding="async" width="600" height="400"><span class="nm">Goldfish, medium</span></div></td><td class="p">$5</td></tr><tr class="out"><td class="q">0</td><td class="n"><div class="nw"><img class="rthumb" src="assets/sp-goldfish.jpg" alt="Goldfish (species photo)" loading="lazy" decoding="async" width="600" height="400"><span class="nm">Goldfish, large</span> <span class="outtag">Out</span></div></td><td class="p">$10</td></tr><tr><td class="q">19</td><td class="n"><div class="nw"><img class="rthumb" src="assets/sp-shubunkin.jpg" alt="Shubunkin goldfish (species photo)" loading="lazy" decoding="async" width="600" height="400"><span class="nm">Shubunkin goldfish, small</span></div></td><td class="p">$10</td></tr><tr><td class="q">3</td><td class="n"><div class="nw"><img class="rthumb" src="assets/sp-shubunkin.jpg" alt="Shubunkin goldfish (species photo)" loading="lazy" decoding="async" width="600" height="400"><span class="nm">Shubunkin goldfish, medium</span></div></td><td class="p">$12</td></tr><tr class="out"><td class="q">0</td><td class="n"><div class="nw"><img class="rthumb" src="assets/sp-shubunkin.jpg" alt="Shubunkin goldfish (species photo)" loading="lazy" decoding="async" width="600" height="400"><span class="nm">Shubunkin goldfish, large</span> <span class="outtag">Out</span></div></td><td class="p">$15</td></tr></tbody></table></div></article>
 <article class="card stockcard"><div class="spstrip n1"><figure><img src="assets/sp-koibetta.jpg" alt="Koi betta (species photo)" loading="lazy" decoding="async" width="600" height="400"><figcaption>Koi betta</figcaption></figure></div><div class="meta"><p class="spcap">Species photo, not the exact fish</p><div class="date">Bettas</div><table class="stock-t"><thead><tr><th>Qty</th><th>Fish</th><th>Each</th></tr></thead><tbody><tr><td class="q">4</td><td class="n"><div class="nw"><img class="rthumb" src="assets/sp-koibetta.jpg" alt="Koi betta (species photo)" loading="lazy" decoding="async" width="600" height="400"><span class="nm">Betta, koi female</span></div></td><td class="p">$60</td></tr><tr><td class="q">4</td><td class="n"><div class="nw"><img class="rthumb" src="assets/sp-koibetta.jpg" alt="Koi betta (species photo)" loading="lazy" decoding="async" width="600" height="400"><span class="nm">Betta, koi male</span></div></td><td class="p">$65</td></tr><tr><td class="q">4</td><td class="n"><div class="nw"><img class="rthumb" src="assets/sp-halfmoon.jpg" alt="Halfmoon betta (species photo)" loading="lazy" decoding="async" width="400" height="267"><span class="nm">Betta, halfmoon male</span></div></td><td class="p">$30</td></tr><tr><td class="q">2</td><td class="n"><div class="nw"><img class="rthumb" src="assets/sp-koibetta.jpg" alt="Koi betta (species photo)" loading="lazy" decoding="async" width="600" height="400"><span class="nm">Betta, classic male</span></div></td><td class="p">$18</td></tr><tr><td class="q">2</td><td class="n"><div class="nw"><img class="rthumb" src="assets/sp-crowntail.jpg" alt="Crowntail betta (species photo)" loading="lazy" decoding="async" width="400" height="267"><span class="nm">Betta, crowntail male</span></div></td><td class="p">$24</td></tr></tbody></table></div></article>
-</div><p class="note">Qty is how many. Price is each. “Out” means gone for now. Ask and he will tell you when it is back.</p><div class="btns"><a class="hot" href="tel:+14356508646">Call the shop</a><a class="ghost" href="https://www.facebook.com/groups/1390189834734450/" target="_blank" rel="noopener">Message the group</a></div></section><section class="board" id="board-supplies" role="tabpanel" aria-labelledby="tab-supplies" hidden><h1>SUPPLIES<br><span>ON THE SHELF.</span></h1><div class="stamp drive">Call or message before you drive.</div><article class="card shelf"><div class="meta"><div class="date">Supplies</div><p class="lead">Gravel, decor and hard goods. Ask what’s on the shelf. Call or message before you drive.</p><div class="tags"><span>Gravel</span><span>Decor</span><span>Hard goods</span></div><div class="btns"><a class="hot" href="tel:+14356508646">Call the shop</a><a class="ghost" href="https://www.facebook.com/groups/1390189834734450/" target="_blank" rel="noopener">Message the group</a></div></div></article></section><section class="board" id="board-plants" role="tabpanel" aria-labelledby="tab-plants" hidden><h1>LIVE PLANTS<br><span>IN THIS WEEK.</span></h1><div class="stamp drive">Call or message before you drive.</div><article class="card shelf"><div class="meta"><div class="date">Plants</div><p class="lead">Live plants. Ask what’s in this week. Call or message before you drive.</p><div class="tags"><span>Live plants</span></div><div class="btns"><a class="hot" href="tel:+14356508646">Call the shop</a><a class="ghost" href="https://www.facebook.com/groups/1390189834734450/" target="_blank" rel="noopener">Message the group</a></div></div></article></section>`,
+</div><p class="note">Qty is how many. Price is each. “Out” means gone for now. Ask and he will tell you when it is back.</p><div class="btns"><a class="hot" href="tel:+14356508646">Call the shop</a><a class="ghost" href="https://www.facebook.com/groups/1390189834734450/" target="_blank" rel="noopener">Message the group</a></div></section><section class="board" id="board-supplies" role="tabpanel" aria-labelledby="tab-supplies" hidden><h1>SUPPLIES<br><span>ON THE SHELF.</span></h1><div class="stamp drive">Call or message before you drive.</div><div class="shelfmount" data-shelf="supplies"></div></section><section class="board" id="board-plants" role="tabpanel" aria-labelledby="tab-plants" hidden><h1>LIVE PLANTS<br><span>IN THIS WEEK.</span></h1><div class="stamp drive">Call or message before you drive.</div><div class="shelfmount" data-shelf="plants"></div></section>`,
 merch: `<p class="kicker">Real merch. Real checkout.</p><h1>GEAR.<br><span>ACTUALLY FOR SALE.</span></h1><div class="stamp drive">Sold and shipped by Shit Stir Co. Checkout is secure through Shopify.</div><p class="note">The neon betta badge on shirts, hoodies, a hat and a backpack. Printed after you order. Pick a size and color, hit Buy, and Shopify takes it from there. The fish are still a phone call. The shirt is not.</p><div class="grid">
 <article class="card mcard" data-h="randall-aquatics"><img src="assets/sm-randall-aquatics-00.jpg" alt="Randall Aquatics, Black" loading="lazy" decoding="async"><div class="meta"><div class="date">Adult tee · $24.99–$34.99</div><h3>Randall Aquatics</h3><div class="price" data-price>$24.99</div><p>The adult tee. Badge on the front. Wear the fish so you stop talking about the fish.</p><div class="vpick"><label>Color<select data-opt="Color"><option>Vintage Black</option><option>Dark Grey</option><option>Charity Pink</option><option>Teal</option><option>Athletic Heather</option><option>Heather Dust</option><option>White</option><option selected>Black</option></select></label><label>Size<select data-opt="Size"><option selected>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>2XL</option><option>3XL</option><option>4XL</option><option>5XL</option></select></label></div><div class="btns"><a class="hot" data-buy href="https://shop.shitstirco.com/cart/59846740050001:1" rel="noopener">Buy · $24.99</a><a class="ghost" href="https://www.shitstirco.com/p/randall-aquatics" target="_blank" rel="noopener">See it on Shit Stir Co</a></div><p class="vout" data-out hidden>That combo is sold out. Pick another.</p></div></article>
 <article class="card mcard" data-h="youth-randall-aquatics"><img src="assets/sm-youth-randall-aquatics-08.jpg" alt="Youth Randall Aquatics, Black" loading="lazy" decoding="async"><div class="meta"><div class="date">Youth tee · $22.99</div><h3>Youth Randall Aquatics</h3><div class="price" data-price>$22.99</div><p>Kid size. Big print on the back. Betta than your ex, says the shirt, not us.</p><div class="vpick"><label>Color<select data-opt="Color"><option>Navy</option><option>Dark Grey Heather</option><option>Pink</option><option>Heather Dust</option><option>White</option><option selected>Black</option></select></label><label>Size<select data-opt="Size"><option selected>S</option><option>M</option><option>L</option><option>XL</option></select></label></div><div class="btns"><a class="hot" data-buy href="https://shop.shitstirco.com/cart/59846777241681:1" rel="noopener">Buy · $22.99</a><a class="ghost" href="https://www.shitstirco.com/p/youth-randall-aquatics" target="_blank" rel="noopener">See it on Shit Stir Co</a></div><p class="vout" data-out hidden>That combo is sold out. Pick another.</p></div></article>
@@ -188,6 +355,8 @@ contact: `<p class="kicker">Message first</p><h1>CONTACT</h1><div class="two"><d
 function show(id){
   if(!pages[id]) id='home';
   document.getElementById('app').innerHTML = pages[id];
+  if (id==='inventory' && typeof renderShelves==='function') renderShelves();
+  if (id==='home' && typeof renderDeals==='function') { dealTemplate(); renderDeals(); }
   document.querySelectorAll('nav a[data-p]').forEach(a => a.classList.toggle('on', a.dataset.p===id));
 }
 window.addEventListener('hashchange', () => show(location.hash.slice(1)||'home'));

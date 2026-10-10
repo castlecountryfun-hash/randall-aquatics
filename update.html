@@ -27,7 +27,7 @@ main { padding:14px 16px; max-width:720px; margin:0 auto; }
 .tabs button { font:inherit; font-size:17px; font-weight:800; min-height:52px; border-radius:999px; border:2px solid var(--cyan); background:transparent; color:var(--cyan); cursor:pointer; }
 .tabs button[aria-selected="true"] { background:var(--cyan); color:#061016; }
 .tabs .ct { font-size:13px; font-weight:700; opacity:.85; }
-.board[hidden] { display:none; }
+.board[hidden], .curwrap[hidden] { display:none; }
 h2 { font-size:15px; letter-spacing:.14em; text-transform:uppercase; color:var(--mag); margin:20px 0 8px; }
 .sub { color:var(--mute); font-size:15px; margin:-2px 0 10px; }
 .grp { color:var(--cyan); font-size:12px; letter-spacing:.12em; text-transform:uppercase; font-weight:800; margin:16px 0 6px; }
@@ -79,19 +79,21 @@ textarea { min-height:120px; resize:vertical; }
 <form id="f" novalidate autocomplete="off">
   <section class="board" id="b-fish" role="tabpanel" aria-labelledby="t-fish">
     <h2>Current stock</h2>
-    <p class="sub">Change qty or price if it moved. Only changed or removed fish go in the email.</p>
-    <div id="cur"></div>
+    <p class="sub">Change qty or price if it moved. Only changed or removed lines go in the email.</p>
+    <div class="cur" data-board="fish"></div>
     <h2>Add new</h2>
     <div class="lines" data-board="fish"></div>
     <button type="button" class="add" data-add="fish">+ Add new</button>
   </section>
   <section class="board" id="b-supplies" role="tabpanel" aria-labelledby="t-supplies" hidden>
+    <div class="curwrap" data-board="supplies"><h2>Current stock</h2><div class="cur" data-board="supplies"></div></div>
     <h2>Add new</h2>
-    <p class="sub">Gravel, decor and hard goods.</p>
+    <p class="sub">Gravel, decor, food and equipment.</p>
     <div class="lines" data-board="supplies"></div>
     <button type="button" class="add" data-add="supplies">+ Add new</button>
   </section>
   <section class="board" id="b-plants" role="tabpanel" aria-labelledby="t-plants" hidden>
+    <div class="curwrap" data-board="plants"><h2>Current stock</h2><div class="cur" data-board="plants"></div></div>
     <h2>Add new</h2>
     <p class="sub">Live plants.</p>
     <div class="lines" data-board="plants"></div>
@@ -115,10 +117,15 @@ textarea { min-height:120px; resize:vertical; }
 const STOCK_TO = 'mbjelland55@gmail.com';
 const SUBJECT = 'RANDALL STOCK';
 const FISH_GROUPS = ['Shrimp/snails/frogs','Tetras and danios','Sharks','Corys/catfish/plecos','Livebearers','Barbs and loaches','Cichlids','Goldfish','Bettas'];
+const SUP_GROUPS = ['Gravel','Decor','Food','Equipment'];
 const BOARDS = {fish:'Fish', supplies:'Supplies', plants:'Plants'};
-// Current fish board, copied from the site inventory (55 rows).
-const CURRENT = [{"name": "Red cherry shrimp","group": "Shrimp/snails/frogs","qty": "20+","price": "3"},{"name": "Blue velvet shrimp","group": "Shrimp/snails/frogs","qty": "5","price": "8"},{"name": "Ramshorn snails","group": "Shrimp/snails/frogs","qty": "30+","price": "2"},{"name": "Jade mystery snails","group": "Shrimp/snails/frogs","qty": "4","price": "5"},{"name": "Assassin snails","group": "Shrimp/snails/frogs","qty": "4","price": "4"},{"name": "Albino dwarf frogs","group": "Shrimp/snails/frogs","qty": "2","price": "12"},{"name": "African dwarf frogs","group": "Shrimp/snails/frogs","qty": "5","price": "10"},{"name": "Glowlight tetras","group": "Tetras and danios","qty": "9","price": "5"},{"name": "Black neon tetras","group": "Tetras and danios","qty": "6","price": "5"},{"name": "Rummy nose tetras","group": "Tetras and danios","qty": "6","price": "8"},{"name": "Neon tetras","group": "Tetras and danios","qty": "8","price": "4"},{"name": "Zebra danios","group": "Tetras and danios","qty": "10","price": "5"},{"name": "Celestial pearl danios","group": "Tetras and danios","qty": "3","price": "14"},{"name": "Gold ring danios","group": "Tetras and danios","qty": "2","price": "10"},{"name": "Long fin zebra danios","group": "Tetras and danios","qty": "5","price": "10"},{"name": "Julii cory cats","group": "Corys/catfish/plecos","qty": "4","price": "12"},{"name": "Panda cory cats","group": "Corys/catfish/plecos","qty": "4","price": "10"},{"name": "Upside-down catfish","group": "Corys/catfish/plecos","qty": "5","price": "22"},{"name": "Baby bristlenose pleco albino","group": "Corys/catfish/plecos","qty": "3","price": "7"},{"name": "Baby bristlenose pleco black","group": "Corys/catfish/plecos","qty": "3","price": "5"},{"name": "Koi swordtails","group": "Livebearers","qty": "2","price": "10"},{"name": "Red and white swordtails","group": "Livebearers","qty": "3","price": "10"},{"name": "Red swordtails","group": "Livebearers","qty": "2","price": "10"},{"name": "Balloon mollies","group": "Livebearers","qty": "5","price": "10"},{"name": "Platies","group": "Livebearers","qty": "6","price": "5"},{"name": "Endler females","group": "Livebearers","qty": "7","price": "6"},{"name": "Green cobra guppies male","group": "Livebearers","qty": "6","price": "5"},{"name": "Roseline sharks","group": "Sharks","qty": "4","price": "24"},{"name": "Redtail sharks","group": "Sharks","qty": "5","price": "10"},{"name": "Rainbow sharks","group": "Sharks","qty": "5","price": "10"},{"name": "Bala sharks","group": "Sharks","qty": "7","price": "14"},{"name": "Highfin banded sharks","group": "Sharks","qty": "2","price": "50"},{"name": "Honey dwarf gouramis","group": "Barbs and loaches","qty": "2","price": "15"},{"name": "Albino tiger barbs","group": "Barbs and loaches","qty": "6","price": "8"},{"name": "Tiger barbs","group": "Barbs and loaches","qty": "2","price": "8"},{"name": "Clown loaches","group": "Barbs and loaches","qty": "3","price": "18"},{"name": "Chinese algae eaters","group": "Barbs and loaches","qty": "3","price": "10"},{"name": "Electric yellow cichlids","group": "Cichlids","qty": "10+","price": "5"},{"name": "Baby electric yellow cichlids","group": "Cichlids","qty": "20+","price": "2"},{"name": "Electric blue rams","group": "Cichlids","qty": "4","price": "26"},{"name": "Jack Dempsey breeding pair","group": "Cichlids","qty": "1","price": "50"},{"name": "Electric blue Jack Dempsey","group": "Cichlids","qty": "4","price": "30"},{"name": "Jack Dempseys","group": "Cichlids","qty": "10","price": "10"},{"name": "Platinum parrot cichlids","group": "Cichlids","qty": "20+","price": "10"},{"name": "Goldfish, small","group": "Goldfish","qty": "48","price": "2"},{"name": "Goldfish, medium","group": "Goldfish","qty": "2","price": "5"},{"name": "Goldfish, large","group": "Goldfish","qty": "0","price": "10"},{"name": "Shubunkin goldfish, small","group": "Goldfish","qty": "19","price": "10"},{"name": "Shubunkin goldfish, medium","group": "Goldfish","qty": "3","price": "12"},{"name": "Shubunkin goldfish, large","group": "Goldfish","qty": "0","price": "15"},{"name": "Betta, koi female","group": "Bettas","qty": "4","price": "60"},{"name": "Betta, koi male","group": "Bettas","qty": "4","price": "65"},{"name": "Betta, halfmoon male","group": "Bettas","qty": "4","price": "30"},{"name": "Betta, classic male","group": "Bettas","qty": "2","price": "18"},{"name": "Betta, crowntail male","group": "Bettas","qty": "2","price": "24"}];
-const KEY = 'ra-stock-draft-v2';
+// Current stock comes from ./inventory.json (synced from the repo every 5 min). SNAPSHOT is the fallback.
+const FISH_KEY = {shrimp:'Shrimp/snails/frogs', snails:'Shrimp/snails/frogs', frogs:'Shrimp/snails/frogs', tetras:'Tetras and danios', danios:'Tetras and danios',
+  sharks:'Sharks', corys:'Corys/catfish/plecos', catfish:'Corys/catfish/plecos', plecos:'Corys/catfish/plecos', livebearers:'Livebearers',
+  barbs:'Barbs and loaches', loaches:'Barbs and loaches', gouramis:'Barbs and loaches', cichlids:'Cichlids', goldfish:'Goldfish', bettas:'Bettas'};
+const SNAPSHOT = [{"board":"Fish","group":"shrimp","qty":"20+","name":"Red cherry shrimp","price":3.0},{"board":"Fish","group":"shrimp","qty":"5","name":"Blue velvet shrimp","price":8.0},{"board":"Fish","group":"snails","qty":"30+","name":"Ramshorn snails","price":2.0},{"board":"Fish","group":"tetras","qty":"9","name":"Glowlight tetras","price":5.0},{"board":"Fish","group":"tetras","qty":"6","name":"Black neon tetras","price":5.0},{"board":"Fish","group":"danios","qty":"10","name":"Zebra danios","price":5.0},{"board":"Fish","group":"danios","qty":"5","name":"Long fin zebra danios","price":10.0},{"board":"Fish","group":"danios","qty":"3","name":"Celestial pearl danios","price":14.0},{"board":"Fish","group":"danios","qty":"2","name":"Gold ring danios","price":10.0},{"board":"Fish","group":"sharks","qty":"5","name":"Redtail shark","price":10.0},{"board":"Fish","group":"catfish","qty":"3","name":"Chinese algae eater","price":10.0},{"board":"Fish","group":"plecos","qty":"3","name":"Baby Bristol nose pleco, black","price":5.0},{"board":"Fish","group":"livebearers","qty":"6","name":"Platies","price":5.0},{"board":"Fish","group":"loaches","qty":"3","name":"Clown loaches","price":18.0},{"board":"Fish","group":"gouramis","qty":"2","name":"Honey dwarf gouramis","price":15.0},{"board":"Fish","group":"cichlids","qty":"10+","name":"Electric yellow cichlids","price":5.0},{"board":"Fish","group":"cichlids","qty":"5","name":"Electric yellow cichlids","price":10.0},{"board":"Fish","group":"cichlids","qty":"20+","name":"Baby electric yellow cichlids","price":2.0},{"board":"Fish","group":"cichlids","qty":"4","name":"Electric blue rams","price":26.0},{"board":"Fish","group":"cichlids","qty":"1","name":"Jack Dempsey breeding pair","price":50.0},{"board":"Fish","group":"cichlids","qty":"10","name":"Jack Dempseys","price":10.0},{"board":"Fish","group":"cichlids","qty":"20+","name":"Platinum parrot cichlids","price":10.0},{"board":"Fish","group":"goldfish","qty":"48","name":"Small goldfish","price":2.0},{"board":"Fish","group":"goldfish","qty":"2","name":"Medium goldfish","price":5.0},{"board":"Fish","group":"goldfish","qty":"0","name":"Large goldfish","price":10.0},{"board":"Fish","group":"goldfish","qty":"3","name":"Large shubunkin goldfish","price":15.0},{"board":"Fish","group":"bettas","qty":"4","name":"Halfmoon male betta","price":30.0},{"board":"Fish","group":"bettas","qty":"2","name":"Classic male betta","price":18.0},{"board":"Fish","group":"bettas","qty":"2","name":"Crowntail male betta","price":24.0},{"board":"Supplies","group":"Gravel","qty":"5","name":"1LB PEA GRAVEL-NATURAL","price":2.0},{"board":"Supplies","group":"Gravel","qty":"4","name":"2LB PEA GRAVEL-NATURAL","price":4.0},{"board":"Supplies","group":"Gravel","qty":"4","name":"1LB RIVER GRAVEL-NATURAL","price":1.0},{"board":"Supplies","group":"Gravel","qty":"5","name":"2LB RIVER GRAVEL-NATURAL","price":2.0},{"board":"Supplies","group":"Gravel","qty":"1","name":"5LB RIVER GRAVEL-NATURAL","price":5.0},{"board":"Supplies","group":"Gravel","qty":"2","name":"1LB SAND-NATURAL","price":1.0},{"board":"Supplies","group":"Gravel","qty":"4","name":"2LB SAND-NATURAL","price":2.0},{"board":"Supplies","group":"Gravel","qty":"3","name":"5LB SAND-NATURAL","price":5.0},{"board":"Supplies","group":"Food","qty":"1","name":"1.3 OZ ALGEA EATER FOOD","price":8.0},{"board":"Supplies","group":"Food","qty":"1","name":"7.06 OZ GOLDFISH FLAKES","price":20.0},{"board":"Supplies","group":"Food","qty":"1","name":"7.06 OZ TROPICAL FLAKES FOOD","price":28.0},{"board":"Supplies","group":"Food","qty":"2","name":"3.28 OZ TROPICAL CRISPS FOOD","price":20.0},{"board":"Supplies","group":"Food","qty":"3","name":"2.2 OZ TROPICAL FLAKES FOOD","price":16.0},{"board":"Supplies","group":"Food","qty":"1","name":"0.81 OZ BETTA FLAKES FOOD","price":6.0},{"board":"Supplies","group":"Equipment","qty":"1","name":"SNAIL ZAP SMALL","price":3.0},{"board":"Supplies","group":"Equipment","qty":"5","name":"BETTA BASIC SMALL","price":3.0},{"board":"Supplies","group":"Equipment","qty":"1","name":"4 FL OZ pH ENHANCER","price":3.0},{"board":"Supplies","group":"Equipment","qty":"1","name":"4 FL OZ pH DOWN","price":3.0},{"board":"Supplies","group":"Equipment","qty":"1","name":"4 FL OZ SUPER ICK CURE","price":14.0},{"board":"Supplies","group":"Equipment","qty":"1","name":"8 FL OZ. CLOUDY WATER CONDITIONER","price":8.0},{"board":"Supplies","group":"Equipment","qty":"1","name":"8 FL OZ ACCU-CLEAR","price":20.0},{"board":"Supplies","group":"Equipment","qty":"1","name":"16 FL OZ QUICK START","price":36.0},{"board":"Supplies","group":"Equipment","qty":"1","name":"Used 16.9 FL OZ PRIME SEACHEM","price":5.0},{"board":"Supplies","group":"Equipment","qty":"1","name":"USED 16.9 FL OZ STABILITY SEACHEM","price":5.0},{"board":"Supplies","group":"Equipment","qty":"1","name":"16 FL OZ STRESS COAT+","price":22.0},{"board":"Supplies","group":"Equipment","qty":"2","name":"FREESEA AUTOMATIC FISH FEEDER","price":20.0},{"board":"Supplies","group":"Equipment","qty":"1","name":"AQUA FISH FEEDER","price":10.0},{"board":"Supplies","group":"Equipment","qty":"1","name":"TETRA IQ HANG ON BACK FILTER 20 GAL","price":48.0},{"board":"Supplies","group":"Equipment","qty":"1","name":"TETRA IQ HANG ON BACK FILTER 30 Gal","price":64.0},{"board":"Supplies","group":"Equipment","qty":"1","name":"TETRA IQ HANG ON BACK FILTER 45 GAL","price":80.0},{"board":"Supplies","group":"Equipment","qty":"1","name":"TETRA IQ HANG ON BACK FILTER 60 GAL","price":100.0},{"board":"Supplies","group":"Equipment","qty":"1","name":"FLAT AQUARIUM HEATER","price":8.0},{"board":"Supplies","group":"Equipment","qty":"1","name":"TETRA AIR PUMP 10 GAL","price":36.0},{"board":"Supplies","group":"Equipment","qty":"1","name":"TETRA AIR PUMP 60 GAL","price":70.0},{"board":"Supplies","group":"Equipment","qty":"1","name":"TETRA AIR PUMP 100 GAL","price":80.0},{"board":"Plants","group":"Plants","qty":"10","name":"Water Lettuce","price":5.0},{"board":"Plants","group":"Plants","qty":"1","name":"Spiralis- Potted Plant","price":14.0},{"board":"Plants","group":"Plants","qty":"1","name":"Crinum Calamistratum","price":18.0},{"board":"Plants","group":"Plants","qty":"1","name":"Crypt Parva","price":14.0},{"board":"Plants","group":"Plants","qty":"4","name":"Grasses","price":7.0},{"board":"Plants","group":"Plants","qty":"1","name":"Java Moss/ 3D Print Holder","price":25.0}];
+let CURRENT = [];
+const KEY = 'ra-stock-draft-v3';
 const QTY_RE = /^(0|[1-9]\d*\+?)$/;
 const PRICE_RE = /^\d+(\.\d{1,2})?$/;
 const $ = (s, r=document) => r.querySelector(s);
@@ -127,23 +134,41 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':
 const normQty = v => v.trim().replace(/\s+/g,'');
 const normPrice = v => v.trim().replace(/^\$/,'');
 const samePrice = (a,b) => PRICE_RE.test(a) && PRICE_RE.test(b) ? Number(a) === Number(b) : a === b;
+const fmtPrice = p => { const n = Number(p); return isFinite(n) ? (Number.isInteger(n) ? String(n) : n.toFixed(2)) : String(p); };
+function fromInventory(items) {
+  const out = [];
+  items.forEach(x => {
+    const b = String(x.board || '').toLowerCase(); if (!BOARDS[b] || !x.name) return;
+    let g;
+    if (b === 'fish') { const k = String(x.group || '').toLowerCase(); g = 'Fish - ' + (FISH_KEY[k] || FISH_GROUPS.find(f => f.toLowerCase() === k) || (k ? k[0].toUpperCase() + k.slice(1) : 'Fish')); }
+    else if (b === 'supplies') { const m = SUP_GROUPS.find(f => f.toLowerCase() === String(x.group || '').toLowerCase()); g = m ? 'Supplies - ' + m : 'Supplies'; }
+    else g = 'Plants';
+    out.push({board:b, name:String(x.name), qty:String(x.qty), price:fmtPrice(x.price), g});
+  });
+  return out;
+}
+const rowKey = r => r.board + '|' + r.name + '|' + r.price;
 
 function renderCurrent() {
-  let h = '', last = '';
-  CURRENT.forEach((r, i) => {
-    if (r.group !== last) { h += `<div class="grp">${esc(r.group)}</div>`; last = r.group; }
-    h += `<div class="row cur" data-i="${i}"><div class="nm">${esc(r.name)}</div><div class="gp">Fish - ${esc(r.group)}</div>
+  for (const b in BOARDS) {
+    let h = '', last = '';
+    CURRENT.forEach((r, i) => { if (r.board !== b) return;
+      if (r.g !== last) { h += `<div class="grp">${esc(r.g.replace(/^(Fish|Supplies) - /, ''))}</div>`; last = r.g; }
+      h += `<div class="row cur" data-i="${i}"><div class="nm">${esc(r.name)}</div><div class="gp">${esc(r.g)}</div>
       <div class="f"><label class="l">Qty<input type="text" inputmode="numeric" data-k="qty" value="${esc(r.qty)}" aria-label="Qty ${esc(r.name)}"></label>
       <label class="l">Price $<input type="text" inputmode="decimal" data-k="price" value="${esc(r.price)}" aria-label="Price ${esc(r.name)}"></label></div>
       <label class="rm"><input type="checkbox" data-k="rm" aria-label="Remove ${esc(r.name)}"> Remove</label></div>`;
-  });
-  $('#cur').innerHTML = h;
+    });
+    $(`.cur[data-board="${b}"]`).innerHTML = h;
+    const w = $(`.curwrap[data-board="${b}"]`); if (w) w.hidden = !h;
+  }
 }
 function addLine(board, v={}) {
   const wrap = $(`.lines[data-board="${board}"]`);
   const d = document.createElement('div'); d.className = 'row newline';
-  const gsel = board === 'fish'
-    ? `<label class="l wide">Group<select data-k="group"><option value="">Pick a group</option>${FISH_GROUPS.map(g => `<option${v.group===g?' selected':''}>${esc(g)}</option>`).join('')}</select></label>`
+  const opts = board === 'fish' ? FISH_GROUPS : board === 'supplies' ? SUP_GROUPS : null;
+  const gsel = opts
+    ? `<label class="l wide">Group<select data-k="group"><option value="">Pick a group</option>${opts.map(g => `<option${v.group===g?' selected':''}>${esc(g)}</option>`).join('')}</select></label>`
     : '';
   d.innerHTML = `<button type="button" class="x" aria-label="Drop this line">×</button><div class="newhead"><strong>New · ${BOARDS[board]}</strong></div>
     <div class="f new"><label class="l wide">Name<input type="text" data-k="name" autocapitalize="words" value="${esc(v.name||'')}"></label>
@@ -158,7 +183,7 @@ function setTab(k) {
 }
 function counts() {
   const c = {fish:0, supplies:0, plants:0};
-  $$('#cur .row').forEach(r => { if (r.classList.contains('changed') || r.classList.contains('gone')) c.fish++; });
+  $$('.cur .row').forEach(r => { if (r.classList.contains('changed') || r.classList.contains('gone')) c[CURRENT[r.dataset.i].board]++; });
   $$('.lines').forEach(w => w.querySelectorAll('.newline').forEach(l => { if ($$('input,select', l).some(x => x.value.trim())) c[w.dataset.board]++; }));
   for (const k in c) $(`[data-ct="${k}"]`).textContent = c[k] ? `(${c[k]})` : '';
 }
@@ -170,10 +195,10 @@ function markCur(row) {
 }
 function state() {
   const cur = {};
-  $$('#cur .row').forEach(row => {
-    const i = row.dataset.i, r = CURRENT[i];
+  $$('.cur .row').forEach(row => {
+    const r = CURRENT[row.dataset.i];
     const q = $('[data-k=qty]', row).value, p = $('[data-k=price]', row).value, rm = $('[data-k=rm]', row).checked;
-    if (q !== r.qty || p !== r.price || rm) cur[i] = {qty:q, price:p, rm};
+    if (q !== r.qty || p !== r.price || rm) cur[rowKey(r)] = {qty:q, price:p, rm};
   });
   const lines = {};
   $$('.lines').forEach(w => lines[w.dataset.board] = $$('.newline', w).map(l => {
@@ -185,9 +210,11 @@ function save() { try { localStorage.setItem(KEY, JSON.stringify(state())); } ca
 function load() {
   let s = null; try { s = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch(e) {}
   if (!s) return;
-  for (const i in (s.cur||{})) {
-    const row = $(`#cur .row[data-i="${i}"]`); if (!row) continue;
-    $('[data-k=qty]', row).value = s.cur[i].qty; $('[data-k=price]', row).value = s.cur[i].price; $('[data-k=rm]', row).checked = !!s.cur[i].rm;
+  const idx = {}; CURRENT.forEach((r, i) => idx[rowKey(r)] = i);
+  for (const k in (s.cur||{})) {
+    if (!(k in idx)) continue;
+    const row = $(`.cur .row[data-i="${idx[k]}"]`); if (!row) continue;
+    $('[data-k=qty]', row).value = s.cur[k].qty; $('[data-k=price]', row).value = s.cur[k].price; $('[data-k=rm]', row).checked = !!s.cur[k].rm;
     markCur(row);
   }
   for (const b in (s.lines||{})) if (BOARDS[b]) s.lines[b].forEach(v => addLine(b, v));
@@ -200,18 +227,18 @@ function build() {
   $$('.bad').forEach(x => x.classList.remove('bad')); $$('.row.err').forEach(x => x.classList.remove('err'));
   const out = {fish:[], supplies:[], plants:[]}, bad = [];
   const flag = (row, el, board) => { el.classList.add('bad'); row.classList.add('err'); bad.push(board); };
-  // current fish rows
-  const changed = [], removed = [];
-  $$('#cur .row').forEach(row => {
-    const r = CURRENT[row.dataset.i], g = 'Fish - ' + r.group;
-    if ($('[data-k=rm]', row).checked) { removed.push(`REMOVE | ${r.name} | ${g}`); return; }
+  // current rows (all boards)
+  const changed = {fish:[], supplies:[], plants:[]}, removed = {fish:[], supplies:[], plants:[]};
+  $$('.cur .row').forEach(row => {
+    const r = CURRENT[row.dataset.i], g = r.g, b = r.board;
+    if ($('[data-k=rm]', row).checked) { removed[b].push(`REMOVE | ${r.name} | ${g}`); return; }
     const qi = $('[data-k=qty]', row), pi = $('[data-k=price]', row);
     const q = normQty(qi.value), p = normPrice(pi.value);
     if (q === r.qty && samePrice(p, r.price)) return;
     let ok = true;
-    if (!QTY_RE.test(q)) { flag(row, qi, 'fish'); ok = false; }
-    if (!PRICE_RE.test(p)) { flag(row, pi, 'fish'); ok = false; }
-    if (ok) changed.push(`${q} | ${r.name} | $${p} | ${g}`);
+    if (!QTY_RE.test(q)) { flag(row, qi, b); ok = false; }
+    if (!PRICE_RE.test(p)) { flag(row, pi, b); ok = false; }
+    if (ok) changed[b].push(`${q} | ${r.name} | $${p} | ${g}`);
   });
   // new lines
   const added = {fish:[], supplies:[], plants:[]};
@@ -226,13 +253,12 @@ function build() {
       if (!n) { flag(l, f.name, b); ok = false; }
       if (!QTY_RE.test(q)) { flag(l, f.qty, b); ok = false; }
       if (!PRICE_RE.test(p)) { flag(l, f.price, b); ok = false; }
-      if (b === 'fish' && !f.group.value) { flag(l, f.group, b); ok = false; }
-      const g = b === 'fish' ? 'Fish - ' + f.group.value : BOARDS[b];
+      if (f.group && !f.group.value) { flag(l, f.group, b); ok = false; }
+      const g = f.group ? BOARDS[b] + ' - ' + f.group.value : BOARDS[b];
       if (ok) added[b].push(`ADD | ${q} | ${n} | $${p} | ${g}`);
     });
   });
-  out.fish = [...changed, ...added.fish, ...removed];
-  out.supplies = added.supplies; out.plants = added.plants;
+  for (const k in out) out[k] = [...changed[k], ...added[k], ...removed[k]];
   return {lines:[...out.fish, ...out.supplies, ...out.plants], bad};
 }
 
@@ -242,8 +268,8 @@ document.addEventListener('click', e => {
   if (a) { const l = addLine(a.dataset.add); $('[data-k=name]', l).focus(); save(); return; }
   const x = e.target.closest('.newline .x'); if (x) { x.closest('.newline').remove(); save(); return; }
 });
-document.addEventListener('input', e => { const row = e.target.closest('#cur .row'); if (row) markCur(row); save(); });
-document.addEventListener('change', e => { const row = e.target.closest('#cur .row'); if (row) markCur(row); save(); });
+document.addEventListener('input', e => { const row = e.target.closest('.cur .row'); if (row) markCur(row); save(); });
+document.addEventListener('change', e => { const row = e.target.closest('.cur .row'); if (row) markCur(row); save(); });
 
 let lastHref = '';
 $('#f').addEventListener('submit', e => {
@@ -252,7 +278,7 @@ $('#f').addEventListener('submit', e => {
   if (bad.length) {
     const first = $('.bad'); const b = first.closest('.board').id.slice(2); setTab(b);
     first.scrollIntoView({block:'center'}); first.focus();
-    msg('Fix the lines marked in red. Qty is a number, 20+, or 0. Price is a number. New fish need a group.', 'bad');
+    msg('Fix the lines marked in red. Qty is a number, 20+, or 0. Price is a number. New fish and supplies need a group.', 'bad');
     return;
   }
   const notes = $('#notes').value.trim();
@@ -273,7 +299,15 @@ $('#copy').addEventListener('click', async () => {
   try { await navigator.clipboard.writeText(t.value); } catch(e) { t.focus(); t.select(); document.execCommand('copy'); }
   btn.textContent = 'Copied'; setTimeout(() => btn.textContent = 'Copy', 1500);
 });
-renderCurrent(); load(); counts();
+function start(items) { CURRENT = fromInventory(items); renderCurrent(); load(); counts(); }
+(function init() {
+  const ctl = 'AbortController' in window ? new AbortController() : null;
+  const t = setTimeout(() => ctl && ctl.abort(), 5000);
+  fetch('inventory.json', {cache:'no-cache', signal: ctl ? ctl.signal : undefined})
+    .then(r => r.ok ? r.json() : Promise.reject(r.status))
+    .then(d => { clearTimeout(t); start(d && Array.isArray(d.items) && d.items.length ? d.items : SNAPSHOT); })
+    .catch(() => { clearTimeout(t); start(SNAPSHOT); });
+})();
 </script>
 </body>
 </html>
