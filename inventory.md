@@ -82,7 +82,7 @@ Source: owner stock list. Updated by the weekly stock form.
 
 ## Supplies
 
-### Gravel & sand
+### Gravel
 
 | Qty | Item | Price |
 | --- | --- | --- |
@@ -106,7 +106,7 @@ Source: owner stock list. Updated by the weekly stock form.
 | 3 | 2.2 OZ TROPICAL FLAKES FOOD | $16.00 |
 | 1 | 0.81 OZ BETTA FLAKES FOOD | $6.00 |
 
-### Water care
+### Equipment
 
 | Qty | Item | Price |
 | --- | --- | --- |
@@ -121,33 +121,13 @@ Source: owner stock list. Updated by the weekly stock form.
 | 1 | Used 16.9 FL OZ PRIME SEACHEM | $5.00 |
 | 1 | USED 16.9 FL OZ STABILITY SEACHEM | $5.00 |
 | 1 | 16 FL OZ STRESS COAT+ | $22.00 |
-
-### Feeders
-
-| Qty | Item | Price |
-| --- | --- | --- |
 | 2 | FREESEA AUTOMATIC FISH FEEDER | $20.00 |
 | 1 | AQUA FISH FEEDER | $10.00 |
-
-### Filters
-
-| Qty | Item | Price |
-| --- | --- | --- |
 | 1 | TETRA IQ HANG ON BACK FILTER 20 GAL | $48.00 |
 | 1 | TETRA IQ HANG ON BACK FILTER 30 Gal | $64.00 |
 | 1 | TETRA IQ HANG ON BACK FILTER 45 GAL | $80.00 |
 | 1 | TETRA IQ HANG ON BACK FILTER 60 GAL | $100.00 |
-
-### Heaters
-
-| Qty | Item | Price |
-| --- | --- | --- |
 | 1 | FLAT AQUARIUM HEATER | $8.00 |
-
-### Air pumps
-
-| Qty | Item | Price |
-| --- | --- | --- |
 | 1 | TETRA AIR PUMP 10 GAL | $36.00 |
 | 1 | TETRA AIR PUMP 60 GAL | $70.00 |
 | 1 | TETRA AIR PUMP 100 GAL | $80.00 |
