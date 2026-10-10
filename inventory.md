@@ -82,7 +82,75 @@ Source: owner stock list. Updated by the weekly stock form.
 
 ## Supplies
 
-Nothing listed yet.
+### Gravel & sand
+
+| Qty | Item | Price |
+| --- | --- | --- |
+| 5 | 1LB PEA GRAVEL-NATURAL | $2.00 |
+| 4 | 2LB PEA GRAVEL-NATURAL | $4.00 |
+| 4 | 1LB RIVER GRAVEL-NATURAL | $1.00 |
+| 5 | 2LB RIVER GRAVEL-NATURAL | $2.00 |
+| 1 | 5LB RIVER GRAVEL-NATURAL | $5.00 |
+| 2 | 1LB SAND-NATURAL | $1.00 |
+| 4 | 2LB SAND-NATURAL | $2.00 |
+| 3 | 5LB SAND-NATURAL | $5.00 |
+
+### Food
+
+| Qty | Item | Price |
+| --- | --- | --- |
+| 1 | 1.3 OZ ALGEA EATER FOOD | $8.00 |
+| 1 | 7.06 OZ GOLDFISH FLAKES | $20.00 |
+| 1 | 7.06 OZ TROPICAL FLAKES FOOD | $28.00 |
+| 2 | 3.28 OZ TROPICAL CRISPS FOOD | $20.00 |
+| 3 | 2.2 OZ TROPICAL FLAKES FOOD | $16.00 |
+| 1 | 0.81 OZ BETTA FLAKES FOOD | $6.00 |
+
+### Water care
+
+| Qty | Item | Price |
+| --- | --- | --- |
+| 1 | SNAIL ZAP SMALL | $3.00 |
+| 5 | BETTA BASIC SMALL | $3.00 |
+| 1 | 4 FL OZ pH ENHANCER | $3.00 |
+| 1 | 4 FL OZ pH DOWN | $3.00 |
+| 1 | 4 FL OZ SUPER ICK CURE | $14.00 |
+| 1 | 8 FL OZ. CLOUDY WATER CONDITIONER | $8.00 |
+| 1 | 8 FL OZ ACCU-CLEAR | $20.00 |
+| 1 | 16 FL OZ QUICK START | $36.00 |
+| 1 | Used 16.9 FL OZ PRIME SEACHEM | $5.00 |
+| 1 | USED 16.9 FL OZ STABILITY SEACHEM | $5.00 |
+| 1 | 16 FL OZ STRESS COAT+ | $22.00 |
+
+### Feeders
+
+| Qty | Item | Price |
+| --- | --- | --- |
+| 2 | FREESEA AUTOMATIC FISH FEEDER | $20.00 |
+| 1 | AQUA FISH FEEDER | $10.00 |
+
+### Filters
+
+| Qty | Item | Price |
+| --- | --- | --- |
+| 1 | TETRA IQ HANG ON BACK FILTER 20 GAL | $48.00 |
+| 1 | TETRA IQ HANG ON BACK FILTER 30 Gal | $64.00 |
+| 1 | TETRA IQ HANG ON BACK FILTER 45 GAL | $80.00 |
+| 1 | TETRA IQ HANG ON BACK FILTER 60 GAL | $100.00 |
+
+### Heaters
+
+| Qty | Item | Price |
+| --- | --- | --- |
+| 1 | FLAT AQUARIUM HEATER | $8.00 |
+
+### Air pumps
+
+| Qty | Item | Price |
+| --- | --- | --- |
+| 1 | TETRA AIR PUMP 10 GAL | $36.00 |
+| 1 | TETRA AIR PUMP 60 GAL | $70.00 |
+| 1 | TETRA AIR PUMP 100 GAL | $80.00 |
 
 ## Plants
 

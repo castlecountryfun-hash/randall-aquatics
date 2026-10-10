@@ -5,7 +5,7 @@
 <h2>FISH</h2>
 <div class="grid" id="board"></div>
 <h2>SUPPLIES</h2>
-<p class="note">Nothing listed yet.</p>
+<div class="grid" id="supplies"></div>
 <h2>PLANTS</h2>
 <div class="grid" id="plants"></div>
 <script>
@@ -41,6 +41,44 @@ const items = [
 ["2","Crowntail male betta",24,"https://commons.wikimedia.org/wiki/Special:FilePath/Betta_splendens_male_crowntail.png?width=400"]
 ];
 document.getElementById('board').innerHTML = items.map(([q,n,p,img]) => `<article class="card${q==='0'?' out':''}"><img src="${img}" alt="${n}"><div class="meta"><div class="q">${q}</div><h3>${n}</h3><div class="p">$${p}</div></div></article>`).join('');
+const supplies = [
+["5","1LB PEA GRAVEL-NATURAL",2],
+["4","2LB PEA GRAVEL-NATURAL",4],
+["4","1LB RIVER GRAVEL-NATURAL",1],
+["5","2LB RIVER GRAVEL-NATURAL",2],
+["1","5LB RIVER GRAVEL-NATURAL",5],
+["2","1LB SAND-NATURAL",1],
+["4","2LB SAND-NATURAL",2],
+["3","5LB SAND-NATURAL",5],
+["1","1.3 OZ ALGEA EATER FOOD",8],
+["1","7.06 OZ GOLDFISH FLAKES",20],
+["1","7.06 OZ TROPICAL FLAKES FOOD",28],
+["2","3.28 OZ TROPICAL CRISPS FOOD",20],
+["3","2.2 OZ TROPICAL FLAKES FOOD",16],
+["1","0.81 OZ BETTA FLAKES FOOD",6],
+["1","SNAIL ZAP SMALL",3],
+["5","BETTA BASIC SMALL",3],
+["1","4 FL OZ pH ENHANCER",3],
+["1","4 FL OZ pH DOWN",3],
+["1","4 FL OZ SUPER ICK CURE",14],
+["1","8 FL OZ. CLOUDY WATER CONDITIONER",8],
+["1","8 FL OZ ACCU-CLEAR",20],
+["1","16 FL OZ QUICK START",36],
+["1","Used 16.9 FL OZ PRIME SEACHEM",5],
+["1","USED 16.9 FL OZ STABILITY SEACHEM",5],
+["1","16 FL OZ STRESS COAT+",22],
+["2","FREESEA AUTOMATIC FISH FEEDER",20],
+["1","AQUA FISH FEEDER",10],
+["1","TETRA IQ HANG ON BACK FILTER 20 GAL",48],
+["1","TETRA IQ HANG ON BACK FILTER 30 Gal",64],
+["1","TETRA IQ HANG ON BACK FILTER 45 GAL",80],
+["1","TETRA IQ HANG ON BACK FILTER 60 GAL",100],
+["1","FLAT AQUARIUM HEATER",8],
+["1","TETRA AIR PUMP 10 GAL",36],
+["1","TETRA AIR PUMP 60 GAL",70],
+["1","TETRA AIR PUMP 100 GAL",80]
+];
+document.getElementById('supplies').innerHTML = supplies.map(([q,n,p]) => `<article class="card${q==='0'?' out':''}"><div class="meta"><div class="q">${q}</div><h3>${n}</h3><div class="p">$${p}</div></div></article>`).join('');
 const plants = [
 ["10","Water Lettuce",5],
 ["1","Spiralis- Potted Plant",14],
