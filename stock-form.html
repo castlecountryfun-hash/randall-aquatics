@@ -9,29 +9,41 @@ body { margin:0; background:#07070b; color:#f4f7ff; font-family:Segoe UI,sans-se
 h1 { font-size:28px; margin:0 0 8px; }
 p { color:#9aa3c7; }
 label { display:block; margin:14px 0 4px; font-weight:700; color:#3df0ff; }
-input, textarea, select { width:100%; max-width:420px; padding:12px; border-radius:10px; border:1px solid #3df0ff; background:#10131f; color:#fff; font:inherit; }
+textarea { width:100%; max-width:480px; padding:12px; border-radius:10px; border:1px solid #3df0ff; background:#10131f; color:#fff; font:inherit; }
 button { margin-top:18px; padding:14px 20px; border:0; border-radius:999px; background:#3df0ff; color:#061016; font-weight:800; font-size:16px; }
 .note { font-size:14px; margin-top:18px; }
 </style>
 </head>
 <body>
 <h1>Update stock</h1>
-<p>Fill the lines. Tap send. It opens your email with the subject already set. Hit send again and the site updates.</p>
+<p>Three sections. Fill what changed. Tap send. It opens your email with the subject already set. Hit send again and the site updates.</p>
 <form id="f">
-  <label>Stock lines (one per line)</label>
-  <textarea id="lines" rows="12" placeholder="20+-Red cherry shrimp $3.00 each
-5-Blue velvet shrimp $8.00 each
+  <label>FISH</label>
+  <textarea id="fish" rows="8" placeholder="20+-Red cherry shrimp $3.00 each
+10-Jack Dempseys $10.00 each
 0-Large goldfish $10.00 each"></textarea>
+  <label>SUPPLIES (gravel, decorations, filters, etc.)</label>
+  <textarea id="supplies" rows="6" placeholder="5-Black gravel 5lb $8.00 each
+2-Driftwood piece $12.00 each"></textarea>
+  <label>PLANTS</label>
+  <textarea id="plants" rows="6" placeholder="10-Java fern $4.00 each
+6-Anubias $6.00 each"></textarea>
   <button type="submit">Open email to submit</button>
 </form>
-<p class="note">Subject will be <strong>RANDALL STOCK</strong>. Send the email and the board updates. Set quantity to 0 when an item is out.</p>
+<p class="note">Subject will be <strong>RANDALL STOCK</strong>. Send the email and the board updates. Set quantity to 0 when an item is out. Leave a section blank if nothing changed.</p>
 <script>
 document.getElementById('f').addEventListener('submit', e => {
   e.preventDefault();
-  const body = document.getElementById('lines').value.trim();
-  if (!body) return alert('Add at least one line');
+  const fish = document.getElementById('fish').value.trim();
+  const supplies = document.getElementById('supplies').value.trim();
+  const plants = document.getElementById('plants').value.trim();
+  if (!fish && !supplies && !plants) return alert('Add at least one line');
+  let body = '';
+  if (fish) body += 'FISH\n' + fish + '\n\n';
+  if (supplies) body += 'SUPPLIES\n' + supplies + '\n\n';
+  if (plants) body += 'PLANTS\n' + plants + '\n\n';
   const subject = 'RANDALL STOCK';
-  const mailto = `mailto:info@randallaquatics.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  const mailto = `mailto:info@randallaquatics.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body.trim())}`;
   window.location.href = mailto;
 });
 </script>
