@@ -1,10 +1,12 @@
-# Randall Aquatics — Live Fish in Stock
+# Randall Aquatics — Live Inventory
 
 Compiled from shop screenshots (Oct 9, 2026). Quantities and prices as written. Call or message before you drive. Out = listed at 0.
 
-Source: owner stock list screenshots, not old Facebook posts.
+Source: owner stock list. Updated by the weekly stock form.
 
-## Shrimp, snails, frogs
+## Fish
+
+### Shrimp, snails, frogs
 
 | Qty | Item | Price |
 | --- | --- | --- |
@@ -16,7 +18,7 @@ Source: owner stock list screenshots, not old Facebook posts.
 | 2 | Albino dwarf frog | $12.00 |
 | 5 | African dwarf frog | $10.00 |
 
-## Tetras and danios
+### Tetras and danios
 
 | Qty | Item | Price |
 | --- | --- | --- |
@@ -29,7 +31,7 @@ Source: owner stock list screenshots, not old Facebook posts.
 | 3 | Celestial pearl danios | $14.00 |
 | 2 | Gold ring danios | $10.00 |
 
-## Sharks
+### Sharks
 
 | Qty | Item | Price |
 | --- | --- | --- |
@@ -39,7 +41,7 @@ Source: owner stock list screenshots, not old Facebook posts.
 | 7 | Bala shark | $14.00 |
 | 2 | Highfin banded shark | $50.00 |
 
-## Corys, catfish, plecos
+### Corys, catfish, plecos
 
 | Qty | Item | Price |
 | --- | --- | --- |
@@ -50,7 +52,7 @@ Source: owner stock list screenshots, not old Facebook posts.
 | 3 | Baby Bristol nose pleco, albino | $7.00 |
 | 3 | Baby Bristol nose pleco, black | $5.00 |
 
-## Livebearers
+### Livebearers
 
 | Qty | Item | Price |
 | --- | --- | --- |
@@ -62,7 +64,7 @@ Source: owner stock list screenshots, not old Facebook posts.
 | 7 | Endler females | $6.00 |
 | 6 | Green cobra guppies, male | $5.00 |
 
-## Barbs and loaches
+### Barbs and loaches
 
 | Qty | Item | Price |
 | --- | --- | --- |
@@ -71,7 +73,7 @@ Source: owner stock list screenshots, not old Facebook posts.
 | 3 | Clown loaches | $18.00 |
 | 2 | Honey dwarf gouramis | $15.00 |
 
-## Cichlids
+### Cichlids
 
 | Qty | Item | Price |
 | --- | --- | --- |
@@ -80,11 +82,10 @@ Source: owner stock list screenshots, not old Facebook posts.
 | 20+ | Baby electric yellow cichlids | $2.00 |
 | 4 | Electric blue rams | $26.00 |
 | 4 | Electric blue Jack Dempsey | $30.00 |
-| 1 | Jack Dempsey breeding pair | $50.00 |
 | 10 | Jack Dempseys | $10.00 |
 | 20+ | Platinum parrot cichlids | $10.00 |
 
-## Goldfish
+### Goldfish
 
 | Qty | Item | Price |
 | --- | --- | --- |
@@ -95,7 +96,7 @@ Source: owner stock list screenshots, not old Facebook posts.
 | 3 | Medium shubunkin goldfish | $12.00 |
 | 0 | Large shubunkin goldfish | $15.00 |
 
-## Bettas
+### Bettas
 
 | Qty | Item | Price |
 | --- | --- | --- |
@@ -105,4 +106,15 @@ Source: owner stock list screenshots, not old Facebook posts.
 | 2 | Classic male | $18.00 |
 | 2 | Crowntail male | $24.00 |
 
-Spelling kept close to the board: Juhlii, Bristol nose, honey dwarf gouramis (board said groumies), Chinese algae eater (board said Algea).
+## Supplies
+
+| Qty | Item | Price |
+| --- | --- | --- |
+| | Gravel | |
+| | Decorations | |
+
+## Plants
+
+| Qty | Item | Price |
+| --- | --- | --- |
+| | | |
