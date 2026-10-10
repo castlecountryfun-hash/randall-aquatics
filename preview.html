@@ -40,7 +40,12 @@ footer { padding:16px 5vw 36px; color:var(--mute); border-top:1px solid rgba(61,
   <p class="note">Price, Utah · live board · call before you drive</p>
   <h1>LIVE FISH<br>IN STOCK.</h1>
   <p class="note">Oct 9, 2026 board. Photos are the right species, not a promise the fish in the photo is the one in the tank. Platinum parrot is Brandon’s tank photo. Message first.</p>
+  <h2>FISH</h2>
   <div class="grid" id="board"></div>
+  <h2>SUPPLIES</h2>
+  <p class="note">Nothing listed yet.</p>
+  <h2>PLANTS</h2>
+  <p class="note">Nothing listed yet.</p>
 </main>
 <footer>315 N 100 W, Price, UT 84501 · (435) 650-8646 · <a href="https://www.facebook.com/groups/1390189834734450/">Facebook group</a></footer>
 <script>
@@ -48,56 +53,29 @@ const items = [
 ["20+","Red cherry shrimp",3,"https://commons.wikimedia.org/wiki/Special:FilePath/Cherry_shrimp.jpg?width=480"],
 ["5","Blue velvet shrimp",8,"https://commons.wikimedia.org/wiki/Special:FilePath/Cherry_shrimp.jpg?width=480"],
 ["30+","Ramshorn snails",2,"https://commons.wikimedia.org/wiki/Special:FilePath/Ramshorn_snail.jpg?width=480"],
-["4","Jade mystery snails",5,"https://commons.wikimedia.org/wiki/Special:FilePath/Pomacea_bridgesii.jpg?width=480"],
-["4","Assassin snail",4,"https://commons.wikimedia.org/wiki/Special:FilePath/Clea_helena.jpg?width=480"],
-["2","Albino dwarf frog",12,"https://commons.wikimedia.org/wiki/Special:FilePath/Hymenochirus_boettgeri.jpg?width=480"],
-["5","African dwarf frog",10,"https://commons.wikimedia.org/wiki/Special:FilePath/Hymenochirus_boettgeri.jpg?width=480"],
 ["9","Glowlight tetras",5,"https://commons.wikimedia.org/wiki/Special:FilePath/Hemigrammus_erythrozonus.jpg?width=480"],
 ["6","Black neon tetras",5,"https://commons.wikimedia.org/wiki/Special:FilePath/Black_neon_tetra.jpg?width=480"],
-["8","Neon tetras",4,"https://commons.wikimedia.org/wiki/Special:FilePath/Neonsalmler_Paracheirodon_innesi.jpg?width=480"],
-["6","Rummy nose tetras",8,"https://commons.wikimedia.org/wiki/Special:FilePath/Hemigrammus_rhodostomus.jpg?width=480"],
 ["10","Zebra danios",5,"https://commons.wikimedia.org/wiki/Special:FilePath/Danio_rerio.jpg?width=480"],
 ["5","Long fin zebra danios",10,"https://commons.wikimedia.org/wiki/Special:FilePath/Danio_rerio.jpg?width=480"],
 ["3","Celestial pearl danios",14,"https://commons.wikimedia.org/wiki/Special:FilePath/Danio_margaritatus.jpg?width=480"],
 ["2","Gold ring danios",10,"https://commons.wikimedia.org/wiki/Special:FilePath/Danio_rerio.jpg?width=480"],
-["4","Roseline sharks",24,"https://commons.wikimedia.org/wiki/Special:FilePath/Sahyadria_denisonii.jpg?width=480"],
 ["5","Redtail shark",10,"https://commons.wikimedia.org/wiki/Special:FilePath/Red-tailed_black_shark.jpg?width=480"],
-["5","Rainbow shark",10,"https://commons.wikimedia.org/wiki/Special:FilePath/Epalzeorhynchos_frenatum.jpg?width=480"],
-["7","Bala shark",14,"https://commons.wikimedia.org/wiki/Special:FilePath/Balantiocheilos_melanopterus_Bleeker.jpg?width=480"],
-["2","Highfin banded shark",50,"https://commons.wikimedia.org/wiki/Special:FilePath/Myxocyprinus_asiaticus.jpg?width=480"],
-["4","Juhlii corycats",12,"https://commons.wikimedia.org/wiki/Special:FilePath/Corydoras_julii.jpg?width=480"],
-["4","Panda corycats",10,"https://commons.wikimedia.org/wiki/Special:FilePath/Corydoras_panda.jpg?width=480"],
-["5","Upside-down catfish",22,"https://commons.wikimedia.org/wiki/Special:FilePath/Synodontis_nigriventris.jpg?width=480"],
 ["3","Chinese algae eater",10,"https://commons.wikimedia.org/wiki/Special:FilePath/Gyrinocheilus_aymonieri.jpg?width=480"],
-["3","Baby Bristol nose pleco, albino",7,"https://commons.wikimedia.org/wiki/Special:FilePath/Ancistrus_sp.jpg?width=480"],
 ["3","Baby Bristol nose pleco, black",5,"https://commons.wikimedia.org/wiki/Special:FilePath/Ancistrus_sp.jpg?width=480"],
-["2","Koi swordtails",10,"https://commons.wikimedia.org/wiki/Special:FilePath/Xiphophorus_hellerii.jpg?width=480"],
-["3","Red and white swordtails",10,"https://commons.wikimedia.org/wiki/Special:FilePath/Xiphophorus_hellerii.jpg?width=480"],
-["2","Red swordtails",10,"https://commons.wikimedia.org/wiki/Special:FilePath/Xiphophorus_hellerii.jpg?width=480"],
-["5","Balloon mollies",10,"https://commons.wikimedia.org/wiki/Special:FilePath/Poecilia_latipinna.jpg?width=480"],
 ["6","Platies",5,"https://commons.wikimedia.org/wiki/Special:FilePath/Xiphophorus_maculatus.jpg?width=480"],
-["7","Endler females",6,"https://commons.wikimedia.org/wiki/Special:FilePath/Poecilia_wingei.jpg?width=480"],
-["6","Green cobra guppies, male",5,"https://commons.wikimedia.org/wiki/Special:FilePath/Guppy_male.jpg?width=480"],
-["6","Albino tiger barbs",8,"https://commons.wikimedia.org/wiki/Special:FilePath/Puntius_tetrazona.jpg?width=480"],
-["2","Tiger barbs",8,"https://commons.wikimedia.org/wiki/Special:FilePath/Puntius_tetrazona.jpg?width=480"],
 ["3","Clown loaches",18,"https://commons.wikimedia.org/wiki/Special:FilePath/Clown_loach.jpg?width=480"],
 ["2","Honey dwarf gouramis",15,"https://commons.wikimedia.org/wiki/Special:FilePath/Trichogaster_chuna.jpg?width=480"],
 ["10+","Electric yellow cichlids",5,"https://commons.wikimedia.org/wiki/Special:FilePath/Cichlidae_Labidochromis_caeruleus_2.jpg?width=480"],
 ["5","Electric yellow cichlids",10,"https://commons.wikimedia.org/wiki/Special:FilePath/Cichlidae_Labidochromis_caeruleus_2.jpg?width=480"],
 ["20+","Baby electric yellow cichlids",2,"https://commons.wikimedia.org/wiki/Special:FilePath/Cichlidae_Labidochromis_caeruleus_2.jpg?width=480"],
 ["4","Electric blue rams",26,"https://commons.wikimedia.org/wiki/Special:FilePath/Mikrogeophagus_ramirezi.jpg?width=480"],
-["4","Electric blue Jack Dempsey",30,"https://commons.wikimedia.org/wiki/Special:FilePath/Rocio_octofasciata_jeune_8.jpg?width=480"],
 ["1","Jack Dempsey breeding pair",50,"https://commons.wikimedia.org/wiki/Special:FilePath/Jack_Dempsey_(Rocio_octofasciata)_-_Carwash_Cenote_QR.jpg?width=480"],
 ["10","Jack Dempseys",10,"https://commons.wikimedia.org/wiki/Special:FilePath/Rocio_octofasciata_jeune_8.jpg?width=480"],
 ["20+","Platinum parrot cichlids",10,"https://litter.catbox.moe/x7egoh.jpg"],
 ["48","Small goldfish",2,"https://commons.wikimedia.org/wiki/Special:FilePath/Goldfish3.jpg?width=480"],
 ["2","Medium goldfish",5,"https://commons.wikimedia.org/wiki/Special:FilePath/Goldfish3.jpg?width=480"],
 ["0","Large goldfish",10,"https://commons.wikimedia.org/wiki/Special:FilePath/Goldfish3.jpg?width=480"],
-["19","Small shubunkin",10,"https://commons.wikimedia.org/wiki/Special:FilePath/Shubunkin.JPG?width=480"],
-["3","Medium shubunkin",12,"https://commons.wikimedia.org/wiki/Special:FilePath/Shubunkin.JPG?width=480"],
-["0","Large shubunkin",15,"https://commons.wikimedia.org/wiki/Special:FilePath/Shubunkin.JPG?width=480"],
-["4","Koi female betta",60,"https://commons.wikimedia.org/wiki/Special:FilePath/Betta_splendens_-_Flickr_-_Nippyfish.jpg?width=480"],
-["4","Koi male betta",65,"https://commons.wikimedia.org/wiki/Special:FilePath/Betta_splendens_-_Flickr_-_Nippyfish.jpg?width=480"],
+["3","Large shubunkin",15,"https://commons.wikimedia.org/wiki/Special:FilePath/Shubunkin.JPG?width=480"],
 ["4","Halfmoon male betta",30,"https://commons.wikimedia.org/wiki/Special:FilePath/Betta_splendens_male_crowntail.png?width=480"],
 ["2","Classic male betta",18,"https://commons.wikimedia.org/wiki/Special:FilePath/Betta_splendens_male_crowntail.png?width=480"],
 ["2","Crowntail male betta",24,"https://commons.wikimedia.org/wiki/Special:FilePath/Betta_splendens_male_crowntail.png?width=480"]

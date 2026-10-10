@@ -59,6 +59,7 @@ Source: owner stock list. Updated by the weekly stock form.
 | 5 | Electric yellow cichlids | $10.00 |
 | 20+ | Baby electric yellow cichlids | $2.00 |
 | 4 | Electric blue rams | $26.00 |
+| 1 | Jack Dempsey breeding pair | $50.00 |
 | 10 | Jack Dempseys | $10.00 |
 | 20+ | Platinum parrot cichlids | $10.00 |
 
