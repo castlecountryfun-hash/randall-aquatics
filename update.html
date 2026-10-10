@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#07070b">
+<title>Update the board · Randall Aquatics</title>
+<link rel="icon" href="assets/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<style>
+:root { --ink:#07070b; --card:#10131f; --cyan:#3df0ff; --mag:#ff2bd6; --bone:#f4f7ff; --mute:#9aa3c7; --bad:#ff5a6e; }
+* { box-sizing:border-box; }
+html,body { margin:0; }
+body { color:var(--bone); font-family:"Segoe UI",system-ui,sans-serif; font-size:17px; line-height:1.35;
+  background: radial-gradient(ellipse 90% 60% at 10% 0%, rgba(255,43,214,.28), rgba(255,43,214,0) 62%),
+              radial-gradient(ellipse 80% 55% at 100% 12%, rgba(61,240,255,.2), rgba(61,240,255,0) 60%), #07070b;
+  background-attachment:fixed; padding:0 0 120px; overflow-x:hidden; }
+header { display:flex; align-items:center; gap:12px; padding:14px 16px; border-bottom:1px solid rgba(61,240,255,.2); background:rgba(7,7,11,.6); backdrop-filter:blur(8px); position:sticky; top:0; z-index:5; }
+header img { width:44px; height:44px; border-radius:50%; flex:none; }
+header h1 { margin:0; font-size:24px; line-height:1.05; }
+header h1 span { display:block; font-size:11px; letter-spacing:.16em; color:var(--cyan); font-weight:700; }
+main { padding:14px 16px; max-width:720px; margin:0 auto; }
+.lead { margin:4px 0 14px; font-size:18px; font-weight:700; color:#fff; }
+.tabs { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; position:sticky; top:73px; z-index:4; padding:8px 0; background:rgba(7,7,11,.85); }
+.tabs button { font:inherit; font-size:17px; font-weight:800; min-height:52px; border-radius:999px; border:2px solid var(--cyan); background:transparent; color:var(--cyan); cursor:pointer; }
+.tabs button[aria-selected="true"] { background:var(--cyan); color:#061016; }
+.tabs .ct { font-size:13px; font-weight:700; opacity:.85; }
+.board[hidden] { display:none; }
+h2 { font-size:15px; letter-spacing:.14em; text-transform:uppercase; color:var(--mag); margin:20px 0 8px; }
+.sub { color:var(--mute); font-size:15px; margin:-2px 0 10px; }
+.grp { color:var(--cyan); font-size:12px; letter-spacing:.12em; text-transform:uppercase; font-weight:800; margin:16px 0 6px; }
+.row { background:var(--card); border:1px solid rgba(61,240,255,.25); border-radius:14px; padding:12px; margin:0 0 10px; }
+.row.changed { border-color:var(--cyan); box-shadow:0 0 0 1px var(--cyan) inset; }
+.row.gone { border-color:var(--mag); opacity:.75; }
+.row.gone .nm { text-decoration:line-through; }
+.row.err { border-color:var(--bad); box-shadow:0 0 0 1px var(--bad) inset; }
+.nm { font-weight:800; font-size:18px; color:#fff; }
+.gp { color:var(--mute); font-size:13px; }
+.f { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px; }
+.f.new { grid-template-columns:1fr 1fr; }
+.f .wide { grid-column:1 / -1; }
+label.l { display:grid; gap:4px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--mute); font-weight:700; }
+input[type=text], select, textarea { width:100%; font:inherit; font-size:18px; min-height:52px; padding:10px 12px; border-radius:12px; border:1px solid rgba(61,240,255,.4); background:#0b0d16; color:#fff; }
+input:focus, select:focus, textarea:focus { outline:2px solid var(--cyan); outline-offset:1px; }
+input.bad, select.bad { border-color:var(--bad); outline-color:var(--bad); }
+textarea { min-height:120px; resize:vertical; }
+.rm { display:flex; align-items:center; gap:12px; min-height:52px; margin-top:10px; padding:6px 14px; border:2px solid var(--mag); border-radius:999px; color:var(--mag); font-weight:800; font-size:17px; cursor:pointer; user-select:none; }
+.rm input { width:28px; height:28px; accent-color:var(--mag); margin:0; }
+.x { float:right; width:48px; height:48px; border-radius:50%; border:2px solid var(--mag); background:transparent; color:var(--mag); font-size:24px; font-weight:800; line-height:1; cursor:pointer; margin:-4px -4px 0 8px; }
+.newhead { display:flex; justify-content:space-between; align-items:center; min-height:40px; }
+.newhead strong { color:var(--cyan); font-size:14px; letter-spacing:.1em; text-transform:uppercase; }
+.add, .send, .copy { display:block; width:100%; min-height:56px; font:inherit; font-size:18px; font-weight:800; border-radius:999px; cursor:pointer; }
+.add { background:transparent; border:2px dashed var(--cyan); color:var(--cyan); }
+.send { background:var(--mag); border:0; color:#fff; margin-top:16px; box-shadow:0 0 30px rgba(255,43,214,.35); }
+.copy { background:var(--cyan); border:0; color:#061016; margin-top:10px; }
+.empty { color:var(--mute); font-size:15px; margin:4px 0 10px; }
+.msg { margin:14px 0 0; padding:12px 14px; border-radius:12px; font-weight:700; }
+.msg.bad { background:rgba(255,90,110,.12); border:1px solid var(--bad); color:#ffd0d6; }
+.msg.ok { background:rgba(61,240,255,.10); border:1px solid var(--cyan); color:#d8fbff; }
+#fallback { margin-top:16px; }
+#fallback[hidden] { display:none; }
+#fallback .meta { font-size:15px; color:var(--mute); margin:0 0 8px; word-break:break-all; }
+#fallback textarea { min-height:220px; font-family:ui-monospace,Consolas,monospace; font-size:15px; }
+#fallback a { color:var(--cyan); font-weight:700; display:inline-block; min-height:48px; line-height:48px; }
+.hint { color:var(--mute); font-size:14px; margin-top:8px; }
+</style>
+</head>
+<body>
+<header><img src="assets/jnn5ir.jpg" alt="Randall Aquatics badge"><h1><span>RANDALL AQUATICS</span>Update the board.</h1></header>
+<main>
+<p class="lead">Add anything new. Check remove on anything that is gone.</p>
+<div class="tabs" role="tablist" aria-label="Boards">
+  <button type="button" role="tab" id="t-fish" data-tab="fish" aria-selected="true">Fish <span class="ct" data-ct="fish"></span></button>
+  <button type="button" role="tab" id="t-supplies" data-tab="supplies" aria-selected="false">Supplies <span class="ct" data-ct="supplies"></span></button>
+  <button type="button" role="tab" id="t-plants" data-tab="plants" aria-selected="false">Plants <span class="ct" data-ct="plants"></span></button>
+</div>
+<form id="f" novalidate autocomplete="off">
+  <section class="board" id="b-fish" role="tabpanel" aria-labelledby="t-fish">
+    <h2>Current stock</h2>
+    <p class="sub">Change qty or price if it moved. Only changed or removed fish go in the email.</p>
+    <div id="cur"></div>
+    <h2>Add new</h2>
+    <div class="lines" data-board="fish"></div>
+    <button type="button" class="add" data-add="fish">+ Add new</button>
+  </section>
+  <section class="board" id="b-supplies" role="tabpanel" aria-labelledby="t-supplies" hidden>
+    <h2>Add new</h2>
+    <p class="sub">Gravel, decor and hard goods.</p>
+    <div class="lines" data-board="supplies"></div>
+    <button type="button" class="add" data-add="supplies">+ Add new</button>
+  </section>
+  <section class="board" id="b-plants" role="tabpanel" aria-labelledby="t-plants" hidden>
+    <h2>Add new</h2>
+    <p class="sub">Live plants.</p>
+    <div class="lines" data-board="plants"></div>
+    <button type="button" class="add" data-add="plants">+ Add new</button>
+  </section>
+  <h2>Notes</h2>
+  <textarea id="notes" name="notes" aria-label="Notes"></textarea>
+  <p class="hint">Qty is a number, 20+, or 0 for out. Price is each.</p>
+  <button type="submit" class="send">Submit</button>
+  <div id="msg" role="status" aria-live="polite"></div>
+</form>
+<section id="fallback" hidden>
+  <h2>Email didn't open?</h2>
+  <p class="meta" id="fbmeta"></p>
+  <textarea id="fbtext" readonly aria-label="Stock email text"></textarea>
+  <button type="button" class="copy" id="copy">Copy</button>
+  <a id="reopen" href="#">Open email again</a>
+</section>
+</main>
+<script>
+const STOCK_TO = 'mbjelland55@gmail.com';
+const SUBJECT = 'RANDALL STOCK';
+const FISH_GROUPS = ['Shrimp/snails/frogs','Tetras and danios','Sharks','Corys/catfish/plecos','Livebearers','Barbs and loaches','Cichlids','Goldfish','Bettas'];
+const BOARDS = {fish:'Fish', supplies:'Supplies', plants:'Plants'};
+// Current fish board, copied from the site inventory (55 rows).
+const CURRENT = [{"name": "Red cherry shrimp","group": "Shrimp/snails/frogs","qty": "20+","price": "3"},{"name": "Blue velvet shrimp","group": "Shrimp/snails/frogs","qty": "5","price": "8"},{"name": "Ramshorn snails","group": "Shrimp/snails/frogs","qty": "30+","price": "2"},{"name": "Jade mystery snails","group": "Shrimp/snails/frogs","qty": "4","price": "5"},{"name": "Assassin snails","group": "Shrimp/snails/frogs","qty": "4","price": "4"},{"name": "Albino dwarf frogs","group": "Shrimp/snails/frogs","qty": "2","price": "12"},{"name": "African dwarf frogs","group": "Shrimp/snails/frogs","qty": "5","price": "10"},{"name": "Glowlight tetras","group": "Tetras and danios","qty": "9","price": "5"},{"name": "Black neon tetras","group": "Tetras and danios","qty": "6","price": "5"},{"name": "Rummy nose tetras","group": "Tetras and danios","qty": "6","price": "8"},{"name": "Neon tetras","group": "Tetras and danios","qty": "8","price": "4"},{"name": "Zebra danios","group": "Tetras and danios","qty": "10","price": "5"},{"name": "Celestial pearl danios","group": "Tetras and danios","qty": "3","price": "14"},{"name": "Gold ring danios","group": "Tetras and danios","qty": "2","price": "10"},{"name": "Long fin zebra danios","group": "Tetras and danios","qty": "5","price": "10"},{"name": "Julii cory cats","group": "Corys/catfish/plecos","qty": "4","price": "12"},{"name": "Panda cory cats","group": "Corys/catfish/plecos","qty": "4","price": "10"},{"name": "Upside-down catfish","group": "Corys/catfish/plecos","qty": "5","price": "22"},{"name": "Baby bristlenose pleco albino","group": "Corys/catfish/plecos","qty": "3","price": "7"},{"name": "Baby bristlenose pleco black","group": "Corys/catfish/plecos","qty": "3","price": "5"},{"name": "Koi swordtails","group": "Livebearers","qty": "2","price": "10"},{"name": "Red and white swordtails","group": "Livebearers","qty": "3","price": "10"},{"name": "Red swordtails","group": "Livebearers","qty": "2","price": "10"},{"name": "Balloon mollies","group": "Livebearers","qty": "5","price": "10"},{"name": "Platies","group": "Livebearers","qty": "6","price": "5"},{"name": "Endler females","group": "Livebearers","qty": "7","price": "6"},{"name": "Green cobra guppies male","group": "Livebearers","qty": "6","price": "5"},{"name": "Roseline sharks","group": "Sharks","qty": "4","price": "24"},{"name": "Redtail sharks","group": "Sharks","qty": "5","price": "10"},{"name": "Rainbow sharks","group": "Sharks","qty": "5","price": "10"},{"name": "Bala sharks","group": "Sharks","qty": "7","price": "14"},{"name": "Highfin banded sharks","group": "Sharks","qty": "2","price": "50"},{"name": "Honey dwarf gouramis","group": "Barbs and loaches","qty": "2","price": "15"},{"name": "Albino tiger barbs","group": "Barbs and loaches","qty": "6","price": "8"},{"name": "Tiger barbs","group": "Barbs and loaches","qty": "2","price": "8"},{"name": "Clown loaches","group": "Barbs and loaches","qty": "3","price": "18"},{"name": "Chinese algae eaters","group": "Barbs and loaches","qty": "3","price": "10"},{"name": "Electric yellow cichlids","group": "Cichlids","qty": "10+","price": "5"},{"name": "Baby electric yellow cichlids","group": "Cichlids","qty": "20+","price": "2"},{"name": "Electric blue rams","group": "Cichlids","qty": "4","price": "26"},{"name": "Jack Dempsey breeding pair","group": "Cichlids","qty": "1","price": "50"},{"name": "Electric blue Jack Dempsey","group": "Cichlids","qty": "4","price": "30"},{"name": "Jack Dempseys","group": "Cichlids","qty": "10","price": "10"},{"name": "Platinum parrot cichlids","group": "Cichlids","qty": "20+","price": "10"},{"name": "Goldfish, small","group": "Goldfish","qty": "48","price": "2"},{"name": "Goldfish, medium","group": "Goldfish","qty": "2","price": "5"},{"name": "Goldfish, large","group": "Goldfish","qty": "0","price": "10"},{"name": "Shubunkin goldfish, small","group": "Goldfish","qty": "19","price": "10"},{"name": "Shubunkin goldfish, medium","group": "Goldfish","qty": "3","price": "12"},{"name": "Shubunkin goldfish, large","group": "Goldfish","qty": "0","price": "15"},{"name": "Betta, koi female","group": "Bettas","qty": "4","price": "60"},{"name": "Betta, koi male","group": "Bettas","qty": "4","price": "65"},{"name": "Betta, halfmoon male","group": "Bettas","qty": "4","price": "30"},{"name": "Betta, classic male","group": "Bettas","qty": "2","price": "18"},{"name": "Betta, crowntail male","group": "Bettas","qty": "2","price": "24"}];
+const KEY = 'ra-stock-draft-v2';
+const QTY_RE = /^(0|[1-9]\d*\+?)$/;
+const PRICE_RE = /^\d+(\.\d{1,2})?$/;
+const $ = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => [...r.querySelectorAll(s)];
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const normQty = v => v.trim().replace(/\s+/g,'');
+const normPrice = v => v.trim().replace(/^\$/,'');
+const samePrice = (a,b) => PRICE_RE.test(a) && PRICE_RE.test(b) ? Number(a) === Number(b) : a === b;
+
+function renderCurrent() {
+  let h = '', last = '';
+  CURRENT.forEach((r, i) => {
+    if (r.group !== last) { h += `<div class="grp">${esc(r.group)}</div>`; last = r.group; }
+    h += `<div class="row cur" data-i="${i}"><div class="nm">${esc(r.name)}</div><div class="gp">Fish - ${esc(r.group)}</div>
+      <div class="f"><label class="l">Qty<input type="text" inputmode="numeric" data-k="qty" value="${esc(r.qty)}" aria-label="Qty ${esc(r.name)}"></label>
+      <label class="l">Price $<input type="text" inputmode="decimal" data-k="price" value="${esc(r.price)}" aria-label="Price ${esc(r.name)}"></label></div>
+      <label class="rm"><input type="checkbox" data-k="rm" aria-label="Remove ${esc(r.name)}"> Remove</label></div>`;
+  });
+  $('#cur').innerHTML = h;
+}
+function addLine(board, v={}) {
+  const wrap = $(`.lines[data-board="${board}"]`);
+  const d = document.createElement('div'); d.className = 'row newline';
+  const gsel = board === 'fish'
+    ? `<label class="l wide">Group<select data-k="group"><option value="">Pick a group</option>${FISH_GROUPS.map(g => `<option${v.group===g?' selected':''}>${esc(g)}</option>`).join('')}</select></label>`
+    : '';
+  d.innerHTML = `<button type="button" class="x" aria-label="Drop this line">×</button><div class="newhead"><strong>New · ${BOARDS[board]}</strong></div>
+    <div class="f new"><label class="l wide">Name<input type="text" data-k="name" autocapitalize="words" value="${esc(v.name||'')}"></label>
+    <label class="l">Qty<input type="text" inputmode="numeric" data-k="qty" value="${esc(v.qty||'')}"></label>
+    <label class="l">Price $<input type="text" inputmode="decimal" data-k="price" value="${esc(v.price||'')}"></label>${gsel}</div>`;
+  wrap.appendChild(d);
+  return d;
+}
+function setTab(k) {
+  $$('.tabs [data-tab]').forEach(b => b.setAttribute('aria-selected', String(b.dataset.tab === k)));
+  $$('.board').forEach(p => p.hidden = p.id !== 'b-' + k);
+}
+function counts() {
+  const c = {fish:0, supplies:0, plants:0};
+  $$('#cur .row').forEach(r => { if (r.classList.contains('changed') || r.classList.contains('gone')) c.fish++; });
+  $$('.lines').forEach(w => w.querySelectorAll('.newline').forEach(l => { if ($$('input,select', l).some(x => x.value.trim())) c[w.dataset.board]++; }));
+  for (const k in c) $(`[data-ct="${k}"]`).textContent = c[k] ? `(${c[k]})` : '';
+}
+function markCur(row) {
+  const r = CURRENT[row.dataset.i];
+  const q = normQty($('[data-k=qty]', row).value), p = normPrice($('[data-k=price]', row).value);
+  row.classList.toggle('changed', q !== r.qty || !samePrice(p, r.price));
+  row.classList.toggle('gone', $('[data-k=rm]', row).checked);
+}
+function state() {
+  const cur = {};
+  $$('#cur .row').forEach(row => {
+    const i = row.dataset.i, r = CURRENT[i];
+    const q = $('[data-k=qty]', row).value, p = $('[data-k=price]', row).value, rm = $('[data-k=rm]', row).checked;
+    if (q !== r.qty || p !== r.price || rm) cur[i] = {qty:q, price:p, rm};
+  });
+  const lines = {};
+  $$('.lines').forEach(w => lines[w.dataset.board] = $$('.newline', w).map(l => {
+    const o = {}; $$('[data-k]', l).forEach(x => o[x.dataset.k] = x.value); return o; }));
+  const tab = ($('.tabs [aria-selected="true"]') || {}).dataset?.tab || 'fish';
+  return {cur, lines, notes:$('#notes').value, tab};
+}
+function save() { try { localStorage.setItem(KEY, JSON.stringify(state())); } catch(e) {} counts(); }
+function load() {
+  let s = null; try { s = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch(e) {}
+  if (!s) return;
+  for (const i in (s.cur||{})) {
+    const row = $(`#cur .row[data-i="${i}"]`); if (!row) continue;
+    $('[data-k=qty]', row).value = s.cur[i].qty; $('[data-k=price]', row).value = s.cur[i].price; $('[data-k=rm]', row).checked = !!s.cur[i].rm;
+    markCur(row);
+  }
+  for (const b in (s.lines||{})) if (BOARDS[b]) s.lines[b].forEach(v => addLine(b, v));
+  $('#notes').value = s.notes || '';
+  if (BOARDS[s.tab]) setTab(s.tab);
+}
+function msg(t, kind) { $('#msg').innerHTML = t ? `<p class="msg ${kind}">${t}</p>` : ''; }
+
+function build() {
+  $$('.bad').forEach(x => x.classList.remove('bad')); $$('.row.err').forEach(x => x.classList.remove('err'));
+  const out = {fish:[], supplies:[], plants:[]}, bad = [];
+  const flag = (row, el, board) => { el.classList.add('bad'); row.classList.add('err'); bad.push(board); };
+  // current fish rows
+  const changed = [], removed = [];
+  $$('#cur .row').forEach(row => {
+    const r = CURRENT[row.dataset.i], g = 'Fish - ' + r.group;
+    if ($('[data-k=rm]', row).checked) { removed.push(`REMOVE | ${r.name} | ${g}`); return; }
+    const qi = $('[data-k=qty]', row), pi = $('[data-k=price]', row);
+    const q = normQty(qi.value), p = normPrice(pi.value);
+    if (q === r.qty && samePrice(p, r.price)) return;
+    let ok = true;
+    if (!QTY_RE.test(q)) { flag(row, qi, 'fish'); ok = false; }
+    if (!PRICE_RE.test(p)) { flag(row, pi, 'fish'); ok = false; }
+    if (ok) changed.push(`${q} | ${r.name} | $${p} | ${g}`);
+  });
+  // new lines
+  const added = {fish:[], supplies:[], plants:[]};
+  $$('.lines').forEach(w => {
+    const b = w.dataset.board;
+    $$('.newline', w).forEach(l => {
+      const f = {}; $$('[data-k]', l).forEach(x => f[x.dataset.k] = x);
+      const vals = Object.values(f).map(x => x.value.trim());
+      if (!vals.some(Boolean)) return;            // empty line: skip
+      const q = normQty(f.qty.value), n = f.name.value.trim().replace(/\s*\|\s*/g, ' / '), p = normPrice(f.price.value);
+      let ok = true;
+      if (!n) { flag(l, f.name, b); ok = false; }
+      if (!QTY_RE.test(q)) { flag(l, f.qty, b); ok = false; }
+      if (!PRICE_RE.test(p)) { flag(l, f.price, b); ok = false; }
+      if (b === 'fish' && !f.group.value) { flag(l, f.group, b); ok = false; }
+      const g = b === 'fish' ? 'Fish - ' + f.group.value : BOARDS[b];
+      if (ok) added[b].push(`ADD | ${q} | ${n} | $${p} | ${g}`);
+    });
+  });
+  out.fish = [...changed, ...added.fish, ...removed];
+  out.supplies = added.supplies; out.plants = added.plants;
+  return {lines:[...out.fish, ...out.supplies, ...out.plants], bad};
+}
+
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-tab]'); if (t) { setTab(t.dataset.tab); save(); return; }
+  const a = e.target.closest('[data-add]');
+  if (a) { const l = addLine(a.dataset.add); $('[data-k=name]', l).focus(); save(); return; }
+  const x = e.target.closest('.newline .x'); if (x) { x.closest('.newline').remove(); save(); return; }
+});
+document.addEventListener('input', e => { const row = e.target.closest('#cur .row'); if (row) markCur(row); save(); });
+document.addEventListener('change', e => { const row = e.target.closest('#cur .row'); if (row) markCur(row); save(); });
+
+let lastHref = '';
+$('#f').addEventListener('submit', e => {
+  e.preventDefault();
+  const {lines, bad} = build();
+  if (bad.length) {
+    const first = $('.bad'); const b = first.closest('.board').id.slice(2); setTab(b);
+    first.scrollIntoView({block:'center'}); first.focus();
+    msg('Fix the lines marked in red. Qty is a number, 20+, or 0. Price is a number. New fish need a group.', 'bad');
+    return;
+  }
+  const notes = $('#notes').value.trim();
+  if (!lines.length && !notes) { msg('Nothing changed. Edit a qty or price, check Remove, or add a new line first.', 'bad'); return; }
+  let body = lines.join('\r\n');
+  if (notes) body += (body ? '\r\n\r\n' : '') + 'Notes: ' + notes.replace(/\r?\n/g, '\r\n');
+  lastHref = `mailto:${STOCK_TO}?subject=${encodeURIComponent(SUBJECT)}&body=${encodeURIComponent(body)}`;
+  $('#fbmeta').textContent = `To: ${STOCK_TO} · Subject: ${SUBJECT}`;
+  $('#fbtext').value = body.replace(/\r\n/g, '\n');
+  $('#reopen').href = lastHref;
+  $('#fallback').hidden = false;
+  msg('Email opened. Tap Send in your email app. If it did not open, copy the text below.', 'ok');
+  try { localStorage.removeItem(KEY); } catch(e) {}
+  location.href = lastHref;
+});
+$('#copy').addEventListener('click', async () => {
+  const t = $('#fbtext'), btn = $('#copy');
+  try { await navigator.clipboard.writeText(t.value); } catch(e) { t.focus(); t.select(); document.execCommand('copy'); }
+  btn.textContent = 'Copied'; setTimeout(() => btn.textContent = 'Copy', 1500);
+});
+renderCurrent(); load(); counts();
+</script>
+</body>
+</html>
