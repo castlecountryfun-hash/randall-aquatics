@@ -130,6 +130,30 @@ footer { padding:16px 5vw 36px; color:var(--mute); border-top:1px solid rgba(61,
 .shelfnav button .n { font-size:11px; opacity:.85; margin-left:4px; }
 .shelfgrid { margin-top:14px; }
 .shelfgrid .stockcard[hidden] { display:none; }
+.tiles { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin-top:10px; }
+@media (min-width:700px) { .tiles { grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; } }
+@media (min-width:1100px) { .tiles { grid-template-columns:repeat(4,minmax(0,1fr)); } }
+.shelfsec { margin-top:16px; }
+.shelfsec[hidden] { display:none; }
+.shelfsec > h3 { margin:0 0 2px; font-size:clamp(20px,3vw,26px); letter-spacing:.04em; }
+.shelfsec > h4 { margin:18px 0 0; color:var(--cyan); font-size:12px; letter-spacing:.14em; text-transform:uppercase; }
+.tile { position:relative; display:flex; flex-direction:column; background:#10131f; border:1px solid rgba(61,240,255,.25); border-radius:14px; overflow:hidden; min-width:0; }
+.tile .ti { position:relative; aspect-ratio:4/3; display:grid; place-items:center; color:rgba(255,255,255,.85); background:linear-gradient(135deg,var(--g1,#2a1140),var(--g2,#0b2b3a)); }
+.tile .ti svg { width:42%; max-width:84px; height:auto; }
+.tile .ti img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.tile .tb { display:flex; flex-direction:column; gap:8px; padding:10px 10px 12px; flex:1; }
+.tile .tn { margin:0; font-size:15px; font-weight:700; line-height:1.25; color:#fff; overflow-wrap:anywhere; }
+.tile .tm { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:6px; margin-top:auto; }
+.tile .chip { background:var(--mag); color:#fff; font-weight:800; font-size:15px; border-radius:999px; padding:3px 10px; white-space:nowrap; }
+.tile .tq { color:var(--cyan); font-size:12px; font-weight:700; letter-spacing:.04em; white-space:nowrap; }
+.tile.out { border-color:#2a2f45; }
+.tile.out .ti { filter:grayscale(1); opacity:.5; }
+.tile.out .tn { color:#8a90a8; }
+.tile.out .chip { background:#3a3f57; color:#c9cbd6; text-decoration:line-through; }
+.tile .outtag { margin-left:0; }
+.t-gravel { --g1:#3b2a1a; --g2:#5b4a33; } .t-decor { --g1:#3a1240; --g2:#123a40; } .t-food { --g1:#4a2a0a; --g2:#5a1430; }
+.t-water { --g1:#0b2b4a; --g2:#0b4a4a; } .t-filter { --g1:#13213f; --g2:#22324f; } .t-heat { --g1:#4a1a0b; --g2:#2b0b3a; }
+.t-other { --g1:#202436; --g2:#2a1840; } .t-plant { --g1:#0b3a1a; --g2:#0b3a33; }
 </style>
 </head>
 <body>
@@ -229,6 +253,68 @@ function plainImg(r){ const s = safeImg(r.image || r.photo); return s ? thumb(s,
 function shelfCard(title, items, gid, col){
   return `<article class="card stockcard shelfcard" id="${gid}" data-group="${shelfEsc(title)}"><div class="meta"><div class="date">${shelfEsc(title)}</div><table class="stock-t"><thead><tr><th>Qty</th><th>${col}</th><th>Each</th></tr></thead><tbody>${items.map(r => rowHtml(r, plainImg(r))).join('')}</tbody></table></div></article>`;
 }
+// ---- Supplies / Plants tiles ----
+// Display-only name cleanup for supplies/plants (data is never changed).
+const DN_KEEP = {ph:'pH', iq:'IQ', api:'API', seachem:'Seachem', tetra:'Tetra', 'accu-clear':'Accu-Clear', '3d':'3D', led:'LED', usb:'USB', co2:'CO2', uv:'UV'};
+const DN_UNITS = {lb:'lb', lbs:'lb', oz:'oz', gal:'gal', gallon:'gal', gallons:'gal', ml:'ml', l:'L', g:'g', kg:'kg', in:'in', ft:'ft', w:'W'};
+const DN_SMALL = new Set(['and','or','of','for','on','with','the','a','an','to','in']);
+const DN_FIX = {algea:'algae'};
+function displayName(raw){
+  let s = String(raw || '').trim().replace(/\s+/g, ' ');
+  s = s.replace(/\bFL\.?\s*OZ\b\.?/gi, 'fl oz');                 // FL OZ / FL OZ. -> fl oz
+  s = s.replace(/(\d)\s*(LBS?|OZ|GAL|ML|KG)\b/gi, '$1 $2');      // 1LB -> 1 LB
+  s = s.replace(/\bhang[\s-]+on[\s-]+back\b/gi, 'Hang-On-Back');
+  s = s.replace(/\s*-\s+/g, ', ').replace(/([A-Za-z])-(?=(NATURAL|BLACK|WHITE|RED|BLUE|MIXED|SMALL|LARGE)\b)/gi, '$1, ');  // "Spiralis- Potted" / "GRAVEL-NATURAL"
+  s = s.replace(/\s*\/\s*/g, ' / ');
+  const words = s.split(' ');
+  return words.map((w, i) => {
+    const m = w.match(/^([^A-Za-z0-9]*)(.*?)([^A-Za-z0-9+]*)$/); const pre = m[1], core = m[2], post = m[3];
+    const low = core.toLowerCase();
+    if (!core) return w;
+    if (DN_KEEP[low]) return pre + DN_KEEP[low] + post;
+    if (low === 'fl' && (words[i+1] || '').toLowerCase().startsWith('oz')) return pre + 'fl' + post;
+    if (DN_UNITS[low] && i > 0 && /(\d|^fl)$/i.test(words[i-1])) return pre + DN_UNITS[low] + post;
+    if (/\d/.test(core)) return w;   // numbers, sizes, 3D, 20+
+    const isUpper = core === core.toUpperCase(), isLower = core === low;
+    let out = core;
+    if (isUpper || isLower) {
+      const fixed = DN_FIX[low] || low;
+      out = (i > 0 && DN_SMALL.has(fixed)) ? fixed : fixed.replace(/(^|[-+])([a-z])/g, (a, b, c) => b + c.toUpperCase());
+    }
+    return pre + out + post;
+  }).join(' ').replace(/\s+,/g, ',');
+}
+
+const TILE_ICON = {
+  gravel:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><ellipse cx="14" cy="34" rx="8" ry="5"/><ellipse cx="32" cy="36" rx="9" ry="5.5"/><ellipse cx="24" cy="24" rx="7" ry="4.5"/><ellipse cx="38" cy="22" rx="5" ry="3.5"/><ellipse cx="11" cy="20" rx="4.5" ry="3"/></svg>',
+  decor:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><path d="M8 42V18h6v5h5v-5h10v5h5v-5h6v24z"/><path d="M20 42v-9a4 4 0 0 1 8 0v9"/></svg>',
+  food:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><rect x="14" y="12" width="20" height="30" rx="4"/><path d="M14 20h20M18 6h12v6H18z"/><circle cx="21" cy="29" r="1.6" fill="currentColor"/><circle cx="27" cy="33" r="1.6" fill="currentColor"/><circle cx="24" cy="26" r="1.2" fill="currentColor"/></svg>',
+  water:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><path d="M24 6c8 10 13 17 13 23a13 13 0 0 1-26 0c0-6 5-13 13-23z"/><path d="M18 31a6 6 0 0 0 6 6"/></svg>',
+  filter:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><rect x="10" y="8" width="28" height="32" rx="4"/><path d="M16 16h16M16 22h16M16 28h16M16 34h10"/></svg>',
+  heat:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M20 30V10a4 4 0 0 1 8 0v20a8 8 0 1 1-8 0z"/><path d="M24 18v16"/><path d="M36 14c3 3 3 7 0 10M40 10c5 5 5 13 0 18"/></svg>',
+  other:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="24" cy="24" r="6"/><path d="M24 6v6M24 36v6M6 24h6M36 24h6M11 11l4.5 4.5M32.5 32.5L37 37M11 37l4.5-4.5M32.5 15.5L37 11"/></svg>',
+  plant:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><path d="M24 42V22"/><path d="M24 26c-10 0-14-7-14-14 8 0 14 4 14 14z"/><path d="M24 22c0-9 5-14 14-14 0 8-5 14-14 14z"/></svg>'};
+const EQUIP_SECTIONS = [
+  ['Water care', 'water', /zap|\bbasics?\b|\bph\b|enhancer|\bdown\b|\bick\b|cure|condition|clear|quick ?start|prime|stability|stress ?coat|treat|dechlor|bacteria|safe\b/i],
+  ['Filters', 'filter', /filter|sponge|media|cartridge/i],
+  ['Heaters and air pumps', 'heat', /heater|air ?pump|\bpump\b|air ?stone|thermometer/i],
+  ['Feeders and other', 'other', /./]];
+function equipSection(name){ return EQUIP_SECTIONS.find(s => s[2].test(name)) || EQUIP_SECTIONS[3]; }
+function tileHtml(r, kind){
+  const nm = displayName(r.name), out = String(r.qty).trim() === '0', src = safeImg(r.image || r.photo);
+  const img = src ? `<img src="${shelfEsc(src)}" alt="${shelfEsc(nm)}" loading="lazy" decoding="async" onerror="this.remove()">` : '';
+  const qty = out ? '<span class="outtag">Out</span>' : `<span class="tq">${shelfEsc(r.qty)} in stock</span>`;
+  return `<article class="tile t-${kind}${out ? ' out' : ''}"><div class="ti">${TILE_ICON[kind] || TILE_ICON.other}${img}</div><div class="tb"><h5 class="tn">${shelfEsc(nm)}</h5><div class="tm"><span class="chip">${shelfPrice(r.price)}</span>${qty}</div></div></article>`;
+}
+const GROUP_KIND = {Gravel:'gravel', Decor:'decor', Food:'food', Equipment:'other'};
+function supplySection(g, items){
+  let inner;
+  if (g === 'Equipment') {
+    inner = EQUIP_SECTIONS.map(([t, k]) => { const its = items.filter(r => equipSection(r.name)[0] === t);
+      return its.length ? `<h4>${t}</h4><div class="tiles">${its.map(r => tileHtml(r, k)).join('')}</div>` : ''; }).join('');
+  } else inner = `<div class="tiles">${items.map(r => tileHtml(r, GROUP_KIND[g])).join('')}</div>`;
+  return `<section class="shelfsec shelfcard" id="sup-${g.toLowerCase()}" data-group="${g}"><h3>${g}</h3>${inner}</section>`;
+}
 const SHELF_BTNS = `<div class="btns"><a class="hot" href="tel:+14356508646">Call the shop</a><a class="ghost" href="${SHELF_FB}" target="_blank" rel="noopener">Message the group</a></div>`;
 function shelfEmpty(date, lead){ return `<article class="card shelf shelf-empty"><div class="meta"><div class="date">${date}</div><p class="lead">${lead}</p>${SHELF_BTNS}</div></article>`; }
 // Read the written Fish board once: card photo strips + the species photo used for each row name.
@@ -271,18 +357,19 @@ function renderShelves(){
   if (sm) {
     const by = {}; SHELF_GROUPS.forEach(g => by[g] = sup.filter(r => String(r.group).toLowerCase() === g.toLowerCase()));
     const any = SHELF_GROUPS.some(g => by[g].length);
+    const first = SHELF_GROUPS.find(g => by[g].length);
     let h = '<div class="shelfnav" role="group" aria-label="Supplies filter">';
-    h += `<button type="button" data-sfilter="all" aria-pressed="true"${any ? '' : ' disabled'}>All</button>`;
     SHELF_GROUPS.forEach(g => { const n = by[g].length;
-      h += `<button type="button" data-sfilter="${g}" aria-pressed="false"${n ? '' : ' disabled title="Nothing listed right now"'}>${g}<span class="n">${n ? '(' + n + ')' : ''}</span></button>`; });
+      h += `<button type="button" data-sfilter="${g}" aria-pressed="${g === first}"${n ? '' : ' disabled title="Nothing listed right now"'}>${g}<span class="n">${n ? '(' + n + ')' : ''}</span></button>`; });
+    h += `<button type="button" data-sfilter="all" aria-pressed="false"${any ? '' : ' disabled'}>All</button>`;
     h += '</div>';
-    if (any) h += '<div class="grid stock shelfgrid">' + SHELF_GROUPS.filter(g => by[g].length).map(g => shelfCard(g, by[g], 'sup-' + g.toLowerCase(), 'Item')).join('') + '</div><p class="note">Qty is how many. Price is each. “Out” means gone for now. Ask what else is on the shelf.</p>' + SHELF_BTNS;
+    if (any) h += '<div class="shelfgrid">' + SHELF_GROUPS.filter(g => by[g].length).map(g => supplySection(g, by[g]).replace('<section ', g === first ? '<section ' : '<section hidden ')).join('') + '</div><p class="note">Price is each. “Out” means gone for now. Ask what else is on the shelf.</p>' + SHELF_BTNS;
     else h += shelfEmpty('Supplies', 'Gravel, decor, food and equipment. Ask what’s on the shelf. Call or message before you drive.');
     sm.innerHTML = h;
   }
   const pm = document.querySelector('.shelfmount[data-shelf="plants"]');
   if (pm) pm.innerHTML = pla.length
-    ? '<div class="grid stock shelfgrid">' + shelfCard('Live plants', pla, 'plants-live', 'Plant') + '</div><p class="note">Qty is how many. Price is each. “Out” means gone for now.</p>' + SHELF_BTNS
+    ? `<div class="shelfgrid"><section class="shelfsec shelfcard" id="plants-live" data-group="Live plants"><h3>Live plants</h3><div class="tiles">${pla.map(r => tileHtml(r, 'plant')).join('')}</div></section></div><p class="note">Price is each. “Out” means gone for now.</p>` + SHELF_BTNS
     : shelfEmpty('Plants', 'Live plants. Ask what’s in this week. Call or message before you drive.');
   if (!INV_TRIED) loadInventory();
 }
@@ -304,8 +391,7 @@ document.addEventListener('click', e => {
   const f = b.dataset.sfilter, nav = b.closest('.shelfnav');
   nav.querySelectorAll('[data-sfilter]').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
   document.querySelectorAll('#board-supplies .shelfcard').forEach(c => c.hidden = !(f === 'all' || c.dataset.group === f));
-  const t = f === 'all' ? null : document.getElementById('sup-' + f.toLowerCase());
-  if (t) t.scrollIntoView({behavior:'smooth', block:'nearest'});
+  if (nav.getBoundingClientRect().top < 0) nav.scrollIntoView({behavior:'smooth', block:'start'});
 });
 loadInventory();
 </script>
@@ -331,7 +417,7 @@ inventory: `<p class="kicker">Price, Utah · stock moves</p><div class="boardtab
 <article class="card stockcard"><div class="spstrip n2"><figure><img src="assets/sp-goldfish.jpg" alt="Goldfish (species photo)" loading="lazy" decoding="async" width="600" height="400"><figcaption>Goldfish</figcaption></figure><figure><img src="assets/sp-shubunkin.jpg" alt="Shubunkin goldfish (species photo)" loading="lazy" decoding="async" width="600" height="400"><figcaption>Shubunkin goldfish</figcaption></figure></div><div class="meta"><p class="spcap">Species photo, not the exact fish</p><div class="date">Goldfish</div><table class="stock-t"><thead><tr><th>Qty</th><th>Fish</th><th>Each</th></tr></thead><tbody><tr><td class="q">48</td><td class="n"><div class="nw"><img class="rthumb" src="assets/sp-goldfish.jpg" alt="Goldfish (species photo)" loading="lazy" decoding="async" width="600" height="400"><span class="nm">Goldfish, small</span></div></td><td class="p">$2</td></tr><tr><td class="q">2</td><td class="n"><div class="nw"><img class="rthumb" src="assets/sp-goldfish.jpg" alt="Goldfish (species photo)" loading="lazy" decoding="async" width="600" height="400"><span class="nm">Goldfish, medium</span></div></td><td class="p">$5</td></tr><tr class="out"><td class="q">0</td><td class="n"><div class="nw"><img class="rthumb" src="assets/sp-goldfish.jpg" alt="Goldfish (species photo)" loading="lazy" decoding="async" width="600" height="400"><span class="nm">Goldfish, large</span> <span class="outtag">Out</span></div></td><td class="p">$10</td></tr><tr><td class="q">19</td><td class="n"><div class="nw"><img class="rthumb" src="assets/sp-shubunkin.jpg" alt="Shubunkin goldfish (species photo)" loading="lazy" decoding="async" width="600" height="400"><span class="nm">Shubunkin goldfish, small</span></div></td><td class="p">$10</td></tr><tr><td class="q">3</td><td class="n"><div class="nw"><img class="rthumb" src="assets/sp-shubunkin.jpg" alt="Shubunkin goldfish (species photo)" loading="lazy" decoding="async" width="600" height="400"><span class="nm">Shubunkin goldfish, medium</span></div></td><td class="p">$12</td></tr><tr class="out"><td class="q">0</td><td class="n"><div class="nw"><img class="rthumb" src="assets/sp-shubunkin.jpg" alt="Shubunkin goldfish (species photo)" loading="lazy" decoding="async" width="600" height="400"><span class="nm">Shubunkin goldfish, large</span> <span class="outtag">Out</span></div></td><td class="p">$15</td></tr></tbody></table></div></article>
 <article class="card stockcard"><div class="spstrip n1"><figure><img src="assets/sp-koibetta.jpg" alt="Koi betta (species photo)" loading="lazy" decoding="async" width="600" height="400"><figcaption>Koi betta</figcaption></figure></div><div class="meta"><p class="spcap">Species photo, not the exact fish</p><div class="date">Bettas</div><table class="stock-t"><thead><tr><th>Qty</th><th>Fish</th><th>Each</th></tr></thead><tbody><tr><td class="q">4</td><td class="n"><div class="nw"><img class="rthumb" src="assets/sp-koibetta.jpg" alt="Koi betta (species photo)" loading="lazy" decoding="async" width="600" height="400"><span class="nm">Betta, koi female</span></div></td><td class="p">$60</td></tr><tr><td class="q">4</td><td class="n"><div class="nw"><img class="rthumb" src="assets/sp-koibetta.jpg" alt="Koi betta (species photo)" loading="lazy" decoding="async" width="600" height="400"><span class="nm">Betta, koi male</span></div></td><td class="p">$65</td></tr><tr><td class="q">4</td><td class="n"><div class="nw"><img class="rthumb" src="assets/sp-halfmoon.jpg" alt="Halfmoon betta (species photo)" loading="lazy" decoding="async" width="400" height="267"><span class="nm">Betta, halfmoon male</span></div></td><td class="p">$30</td></tr><tr><td class="q">2</td><td class="n"><div class="nw"><img class="rthumb" src="assets/sp-koibetta.jpg" alt="Koi betta (species photo)" loading="lazy" decoding="async" width="600" height="400"><span class="nm">Betta, classic male</span></div></td><td class="p">$18</td></tr><tr><td class="q">2</td><td class="n"><div class="nw"><img class="rthumb" src="assets/sp-crowntail.jpg" alt="Crowntail betta (species photo)" loading="lazy" decoding="async" width="400" height="267"><span class="nm">Betta, crowntail male</span></div></td><td class="p">$24</td></tr></tbody></table></div></article>
 </div><p class="note">Qty is how many. Price is each. “Out” means gone for now. Ask and he will tell you when it is back.</p><div class="btns"><a class="hot" href="tel:+14356508646">Call the shop</a><a class="ghost" href="https://www.facebook.com/groups/1390189834734450/" target="_blank" rel="noopener">Message the group</a></div></section><section class="board" id="board-supplies" role="tabpanel" aria-labelledby="tab-supplies" hidden><h1>SUPPLIES<br><span>ON THE SHELF.</span></h1><div class="stamp drive">Call or message before you drive.</div><div class="shelfmount" data-shelf="supplies"></div></section><section class="board" id="board-plants" role="tabpanel" aria-labelledby="tab-plants" hidden><h1>LIVE PLANTS<br><span>IN THIS WEEK.</span></h1><div class="stamp drive">Call or message before you drive.</div><div class="shelfmount" data-shelf="plants"></div></section>`,
-merch: `<p class="kicker">Real merch. Real checkout.</p><h1>GEAR.<br><span>ACTUALLY FOR SALE.</span></h1><div class="stamp drive">Sold and shipped by Shit Stir Co. Checkout is secure through Shopify.</div><p class="note">The neon betta badge on shirts, hoodies, a hat and a backpack. Printed after you order. Pick a size and color, hit Buy, and Shopify takes it from there. The fish are still a phone call. The shirt is not.</p><div class="grid">
+merch: `<p class="kicker">Real merch. Real checkout.</p><h1>GEAR.<br><span>ACTUALLY FOR SALE.</span></h1><div class="stamp drive">Sold and shipped by <a href="https://www.shitstirco.com/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-underline-offset:3px">Shit Stir Co</a>. Checkout is secure through Shopify.</div><p class="note">The neon betta badge on shirts, hoodies, a hat and a backpack. Printed after you order. Pick a size and color, hit Buy, and Shopify takes it from there. The fish are still a phone call. The shirt is not.</p><div class="grid">
 <article class="card mcard" data-h="randall-aquatics"><img src="assets/sm-randall-aquatics-00.jpg" alt="Randall Aquatics, Black" loading="lazy" decoding="async"><div class="meta"><div class="date">Adult tee · $24.99–$34.99</div><h3>Randall Aquatics</h3><div class="price" data-price>$24.99</div><p>The adult tee. Badge on the front. Wear the fish so you stop talking about the fish.</p><div class="vpick"><label>Color<select data-opt="Color"><option>Vintage Black</option><option>Dark Grey</option><option>Charity Pink</option><option>Teal</option><option>Athletic Heather</option><option>Heather Dust</option><option>White</option><option selected>Black</option></select></label><label>Size<select data-opt="Size"><option selected>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>2XL</option><option>3XL</option><option>4XL</option><option>5XL</option></select></label></div><div class="btns"><a class="hot" data-buy href="https://shop.shitstirco.com/cart/59846740050001:1" rel="noopener">Buy · $24.99</a><a class="ghost" href="https://www.shitstirco.com/p/randall-aquatics" target="_blank" rel="noopener">See it on Shit Stir Co</a></div><p class="vout" data-out hidden>That combo is sold out. Pick another.</p></div></article>
 <article class="card mcard" data-h="youth-randall-aquatics"><img src="assets/sm-youth-randall-aquatics-08.jpg" alt="Youth Randall Aquatics, Black" loading="lazy" decoding="async"><div class="meta"><div class="date">Youth tee · $22.99</div><h3>Youth Randall Aquatics</h3><div class="price" data-price>$22.99</div><p>Kid size. Big print on the back. Betta than your ex, says the shirt, not us.</p><div class="vpick"><label>Color<select data-opt="Color"><option>Navy</option><option>Dark Grey Heather</option><option>Pink</option><option>Heather Dust</option><option>White</option><option selected>Black</option></select></label><label>Size<select data-opt="Size"><option selected>S</option><option>M</option><option>L</option><option>XL</option></select></label></div><div class="btns"><a class="hot" data-buy href="https://shop.shitstirco.com/cart/59846777241681:1" rel="noopener">Buy · $22.99</a><a class="ghost" href="https://www.shitstirco.com/p/youth-randall-aquatics" target="_blank" rel="noopener">See it on Shit Stir Co</a></div><p class="vout" data-out hidden>That combo is sold out. Pick another.</p></div></article>
 <article class="card mcard" data-h="women-s-fitted-racerback-tank-top-1"><img src="assets/sm-women-s-fitted-racerback-tan-14.jpg" alt="Women’s fitted racerback tank top, Black" loading="lazy" decoding="async"><div class="meta"><div class="date">Women’s tank · $22.00–$25.00</div><h3>Women’s fitted racerback tank top</h3><div class="price" data-price>$22.00</div><p>Fitted racerback. Full Randall print on the back.</p><div class="vpick"><label>Color<select data-opt="Color"><option>Hot Pink</option><option>Tahiti Blue</option><option>Cancun</option><option>White</option><option selected>Black</option></select></label><label>Size<select data-opt="Size"><option selected>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>2XL</option></select></label></div><div class="btns"><a class="hot" data-buy href="https://shop.shitstirco.com/cart/59846807224401:1" rel="noopener">Buy · $22.00</a><a class="ghost" href="https://www.shitstirco.com/p/women-s-fitted-racerback-tank-top-1" target="_blank" rel="noopener">See it on Shit Stir Co</a></div><p class="vout" data-out hidden>That combo is sold out. Pick another.</p></div></article>
