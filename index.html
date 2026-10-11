@@ -236,7 +236,7 @@ function renderDeals(){
   }).join('\n');
   grid.dataset.source = 'inventory.json';
 }
-function shelfEsc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&','<':'<','>':'>','"':'"'}[c])); }
+function shelfEsc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
 function shelfPrice(p){ const n = Number(p); return (p !== '' && p != null && isFinite(n)) ? '$' + (Number.isInteger(n) ? n : n.toFixed(2)) : shelfEsc(p); }
 function safeImg(u){ u = String(u || '').trim(); if (!u) return '';
   if (/^https:\/\//i.test(u)) return u;
