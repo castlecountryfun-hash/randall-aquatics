@@ -1,1 +1,655 @@
-PLACEHOLDER
+{
+  "shop": "Randall Aquatics",
+  "source": "Live Fish in Stock screenshots",
+  "compiled": "2026-10-13",
+  "note": "Current board stock. Photos are species matches from Wikimedia Commons, not Brandon's tank unless noted. Call or message before you drive.",
+  "boards": [
+    "Fish",
+    "Supplies",
+    "Plants"
+  ],
+  "items": [
+    {
+      "board": "Fish",
+      "qty": "2",
+      "name": "Blue velvet shrimp",
+      "price": 8.0,
+      "group": "shrimp",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Cherry_shrimp.jpg?width=480"
+    },
+    {
+      "board": "Fish",
+      "qty": "50+",
+      "name": "Ramshorn snails",
+      "price": 2.0,
+      "group": "snails"
+    },
+    {
+      "board": "Fish",
+      "qty": "4",
+      "name": "Blue Legged Crabs (SALTWATER)",
+      "price": 15.0,
+      "group": "shrimp"
+    },
+    {
+      "board": "Fish",
+      "qty": "1",
+      "name": "Black neon tetras",
+      "price": 6.0,
+      "group": "tetras",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Black_neon_tetra.jpg?width=480"
+    },
+    {
+      "board": "Fish",
+      "qty": "9",
+      "name": "Zebra danios",
+      "price": 6.0,
+      "group": "danios"
+    },
+    {
+      "board": "Fish",
+      "qty": "4",
+      "name": "Celestial pearl danios",
+      "price": 14.0,
+      "group": "danios",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Danio_margaritatus.jpg?width=480"
+    },
+    {
+      "board": "Fish",
+      "qty": "3",
+      "name": "Gold ring danios",
+      "price": 5.0,
+      "group": "danios"
+    },
+    {
+      "board": "Fish",
+      "qty": "2",
+      "name": "Amber Tetras",
+      "price": 7.0,
+      "group": "tetras"
+    },
+    {
+      "board": "Fish",
+      "qty": "2",
+      "name": "Blue Kerri Emperor Teteras",
+      "price": 10.0,
+      "group": "tetras"
+    },
+    {
+      "board": "Fish",
+      "qty": "3",
+      "name": "Threadfin Rainbow",
+      "price": 18.0,
+      "group": "tetras"
+    },
+    {
+      "board": "Fish",
+      "qty": "2",
+      "name": "Blue Eye Gertrudae Rainbow Fish",
+      "price": 18.0,
+      "group": "tetras"
+    },
+    {
+      "board": "Fish",
+      "qty": "3",
+      "name": "Forktail Rainbow",
+      "price": 10.0,
+      "group": "tetras"
+    },
+    {
+      "board": "Fish",
+      "qty": "3",
+      "name": "Redtail shark",
+      "price": 10.0,
+      "group": "sharks",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Red-tailed_black_shark.jpg?width=480"
+    },
+    {
+      "board": "Fish",
+      "qty": "2",
+      "name": "Chinese algae eater",
+      "price": 10.0,
+      "group": "catfish",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Gyrinocheilus_aymonieri.jpg?width=480"
+    },
+    {
+      "board": "Fish",
+      "qty": "10+",
+      "name": "Baby Bristol nose pleco, black",
+      "price": 5.0,
+      "group": "plecos",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Ancistrus_sp.jpg?width=480"
+    },
+    {
+      "board": "Fish",
+      "qty": "1",
+      "name": "Banded Burmese Algea Eater",
+      "price": 50.0,
+      "group": "catfish"
+    },
+    {
+      "board": "Fish",
+      "qty": "7",
+      "name": "Platies",
+      "price": 7.0,
+      "group": "livebearers",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Xiphophorus_maculatus.jpg?width=480"
+    },
+    {
+      "board": "Fish",
+      "qty": "7",
+      "name": "Baby Platies",
+      "price": 3.0,
+      "group": "livebearers"
+    },
+    {
+      "board": "Fish",
+      "qty": "10+",
+      "name": "Normal Guppies",
+      "price": 3.0,
+      "group": "livebearers"
+    },
+    {
+      "board": "Fish",
+      "qty": "1",
+      "name": "Clown loaches",
+      "price": 30.0,
+      "group": "loaches",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Clown_loach.jpg?width=480"
+    },
+    {
+      "board": "Fish",
+      "qty": "1",
+      "name": "Golden Wonder Killifish",
+      "price": 20.0,
+      "group": "loaches"
+    },
+    {
+      "board": "Fish",
+      "qty": "2",
+      "name": "Electric blue rams",
+      "price": 20.0,
+      "group": "cichlids",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Mikrogeophagus_ramirezi.jpg?width=480"
+    },
+    {
+      "board": "Fish",
+      "qty": "5+",
+      "name": "Jack Dempseys",
+      "price": 10.0,
+      "deal": 5,
+      "group": "cichlids",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Rocio_octofasciata_jeune_8.jpg?width=480"
+    },
+    {
+      "board": "Fish",
+      "qty": "10+",
+      "name": "Platinum parrot cichlids",
+      "price": 10.0,
+      "deal": 5,
+      "group": "cichlids"
+    },
+    {
+      "board": "Fish",
+      "qty": "2",
+      "name": "Bolivan Ram",
+      "price": 18.0,
+      "group": "cichlids"
+    },
+    {
+      "board": "Fish",
+      "qty": "1",
+      "name": "Electric Blue Ram-Pair",
+      "price": 50.0,
+      "group": "cichlids"
+    },
+    {
+      "board": "Fish",
+      "qty": "3",
+      "name": "Red Zebra Cichlid",
+      "price": 8.0,
+      "group": "cichlids"
+    },
+    {
+      "board": "Fish",
+      "qty": "1",
+      "name": "Blue Balloon Ram",
+      "price": 20.0,
+      "group": "cichlids"
+    },
+    {
+      "board": "Fish",
+      "qty": "20+",
+      "name": "Baby Convict Cichlid",
+      "price": 3.0,
+      "group": "cichlids",
+      "deal": 1.5
+    },
+    {
+      "board": "Fish",
+      "qty": "10+",
+      "name": "Baby Jack Dempsays",
+      "price": 5.0,
+      "group": "cichlids",
+      "deal": 2.5
+    },
+    {
+      "board": "Fish",
+      "qty": "16",
+      "name": "Small goldfish",
+      "price": 2.0,
+      "group": "goldfish",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Goldfish3.jpg?width=480"
+    },
+    {
+      "board": "Fish",
+      "qty": "1",
+      "name": "Medium goldfish",
+      "price": 7.0,
+      "group": "goldfish",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Goldfish3.jpg?width=480"
+    },
+    {
+      "board": "Fish",
+      "qty": "2",
+      "name": "Large shubunkin goldfish",
+      "price": 15.0,
+      "group": "goldfish",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Shubunkin.JPG?width=480"
+    },
+    {
+      "board": "Fish",
+      "qty": "2",
+      "name": "Classic male betta",
+      "price": 12.0,
+      "group": "bettas",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Betta_splendens_male_crowntail.png?width=480"
+    },
+    {
+      "board": "Fish",
+      "qty": "5",
+      "name": "Crowntail male betta",
+      "price": 20.0,
+      "group": "bettas",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Betta_splendens_male_crowntail.png?width=480"
+    },
+    {
+      "board": "Fish",
+      "qty": "4",
+      "name": "Super Deltatail Male Betta",
+      "price": 32.0,
+      "group": "bettas"
+    },
+    {
+      "board": "Fish",
+      "qty": "7",
+      "name": "Veiltail Female Betta",
+      "price": 15.0,
+      "group": "bettas"
+    },
+    {
+      "board": "Fish",
+      "qty": "6",
+      "name": "Halfmoon Female Betta",
+      "price": 15.0,
+      "group": "bettas"
+    },
+    {
+      "board": "Supplies",
+      "qty": "1",
+      "name": "5.5 Gallon Rimless Aquarium Tank Only",
+      "price": 50.0,
+      "group": "Equipment"
+    },
+    {
+      "board": "Supplies",
+      "qty": "1",
+      "name": "5.5 Gallon Framed Aquarium Tank Only",
+      "price": 30.0,
+      "group": "Equipment"
+    },
+    {
+      "board": "Supplies",
+      "qty": "2",
+      "name": "10 Gallon Framed Aquarium Tank Only",
+      "price": 35.0,
+      "group": "Equipment"
+    },
+    {
+      "board": "Supplies",
+      "qty": "1",
+      "name": "Used 5.5 Gallon Framed Aquarium Kit",
+      "price": 65.0,
+      "group": "Equipment"
+    },
+    {
+      "board": "Supplies",
+      "qty": "2",
+      "name": "10 Gallon Framed Aquarium Kit",
+      "price": 95.0,
+      "group": "Equipment"
+    },
+    {
+      "board": "Supplies",
+      "qty": "10+",
+      "name": "Small Fake Plants",
+      "price": 0.5,
+      "group": "Equipment"
+    },
+    {
+      "board": "Supplies",
+      "qty": "10+",
+      "name": "Medium Fake Plants",
+      "price": 1.0,
+      "group": "Equipment"
+    },
+    {
+      "board": "Supplies",
+      "qty": "10",
+      "name": "Fake Grass Plant",
+      "price": 4.0,
+      "group": "Equipment"
+    },
+    {
+      "board": "Supplies",
+      "qty": "1",
+      "name": "Fake Ball Plant",
+      "price": 1.5,
+      "group": "Equipment"
+    },
+    {
+      "board": "Supplies",
+      "qty": "10+",
+      "name": "Large Fake Plants",
+      "price": 6.0,
+      "group": "Equipment"
+    },
+    {
+      "board": "Supplies",
+      "qty": "5+",
+      "name": "X-Large Fake Plants",
+      "price": 30.0,
+      "group": "Equipment"
+    },
+    {
+      "board": "Supplies",
+      "qty": "10+",
+      "name": "Hideouts",
+      "price": 10.0,
+      "group": "Equipment"
+    },
+    {
+      "board": "Supplies",
+      "qty": "18",
+      "name": "Replacement Filter Pad #3",
+      "price": 1.0,
+      "group": "Equipment"
+    },
+    {
+      "board": "Supplies",
+      "qty": "3",
+      "name": "Replacement Filter Pad #2",
+      "price": 1.0,
+      "group": "Equipment"
+    },
+    {
+      "board": "Supplies",
+      "qty": "3",
+      "name": "Medium Replacement Filter Pad",
+      "price": 2.0,
+      "group": "Equipment"
+    },
+    {
+      "board": "Supplies",
+      "qty": "6",
+      "name": "Ritesize A Filter Pad",
+      "price": 3.0,
+      "group": "Equipment"
+    },
+    {
+      "board": "Supplies",
+      "qty": "1",
+      "name": "Used 65 OZ Aquarium Salt",
+      "price": 5.0,
+      "group": "Equipment"
+    },
+    {
+      "board": "Supplies",
+      "qty": "2",
+      "name": "65 OZ Aquarium Salt",
+      "price": 10.0,
+      "group": "Equipment"
+    },
+    {
+      "board": "Supplies",
+      "qty": "1",
+      "name": "Used 850g General Cure",
+      "price": 90.0,
+      "group": "Equipment"
+    },
+    {
+      "board": "Supplies",
+      "qty": "1",
+      "name": "AquaClear Biomax",
+      "price": 6.0,
+      "group": "Equipment"
+    },
+    {
+      "board": "Supplies",
+      "qty": "1",
+      "name": "Flit-A-Brush Kit",
+      "price": 12.0,
+      "group": "Equipment"
+    },
+    {
+      "board": "Supplies",
+      "qty": "1",
+      "name": "Quick Vac Gravel Cleaner",
+      "price": 75.0,
+      "group": "Equipment"
+    },
+    {
+      "board": "Supplies",
+      "qty": "1",
+      "name": "Nitrite & Nitrate",
+      "price": 12.0,
+      "group": "Equipment"
+    },
+    {
+      "board": "Supplies",
+      "qty": "1",
+      "name": "5\" Net",
+      "price": 4.0,
+      "group": "Equipment"
+    },
+    {
+      "board": "Supplies",
+      "qty": "1",
+      "name": "4\" Net",
+      "price": 3.0,
+      "group": "Equipment"
+    },
+    {
+      "board": "Supplies",
+      "qty": "4",
+      "name": "2\" Net",
+      "price": 2.0,
+      "group": "Equipment"
+    },
+    {
+      "board": "Supplies",
+      "qty": "2",
+      "name": "Air Check Valve",
+      "price": 2.0,
+      "group": "Equipment"
+    },
+    {
+      "board": "Supplies",
+      "qty": "1",
+      "name": "Correct pH",
+      "price": 6.0,
+      "group": "Equipment"
+    },
+    {
+      "board": "Supplies",
+      "qty": "4",
+      "name": "Super Ick Cure 1.7 Fl Oz",
+      "price": 8.0,
+      "group": "Equipment"
+    },
+    {
+      "board": "Supplies",
+      "qty": "1",
+      "name": "Carbon Cartridge 2 Pack",
+      "price": 4.0,
+      "group": "Equipment"
+    },
+    {
+      "board": "Supplies",
+      "qty": "1",
+      "name": "GH Test Kit",
+      "price": 12.0,
+      "group": "Equipment"
+    },
+    {
+      "board": "Supplies",
+      "qty": "1",
+      "name": "Ick Cure 8 Tablets",
+      "price": 10.0,
+      "group": "Equipment"
+    },
+    {
+      "board": "Supplies",
+      "qty": "1",
+      "name": "Betta Exercise Mirror",
+      "price": 8.0,
+      "group": "Equipment"
+    },
+    {
+      "board": "Supplies",
+      "qty": "1",
+      "name": "KanaPlex",
+      "price": 10.0,
+      "group": "Equipment"
+    },
+    {
+      "board": "Supplies",
+      "qty": "2",
+      "name": "Frog Bites 1.5 oz",
+      "price": 14.0,
+      "group": "Food"
+    },
+    {
+      "board": "Supplies",
+      "qty": "3",
+      "name": "Vacation Feeding Block",
+      "price": 3.0,
+      "group": "Food"
+    },
+    {
+      "board": "Supplies",
+      "qty": "1",
+      "name": "Finding Nemo (Dory) Ornament",
+      "price": 8.0,
+      "group": "Decor"
+    },
+    {
+      "board": "Supplies",
+      "qty": "1",
+      "name": "Fake Plant",
+      "price": 7.0,
+      "group": "Decor"
+    },
+    {
+      "board": "Supplies",
+      "qty": "1",
+      "name": "Fake Aquarium Plant",
+      "price": 9.0,
+      "group": "Decor"
+    },
+    {
+      "board": "Supplies",
+      "qty": "1",
+      "name": "Betta Moss Ball",
+      "price": 9.0,
+      "group": "Decor"
+    },
+    {
+      "board": "Supplies",
+      "qty": "1",
+      "name": "Finding Nemo (Marlin) Decor",
+      "price": 8.0,
+      "group": "Decor"
+    },
+    {
+      "board": "Supplies",
+      "qty": "6",
+      "name": "Pen Dangles With Refill",
+      "price": 12.0,
+      "group": "Decor"
+    },
+    {
+      "board": "Supplies",
+      "qty": "19",
+      "name": "Regular Pen White Pack No Refills",
+      "price": 8.0,
+      "group": "Decor"
+    },
+    {
+      "board": "Supplies",
+      "qty": "25",
+      "name": "Regular Pen With Refills",
+      "price": 10.0,
+      "group": "Decor"
+    },
+    {
+      "board": "Supplies",
+      "qty": "6",
+      "name": "Regular Mechanical Pencil With Refills",
+      "price": 10.0,
+      "group": "Decor"
+    },
+    {
+      "board": "Supplies",
+      "qty": "1",
+      "name": "Mechanical Pencil with Dangles and Refills",
+      "price": 12.0,
+      "group": "Decor"
+    },
+    {
+      "board": "Supplies",
+      "qty": "6",
+      "name": "Key Rings",
+      "price": 8.0,
+      "group": "Decor"
+    },
+    {
+      "board": "Supplies",
+      "qty": "12",
+      "name": "Badge Reels",
+      "price": 10.0,
+      "group": "Decor"
+    },
+    {
+      "board": "Plants",
+      "qty": "3",
+      "name": "Grasses",
+      "price": 7.0,
+      "group": "Plants"
+    },
+    {
+      "board": "Plants",
+      "qty": "1",
+      "name": "Bamboo Plant And Holder",
+      "price": 50.0,
+      "group": "Plants"
+    },
+    {
+      "board": "Plants",
+      "qty": "1",
+      "name": "Spider Plant And Holder",
+      "price": 50.0,
+      "group": "Plants"
+    }
+  ]
+}
