@@ -1,7 +1,7 @@
 {
   "shop": "Randall Aquatics",
   "source": "Live Fish in Stock screenshots",
-  "compiled": "2026-10-13",
+  "compiled": "2026-10-18",
   "note": "Current board stock. Photos are species matches from Wikimedia Commons, not Brandon's tank unless noted. Call or message before you drive.",
   "boards": [
     "Fish",
@@ -33,7 +33,7 @@
     },
     {
       "board": "Fish",
-      "qty": "1",
+      "qty": "2",
       "name": "Black neon tetras",
       "price": 6.0,
       "group": "tetras",
@@ -106,6 +106,20 @@
     },
     {
       "board": "Fish",
+      "qty": "1",
+      "name": "Bala Shark",
+      "price": 10.0,
+      "group": "sharks"
+    },
+    {
+      "board": "Fish",
+      "qty": "1",
+      "name": "Rainbow Shark",
+      "price": 10.0,
+      "group": "sharks"
+    },
+    {
+      "board": "Fish",
       "qty": "2",
       "name": "Chinese algae eater",
       "price": 10.0,
@@ -152,17 +166,17 @@
     {
       "board": "Fish",
       "qty": "1",
+      "name": "Red And White Swordtail",
+      "price": 8.0,
+      "group": "livebearers"
+    },
+    {
+      "board": "Fish",
+      "qty": "2",
       "name": "Clown loaches",
       "price": 30.0,
       "group": "loaches",
       "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Clown_loach.jpg?width=480"
-    },
-    {
-      "board": "Fish",
-      "qty": "1",
-      "name": "Golden Wonder Killifish",
-      "price": 20.0,
-      "group": "loaches"
     },
     {
       "board": "Fish",
@@ -235,17 +249,30 @@
     },
     {
       "board": "Fish",
-      "qty": "16",
-      "name": "Small goldfish",
-      "price": 2.0,
-      "group": "goldfish",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Goldfish3.jpg?width=480"
+      "qty": "3",
+      "name": "Peacock Bass",
+      "price": 60.0,
+      "group": "cichlids"
     },
     {
       "board": "Fish",
       "qty": "1",
-      "name": "Medium goldfish",
-      "price": 7.0,
+      "name": "Giant Shell Dweller",
+      "price": 80.0,
+      "group": "cichlids"
+    },
+    {
+      "board": "Fish",
+      "qty": "1",
+      "name": "Frontosa Cichlid",
+      "price": 30.0,
+      "group": "cichlids"
+    },
+    {
+      "board": "Fish",
+      "qty": "16",
+      "name": "Small goldfish",
+      "price": 2.0,
       "group": "goldfish",
       "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Goldfish3.jpg?width=480"
     },
@@ -267,7 +294,7 @@
     },
     {
       "board": "Fish",
-      "qty": "5",
+      "qty": "4",
       "name": "Crowntail male betta",
       "price": 20.0,
       "group": "bettas",
@@ -282,16 +309,23 @@
     },
     {
       "board": "Fish",
-      "qty": "7",
+      "qty": "4",
       "name": "Veiltail Female Betta",
       "price": 15.0,
       "group": "bettas"
     },
     {
       "board": "Fish",
-      "qty": "6",
+      "qty": "3",
       "name": "Halfmoon Female Betta",
       "price": 15.0,
+      "group": "bettas"
+    },
+    {
+      "board": "Fish",
+      "qty": "1",
+      "name": "Samurai Male Betta",
+      "price": 30.0,
       "group": "bettas"
     },
     {
@@ -324,7 +358,7 @@
     },
     {
       "board": "Supplies",
-      "qty": "2",
+      "qty": "1",
       "name": "10 Gallon Framed Aquarium Kit",
       "price": 95.0,
       "group": "Equipment"
@@ -458,13 +492,6 @@
     {
       "board": "Supplies",
       "qty": "1",
-      "name": "5\" Net",
-      "price": 4.0,
-      "group": "Equipment"
-    },
-    {
-      "board": "Supplies",
-      "qty": "1",
       "name": "4\" Net",
       "price": 3.0,
       "group": "Equipment"
@@ -530,6 +557,13 @@
       "qty": "1",
       "name": "KanaPlex",
       "price": 10.0,
+      "group": "Equipment"
+    },
+    {
+      "board": "Supplies",
+      "qty": "1",
+      "name": "30 Gallon Used Tank Kit",
+      "price": 125.0,
       "group": "Equipment"
     },
     {
@@ -649,6 +683,34 @@
       "qty": "1",
       "name": "Spider Plant And Holder",
       "price": 50.0,
+      "group": "Plants"
+    },
+    {
+      "board": "Plants",
+      "qty": "1",
+      "name": "Spiralis Live Plant",
+      "price": 14.0,
+      "group": "Plants"
+    },
+    {
+      "board": "Plants",
+      "qty": "1",
+      "name": "Crinum Calamistratum",
+      "price": 18.0,
+      "group": "Plants"
+    },
+    {
+      "board": "Plants",
+      "qty": "1",
+      "name": "Crypt Parva",
+      "price": 14.0,
+      "group": "Plants"
+    },
+    {
+      "board": "Plants",
+      "qty": "10",
+      "name": "Water Lettuce",
+      "price": 5.0,
       "group": "Plants"
     }
   ]

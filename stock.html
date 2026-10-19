@@ -13,7 +13,7 @@ const items = [
 ["2","Blue velvet shrimp",8,"https://commons.wikimedia.org/wiki/Special:FilePath/Cherry_shrimp.jpg?width=400"],
 ["50+","Ramshorn snails",2,"https://commons.wikimedia.org/wiki/Special:FilePath/Planorbarius_corneus.jpg?width=400"],
 ["4","Blue Legged Crabs (SALTWATER)",15],
-["1","Black neon tetras",6,"https://commons.wikimedia.org/wiki/Special:FilePath/Black_neon_tetra.jpg?width=400"],
+["2","Black neon tetras",6,"https://commons.wikimedia.org/wiki/Special:FilePath/Black_neon_tetra.jpg?width=400"],
 ["9","Zebra danios",6],
 ["4","Celestial pearl danios",14,"https://commons.wikimedia.org/wiki/Special:FilePath/Danio_margaritatus.jpg?width=400"],
 ["3","Gold ring danios",5],
@@ -23,14 +23,16 @@ const items = [
 ["2","Blue Eye Gertrudae Rainbow Fish",18],
 ["3","Forktail Rainbow",10],
 ["3","Redtail shark",10,"https://commons.wikimedia.org/wiki/Special:FilePath/Red-tailed_black_shark.jpg?width=400"],
+["1","Bala Shark",10],
+["1","Rainbow Shark",10],
 ["2","Chinese algae eater",10,"https://commons.wikimedia.org/wiki/Special:FilePath/Gyrinocheilus_aymonieri.jpg?width=400"],
 ["10+","Baby Bristol nose pleco, black",5,"https://commons.wikimedia.org/wiki/Special:FilePath/Ancistrus_sp.jpg?width=400"],
 ["1","Banded Burmese Algea Eater",50],
 ["7","Platies",7,"https://commons.wikimedia.org/wiki/Special:FilePath/Xiphophorus_maculatus.jpg?width=400"],
 ["7","Baby Platies",3],
 ["10+","Normal Guppies",3],
-["1","Clown loaches",30,"https://commons.wikimedia.org/wiki/Special:FilePath/Clown_loach.jpg?width=400"],
-["1","Golden Wonder Killifish",20],
+["1","Red And White Swordtail",8],
+["2","Clown loaches",30,"https://commons.wikimedia.org/wiki/Special:FilePath/Clown_loach.jpg?width=400"],
 ["2","Electric blue rams",20,"https://commons.wikimedia.org/wiki/Special:FilePath/Mikrogeophagus_ramirezi.jpg?width=400"],
 ["5+","Jack Dempseys",10,"https://commons.wikimedia.org/wiki/Special:FilePath/Rocio_octofasciata_jeune_8.jpg?width=400"],
 ["10+","Platinum parrot cichlids",10],
@@ -40,14 +42,17 @@ const items = [
 ["1","Blue Balloon Ram",20],
 ["20+","Baby Convict Cichlid",3],
 ["10+","Baby Jack Dempsays",5],
+["3","Peacock Bass",60],
+["1","Giant Shell Dweller",80],
+["1","Frontosa Cichlid",30],
 ["16","Small goldfish",2,"https://commons.wikimedia.org/wiki/Special:FilePath/Goldfish3.jpg?width=400"],
-["1","Medium goldfish",7,"https://commons.wikimedia.org/wiki/Special:FilePath/Goldfish3.jpg?width=400"],
 ["2","Large shubunkin goldfish",15,"https://commons.wikimedia.org/wiki/Special:FilePath/Shubunkin.JPG?width=400"],
 ["2","Classic male betta",12,"https://commons.wikimedia.org/wiki/Special:FilePath/Betta_splendens_male_crowntail.png?width=400"],
-["5","Crowntail male betta",20,"https://commons.wikimedia.org/wiki/Special:FilePath/Betta_splendens_male_crowntail.png?width=400"],
+["4","Crowntail male betta",20,"https://commons.wikimedia.org/wiki/Special:FilePath/Betta_splendens_male_crowntail.png?width=400"],
 ["4","Super Deltatail Male Betta",32],
-["7","Veiltail Female Betta",15],
-["6","Halfmoon Female Betta",15]
+["4","Veiltail Female Betta",15],
+["3","Halfmoon Female Betta",15],
+["1","Samurai Male Betta",30]
 ];
 document.getElementById('board').innerHTML = items.map(([q,n,p,img]) => `<article class="card${q==='0'?' out':''}">${img?`<img src="${img}" alt="${n}">`:''}<div class="meta"><div class="q">${q}</div><h3>${n}</h3><div class="p">$${p}</div></div></article>`).join('');
 const supplies = [
@@ -55,7 +60,7 @@ const supplies = [
 ["1","5.5 Gallon Framed Aquarium Tank Only",30],
 ["2","10 Gallon Framed Aquarium Tank Only",35],
 ["1","Used 5.5 Gallon Framed Aquarium Kit",65],
-["2","10 Gallon Framed Aquarium Kit",95],
+["1","10 Gallon Framed Aquarium Kit",95],
 ["10+","Small Fake Plants",0.5],
 ["10+","Medium Fake Plants",1],
 ["10","Fake Grass Plant",4],
@@ -74,7 +79,6 @@ const supplies = [
 ["1","Flit-A-Brush Kit",12],
 ["1","Quick Vac Gravel Cleaner",75],
 ["1","Nitrite & Nitrate",12],
-["1","5\" Net",4],
 ["1","4\" Net",3],
 ["4","2\" Net",2],
 ["2","Air Check Valve",2],
@@ -85,6 +89,7 @@ const supplies = [
 ["1","Ick Cure 8 Tablets",10],
 ["1","Betta Exercise Mirror",8],
 ["1","KanaPlex",10],
+["1","30 Gallon Used Tank Kit",125],
 ["2","Frog Bites 1.5 oz",14],
 ["3","Vacation Feeding Block",3],
 ["1","Finding Nemo (Dory) Ornament",8],
@@ -104,7 +109,11 @@ document.getElementById('supplies').innerHTML = supplies.map(([q,n,p]) => `<arti
 const plants = [
 ["3","Grasses",7],
 ["1","Bamboo Plant And Holder",50],
-["1","Spider Plant And Holder",50]
+["1","Spider Plant And Holder",50],
+["1","Spiralis Live Plant",14],
+["1","Crinum Calamistratum",18],
+["1","Crypt Parva",14],
+["10","Water Lettuce",5]
 ];
 document.getElementById('plants').innerHTML = plants.map(([q,n,p]) => `<article class="card${q==='0'?' out':''}"><div class="meta"><div class="q">${q}</div><h3>${n}</h3><div class="p">$${p}</div></div></article>`).join('');
 </script>
