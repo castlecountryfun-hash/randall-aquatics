@@ -278,6 +278,14 @@
     },
     {
       "board": "Fish",
+      "qty": "0",
+      "name": "Medium goldfish",
+      "price": 7.0,
+      "group": "goldfish",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Goldfish3.jpg?width=480"
+    },
+    {
+      "board": "Fish",
       "qty": "2",
       "name": "Large shubunkin goldfish",
       "price": 15.0,
@@ -487,6 +495,13 @@
       "qty": "1",
       "name": "Nitrite & Nitrate",
       "price": 12.0,
+      "group": "Equipment"
+    },
+    {
+      "board": "Supplies",
+      "qty": "0",
+      "name": "5\" Net",
+      "price": 4.0,
       "group": "Equipment"
     },
     {

@@ -81,6 +81,7 @@ Source: RANDALL STOCK reply. Updated by the weekly stock form.
 | Qty | Item | Price |
 | --- | --- | --- |
 | 16 | Small goldfish | $2 |
+| 0 | Medium goldfish | $7 |
 | 2 | Large shubunkin goldfish | $15 |
 
 ### Bettas
@@ -123,6 +124,7 @@ Source: RANDALL STOCK reply. Updated by the weekly stock form.
 | 1 | Flit-A-Brush Kit | $12 |
 | 1 | Quick Vac Gravel Cleaner | $75 |
 | 1 | Nitrite & Nitrate | $12 |
+| 0 | 5" Net | $4 |
 | 1 | 4\" Net | $3 |
 | 4 | 2\" Net | $2 |
 | 2 | Air Check Valve | $2 |
