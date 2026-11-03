@@ -1,6 +1,6 @@
 # Randall Aquatics — Live Inventory
 
-Compiled from owner stock email (Oct 18, 2026). Quantities and prices as written. Call or message before you drive.
+Compiled from owner stock email (Nov 2, 2026). Quantities and prices as written. Call or message before you drive.
 
 Source: RANDALL STOCK reply. Updated by the weekly stock form.
 
@@ -10,7 +10,7 @@ Source: RANDALL STOCK reply. Updated by the weekly stock form.
 
 | Qty | Item | Price |
 | --- | --- | --- |
-| 2 | Blue velvet shrimp | $8 |
+| 0 | Blue velvet shrimp | $8 |
 | 50+ | Ramshorn snails | $2 |
 | 4 | Blue Legged Crabs (SALTWATER) | $15 |
 
@@ -21,10 +21,10 @@ Source: RANDALL STOCK reply. Updated by the weekly stock form.
 | 2 | Black neon tetras | $6 |
 | 9 | Zebra danios | $6 |
 | 4 | Celestial pearl danios | $14 |
-| 3 | Gold ring danios | $5 |
+| 0 | Gold ring danios | $5 |
 | 2 | Amber Tetras | $7 |
 | 2 | Blue Kerri Emperor Teteras | $10 |
-| 3 | Threadfin Rainbow | $18 |
+| 0 | Threadfin Rainbow | $18 |
 | 2 | Blue Eye Gertrudae Rainbow Fish | $18 |
 | 3 | Forktail Rainbow | $10 |
 
@@ -33,7 +33,7 @@ Source: RANDALL STOCK reply. Updated by the weekly stock form.
 | Qty | Item | Price |
 | --- | --- | --- |
 | 3 | Redtail shark | $10 |
-| 1 | Bala Shark | $10 |
+| 0 | Bala Shark | $10 |
 | 1 | Rainbow Shark | $10 |
 
 ### Corys, catfish, plecos
@@ -43,37 +43,42 @@ Source: RANDALL STOCK reply. Updated by the weekly stock form.
 | 2 | Chinese algae eater | $10 |
 | 10+ | Baby Bristol nose pleco, black | $5 |
 | 1 | Banded Burmese Algea Eater | $50 |
+| 4 | Baby Killifish | $3 |
 
 ### Livebearers
 
 | Qty | Item | Price |
 | --- | --- | --- |
-| 7 | Platies | $7 |
-| 7 | Baby Platies | $3 |
+| 13 | Platies | $7 |
+| 0 | Baby Platies | $3 |
 | 10+ | Normal Guppies | $3 |
-| 1 | Red And White Swordtail | $8 |
+| 0 | Red And White Swordtail | $8 |
+| 15 | Lavender Female Guppies | $15 |
+| 2 | Green Dragon Male Guppies | $20 |
 
 ### Barbs and loaches
 
 | Qty | Item | Price |
 | --- | --- | --- |
 | 2 | Clown loaches | $30 |
+| 1 | Gurra/ Doctor Fish | $25 |
+| 2 | Honey Dwarf Groumies | $15 |
 
 ### Cichlids
 
 | Qty | Item | Price |
 | --- | --- | --- |
 | 2 | Electric blue rams | $20 |
-| 5+ | Jack Dempseys | $10 |
+| 0 | Jack Dempseys | $10 |
 | 10+ | Platinum parrot cichlids | $10 |
 | 2 | Bolivan Ram | $18 |
 | 1 | Electric Blue Ram-Pair | $50 |
 | 3 | Red Zebra Cichlid | $8 |
 | 1 | Blue Balloon Ram | $20 |
-| 20+ | Baby Convict Cichlid | $3.00 |
+| 0 | Baby Convict Cichlid | $3.00 |
 | 10+ | Baby Jack Dempsays | $5 |
-| 3 | Peacock Bass | $60 |
-| 1 | Giant Shell Dweller | $80 |
+| 0 | Peacock Bass | $60 |
+| 0 | Giant Shell Dweller | $80 |
 | 1 | Frontosa Cichlid | $30 |
 
 ### Goldfish
@@ -82,17 +87,17 @@ Source: RANDALL STOCK reply. Updated by the weekly stock form.
 | --- | --- | --- |
 | 16 | Small goldfish | $2 |
 | 0 | Medium goldfish | $7 |
-| 2 | Large shubunkin goldfish | $15 |
+| 4 | Large shubunkin goldfish | $15 |
 
 ### Bettas
 
 | Qty | Item | Price |
 | --- | --- | --- |
-| 2 | Classic male betta | $12 |
-| 4 | Crowntail male betta | $20 |
-| 4 | Super Deltatail Male Betta | $32 |
+| 0 | Classic male betta | $12 |
+| 0 | Crowntail male betta | $20 |
+| 1 | Super Deltatail Male Betta | $32 |
 | 4 | Veiltail Female Betta | $15 |
-| 3 | Halfmoon Female Betta | $15 |
+| 2 | Halfmoon Female Betta | $15 |
 | 1 | Samurai Male Betta | $30 |
 
 ## Supplies
@@ -101,7 +106,7 @@ Source: RANDALL STOCK reply. Updated by the weekly stock form.
 
 | Qty | Item | Price |
 | --- | --- | --- |
-| 1 | 5.5 Gallon Rimless Aquarium Tank Only | $50 |
+| 0 | 5.5 Gallon Rimless Aquarium Tank Only | $50 |
 | 1 | 5.5 Gallon Framed Aquarium Tank Only | $30 |
 | 2 | 10 Gallon Framed Aquarium Tank Only | $35 |
 | 1 | Used 5.5 Gallon Framed Aquarium Kit | $65 |
@@ -127,7 +132,7 @@ Source: RANDALL STOCK reply. Updated by the weekly stock form.
 | 0 | 5" Net | $4 |
 | 1 | 4\" Net | $3 |
 | 4 | 2\" Net | $2 |
-| 2 | Air Check Valve | $2 |
+| 1 | Air Check Valve | $2 |
 | 1 | Correct pH | $6 |
 | 4 | Super Ick Cure 1.7 Fl Oz | $8 |
 | 1 | Carbon Cartridge 2 Pack | $4 |
@@ -135,14 +140,15 @@ Source: RANDALL STOCK reply. Updated by the weekly stock form.
 | 1 | Ick Cure 8 Tablets | $10 |
 | 1 | Betta Exercise Mirror | $8 |
 | 1 | KanaPlex | $10 |
-| 1 | 30 Gallon Used Tank Kit | $125 |
+| 0 | 30 Gallon Used Tank Kit | $125 |
+| 2 | 20 Gallon Tank Kits | $100 |
 
 ### Food
 
 | Qty | Item | Price |
 | --- | --- | --- |
-| 2 | Frog Bites 1.5 oz | $14 |
-| 3 | Vacation Feeding Block | $3 |
+| 1 | Frog Bites 1.5 oz | $14 |
+| 2 | Vacation Feeding Block | $3 |
 
 ### Decor
 
@@ -151,7 +157,7 @@ Source: RANDALL STOCK reply. Updated by the weekly stock form.
 | 1 | Finding Nemo (Dory) Ornament | $8 |
 | 1 | Fake Plant | $7 |
 | 1 | Fake Aquarium Plant | $9 |
-| 1 | Betta Moss Ball | $9 |
+| 0 | Betta Moss Ball | $9 |
 | 1 | Finding Nemo (Marlin) Decor | $8 |
 | 6 | Pen Dangles With Refill | $12 |
 | 19 | Regular Pen White Pack No Refills | $8 |
@@ -167,8 +173,8 @@ Source: RANDALL STOCK reply. Updated by the weekly stock form.
 | --- | --- | --- |
 | 3 | Grasses | $7 |
 | 1 | Bamboo Plant And Holder | $50 |
-| 1 | Spider Plant And Holder | $50 |
+| 0 | Spider Plant And Holder | $50 |
 | 1 | Spiralis Live Plant | $14 |
-| 1 | Crinum Calamistratum | $18 |
+| 0 | Crinum Calamistratum | $18 |
 | 1 | Crypt Parva | $14 |
 | 10 | Water Lettuce | $5 |
