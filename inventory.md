@@ -1,6 +1,6 @@
 # Randall Aquatics — Live Inventory
 
-Compiled from owner stock email (Nov 2, 2026). Quantities and prices as written. Call or message before you drive.
+Compiled from owner stock email (Nov 16, 2026). Quantities and prices as written. Call or message before you drive.
 
 Source: RANDALL STOCK reply. Updated by the weekly stock form.
 
@@ -10,18 +10,16 @@ Source: RANDALL STOCK reply. Updated by the weekly stock form.
 
 | Qty | Item | Price |
 | --- | --- | --- |
-| 0 | Blue velvet shrimp | $8 |
+| 5 | Blue velvet shrimp | $8 |
 | 50+ | Ramshorn snails | $2 |
-| 4 | Blue Legged Crabs (SALTWATER) | $15 |
 
 ### Tetras and danios
 
 | Qty | Item | Price |
 | --- | --- | --- |
 | 2 | Black neon tetras | $6 |
-| 9 | Zebra danios | $6 |
+| 2 | Zebra danios | $6 |
 | 4 | Celestial pearl danios | $14 |
-| 0 | Gold ring danios | $5 |
 | 2 | Amber Tetras | $7 |
 | 2 | Blue Kerri Emperor Teteras | $10 |
 | 0 | Threadfin Rainbow | $18 |
@@ -32,7 +30,7 @@ Source: RANDALL STOCK reply. Updated by the weekly stock form.
 
 | Qty | Item | Price |
 | --- | --- | --- |
-| 3 | Redtail shark | $10 |
+| 2 | Redtail shark | $10 |
 | 0 | Bala Shark | $10 |
 | 1 | Rainbow Shark | $10 |
 
@@ -40,10 +38,13 @@ Source: RANDALL STOCK reply. Updated by the weekly stock form.
 
 | Qty | Item | Price |
 | --- | --- | --- |
-| 2 | Chinese algae eater | $10 |
+| 1 | Chinese algae eater | $10 |
 | 10+ | Baby Bristol nose pleco, black | $5 |
-| 1 | Banded Burmese Algea Eater | $50 |
+| 0 | Banded Burmese Algea Eater | $50 |
 | 4 | Baby Killifish | $3 |
+| 1 | Frog Mouth Catfish | $150 |
+| 2 | Shovelnose Catfish Hybrid | $120 |
+| 1 | Bumblebee Catfish | $20 |
 
 ### Livebearers
 
@@ -52,9 +53,11 @@ Source: RANDALL STOCK reply. Updated by the weekly stock form.
 | 13 | Platies | $7 |
 | 0 | Baby Platies | $3 |
 | 10+ | Normal Guppies | $3 |
-| 0 | Red And White Swordtail | $8 |
+| 2 | Red And White Swordtail | $8 |
 | 15 | Lavender Female Guppies | $15 |
-| 2 | Green Dragon Male Guppies | $20 |
+| 1 | Green Dragon Male Guppies | $20 |
+| 3 | Koi Swordtails | $12 |
+| 2 | Male Lavender Guppies | $10 |
 
 ### Barbs and loaches
 
@@ -75,19 +78,19 @@ Source: RANDALL STOCK reply. Updated by the weekly stock form.
 | 1 | Electric Blue Ram-Pair | $50 |
 | 3 | Red Zebra Cichlid | $8 |
 | 1 | Blue Balloon Ram | $20 |
-| 0 | Baby Convict Cichlid | $3.00 |
 | 10+ | Baby Jack Dempsays | $5 |
 | 0 | Peacock Bass | $60 |
 | 0 | Giant Shell Dweller | $80 |
 | 1 | Frontosa Cichlid | $30 |
+| 2 | Tarpon | $150 |
 
 ### Goldfish
 
 | Qty | Item | Price |
 | --- | --- | --- |
-| 16 | Small goldfish | $2 |
-| 0 | Medium goldfish | $7 |
-| 4 | Large shubunkin goldfish | $15 |
+| 5 | Small goldfish | $2 |
+| 2 | Medium goldfish | $7 |
+| 0 | Large shubunkin goldfish | $15 |
 
 ### Bettas
 
@@ -95,10 +98,10 @@ Source: RANDALL STOCK reply. Updated by the weekly stock form.
 | --- | --- | --- |
 | 0 | Classic male betta | $12 |
 | 0 | Crowntail male betta | $20 |
-| 1 | Super Deltatail Male Betta | $32 |
-| 4 | Veiltail Female Betta | $15 |
-| 2 | Halfmoon Female Betta | $15 |
-| 1 | Samurai Male Betta | $30 |
+| 0 | Super Deltatail Male Betta | $32 |
+| 3 | Veiltail Female Betta | $15 |
+| 0 | Halfmoon Female Betta | $15 |
+| 0 | Samurai Male Betta | $30 |
 
 ## Supplies
 
@@ -107,10 +110,10 @@ Source: RANDALL STOCK reply. Updated by the weekly stock form.
 | Qty | Item | Price |
 | --- | --- | --- |
 | 0 | 5.5 Gallon Rimless Aquarium Tank Only | $50 |
-| 1 | 5.5 Gallon Framed Aquarium Tank Only | $30 |
-| 2 | 10 Gallon Framed Aquarium Tank Only | $35 |
+| 2 | 5.5 Gallon Framed Aquarium Tank Only | $30 |
+| 1 | 10 Gallon Framed Aquarium Tank Only | $35 |
 | 1 | Used 5.5 Gallon Framed Aquarium Kit | $65 |
-| 1 | 10 Gallon Framed Aquarium Kit | $95 |
+| 0 | 10 Gallon Framed Aquarium Kit | $95 |
 | 10+ | Small Fake Plants | $0.50 |
 | 10+ | Medium Fake Plants | $1 |
 | 10 | Fake Grass Plant | $4 |
@@ -130,7 +133,7 @@ Source: RANDALL STOCK reply. Updated by the weekly stock form.
 | 1 | Quick Vac Gravel Cleaner | $75 |
 | 1 | Nitrite & Nitrate | $12 |
 | 0 | 5" Net | $4 |
-| 1 | 4\" Net | $3 |
+| 0 | 4\" Net | $3 |
 | 4 | 2\" Net | $2 |
 | 1 | Air Check Valve | $2 |
 | 1 | Correct pH | $6 |

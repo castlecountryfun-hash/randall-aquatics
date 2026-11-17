@@ -1,7 +1,7 @@
 {
   "shop": "Randall Aquatics",
-  "source": "Live Fish in Stock screenshots",
-  "compiled": "2026-11-02",
+  "source": "RANDALL STOCK email 2026-11-16",
+  "compiled": "2026-11-16",
   "note": "Current board stock. Photos are species matches from Wikimedia Commons, not Brandon's tank unless noted. Call or message before you drive.",
   "boards": [
     "Fish",
@@ -11,7 +11,7 @@
   "items": [
     {
       "board": "Fish",
-      "qty": "0",
+      "qty": "5",
       "name": "Blue velvet shrimp",
       "price": 8.0,
       "group": "shrimp",
@@ -26,13 +26,6 @@
     },
     {
       "board": "Fish",
-      "qty": "4",
-      "name": "Blue Legged Crabs (SALTWATER)",
-      "price": 15.0,
-      "group": "shrimp"
-    },
-    {
-      "board": "Fish",
       "qty": "2",
       "name": "Black neon tetras",
       "price": 6.0,
@@ -41,7 +34,7 @@
     },
     {
       "board": "Fish",
-      "qty": "9",
+      "qty": "2",
       "name": "Zebra danios",
       "price": 6.0,
       "group": "danios"
@@ -53,13 +46,6 @@
       "price": 14.0,
       "group": "danios",
       "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Danio_margaritatus.jpg?width=480"
-    },
-    {
-      "board": "Fish",
-      "qty": "0",
-      "name": "Gold ring danios",
-      "price": 5.0,
-      "group": "danios"
     },
     {
       "board": "Fish",
@@ -98,7 +84,7 @@
     },
     {
       "board": "Fish",
-      "qty": "3",
+      "qty": "2",
       "name": "Redtail shark",
       "price": 10.0,
       "group": "sharks",
@@ -120,7 +106,7 @@
     },
     {
       "board": "Fish",
-      "qty": "2",
+      "qty": "1",
       "name": "Chinese algae eater",
       "price": 10.0,
       "group": "catfish",
@@ -136,7 +122,7 @@
     },
     {
       "board": "Fish",
-      "qty": "1",
+      "qty": "0",
       "name": "Banded Burmese Algea Eater",
       "price": 50.0,
       "group": "catfish"
@@ -146,6 +132,27 @@
       "qty": "4",
       "name": "Baby Killifish",
       "price": 3.0,
+      "group": "catfish"
+    },
+    {
+      "board": "Fish",
+      "qty": "1",
+      "name": "Frog Mouth Catfish",
+      "price": 150.0,
+      "group": "catfish"
+    },
+    {
+      "board": "Fish",
+      "qty": "2",
+      "name": "Shovelnose Catfish Hybrid",
+      "price": 120.0,
+      "group": "catfish"
+    },
+    {
+      "board": "Fish",
+      "qty": "1",
+      "name": "Bumblebee Catfish",
+      "price": 20.0,
       "group": "catfish"
     },
     {
@@ -172,7 +179,7 @@
     },
     {
       "board": "Fish",
-      "qty": "0",
+      "qty": "2",
       "name": "Red And White Swordtail",
       "price": 8.0,
       "group": "livebearers"
@@ -186,9 +193,23 @@
     },
     {
       "board": "Fish",
-      "qty": "2",
+      "qty": "1",
       "name": "Green Dragon Male Guppies",
       "price": 20.0,
+      "group": "livebearers"
+    },
+    {
+      "board": "Fish",
+      "qty": "3",
+      "name": "Koi Swordtails",
+      "price": 12.0,
+      "group": "livebearers"
+    },
+    {
+      "board": "Fish",
+      "qty": "2",
+      "name": "Male Lavender Guppies",
+      "price": 10.0,
       "group": "livebearers"
     },
     {
@@ -267,14 +288,6 @@
     },
     {
       "board": "Fish",
-      "qty": "0",
-      "name": "Baby Convict Cichlid",
-      "price": 3.0,
-      "group": "cichlids",
-      "deal": 1.5
-    },
-    {
-      "board": "Fish",
       "qty": "10+",
       "name": "Baby Jack Dempsays",
       "price": 5.0,
@@ -304,7 +317,14 @@
     },
     {
       "board": "Fish",
-      "qty": "16",
+      "qty": "2",
+      "name": "Tarpon",
+      "price": 150.0,
+      "group": "cichlids"
+    },
+    {
+      "board": "Fish",
+      "qty": "5",
       "name": "Small goldfish",
       "price": 2.0,
       "group": "goldfish",
@@ -312,7 +332,7 @@
     },
     {
       "board": "Fish",
-      "qty": "0",
+      "qty": "2",
       "name": "Medium goldfish",
       "price": 7.0,
       "group": "goldfish",
@@ -320,7 +340,7 @@
     },
     {
       "board": "Fish",
-      "qty": "4",
+      "qty": "0",
       "name": "Large shubunkin goldfish",
       "price": 15.0,
       "group": "goldfish",
@@ -344,28 +364,28 @@
     },
     {
       "board": "Fish",
-      "qty": "1",
+      "qty": "0",
       "name": "Super Deltatail Male Betta",
       "price": 32.0,
       "group": "bettas"
     },
     {
       "board": "Fish",
-      "qty": "4",
+      "qty": "3",
       "name": "Veiltail Female Betta",
       "price": 15.0,
       "group": "bettas"
     },
     {
       "board": "Fish",
-      "qty": "2",
+      "qty": "0",
       "name": "Halfmoon Female Betta",
       "price": 15.0,
       "group": "bettas"
     },
     {
       "board": "Fish",
-      "qty": "1",
+      "qty": "0",
       "name": "Samurai Male Betta",
       "price": 30.0,
       "group": "bettas"
@@ -379,14 +399,14 @@
     },
     {
       "board": "Supplies",
-      "qty": "1",
+      "qty": "2",
       "name": "5.5 Gallon Framed Aquarium Tank Only",
       "price": 30.0,
       "group": "Equipment"
     },
     {
       "board": "Supplies",
-      "qty": "2",
+      "qty": "1",
       "name": "10 Gallon Framed Aquarium Tank Only",
       "price": 35.0,
       "group": "Equipment"
@@ -400,7 +420,7 @@
     },
     {
       "board": "Supplies",
-      "qty": "1",
+      "qty": "0",
       "name": "10 Gallon Framed Aquarium Kit",
       "price": 95.0,
       "group": "Equipment"
@@ -540,7 +560,7 @@
     },
     {
       "board": "Supplies",
-      "qty": "1",
+      "qty": "0",
       "name": "4\" Net",
       "price": 3.0,
       "group": "Equipment"
